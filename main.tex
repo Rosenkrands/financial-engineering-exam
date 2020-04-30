@@ -1,6 +1,8 @@
 \documentclass{article}
 \usepackage{amsmath,amsthm,amssymb}
 \newtheorem{theorem}{Theorem}[section]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
 \numberwithin{equation}{section}
 
 \begin{document}
@@ -17,7 +19,65 @@
 \end{titlepage}
 
 \section{Bonds and the Value of Money Through Time}
-Here you can explain what type of interests we studied and how the fair-price of bonds depends on these types of interest and viceversa.
+\textit{Here you can explain what type of interests we studied and how the fair-price of bonds depends on these types of interest and viceversa.}
+
+\subsection{Bonds}
+I will begin by giving the definition of a bond.
+\begin{definition}[Bond]
+    A bond is a financial security that pays the owner a chain of predetermined payments.\label{def:bond}
+\end{definition}
+Using definition \ref{def:bond} we can interpret a bond as a financial asset which have no risk.
+In order words we know for a fact how much money we will make on this investment, disregarding the inherent risk of default.
+
+\subsection{Value of Money Through Time}
+The value of money changes through time.
+Assume you were offered an amount of money with value $M$, furthermore you would have the choice of recieving the money today or 1 year from now.
+Choosing to recieve the money now you would be able to spend them straightaway which could be preferable compared to waiting a year.
+Prices could also have risen during the waiting time, further diminishing the value.
+Last but not least, recieving the money today would enable you to put the money in the bank and thereby recieve a premium.
+All these arguments serve the purpose of showing that the value of money changes through time, and that the value $M$ of the money would decrease by waiting a year before recieving the money.
+
+\subsection{Interest Rate}
+The premium recieved by depositing money at bank mentioned earlier is described by an interest rate.
+This interest rate will in the following be described by a positive number $$r>0.$$
+Different types of interest exists and i will describe the following three types
+\begin{enumerate}
+    \item simple interest,
+    \item compouned interest,
+    \item continuously compounded interes.
+\end{enumerate}
+Common for all three types is that they represent a fraction of an investment that is paid either ones or through several periods.
+
+However to further dive into the different types of interest we will first define the notion of a wealth process.
+\begin{definition}[Wealth Process]
+    The evolution of an investment over time is called the wealth process of that investment and is denoted by
+    \begin{align}
+        V = (V_t)_{0 \leq t \leq T}.
+    \end{align}
+    The initial capital is denoted by $v_0$, and we assume that $V$ is a real-valued stochastic process on a given probability space $(\Omega, \mathcal{F}, \mathbb{P})$.
+\end{definition}
+With this definition in place we are now ready to define the three different types of interest starting with simple interest.
+\begin{definition}[Simple Interest]
+    Let $v_0 \in \mathbb{R}$ be our initial capital.
+    An interest on $v_0$ is said to simple if it follows the wealth process
+    \begin{align}\label{eq:simple_interest_wealth_process}
+        V_t = (1 + rt)v_0, \quad 0 \leq t \leq T.
+    \end{align}
+\end{definition}
+I will now show that the wealth process in \eqref{eq:simple_interest_wealth_process} is indeed a stochastic process in any probability space.
+Any stochastic process $X$ on the probability space $(\Omega, \mathcal{F}, \mathbb{P})$ satisfies
+\begin{align}
+    \{\omega \in \Omega \, : \, X(\omega) \leq x\} \in \mathcal{F}, \quad \forall x \in \mathbb{R}.
+\end{align}
+Suppose $v_0 > 0$ and $x \geq (1 + rt)v_0$ then
+\begin{align}
+    \{\omega \in \Omega \, : \, (1 + rt)v_0 \leq x\} = \{\Omega\} \in \mathcal{F},
+\end{align}
+on the other hand if $x < (1 + rt)v_0$
+\begin{align}
+    \{\omega \in \Omega \, : \, (1 + rt)v_0 \leq x\} = \{\emptyset\} \in \mathcal{F}.
+\end{align}
+As both $\Omega$ and $\emptyset$ is contained in any $\sigma$-algebra we have shown that the wealth process in \eqref{eq:simple_interest_wealth_process} is a stochastic process in any probability space.
 
 \newpage
 
