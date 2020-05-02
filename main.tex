@@ -1,5 +1,6 @@
 \documentclass{article}
 \usepackage{amsmath,amsthm,amssymb}
+\usepackage{enumitem}
 \newtheorem{theorem}{Theorem}[section]
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
@@ -59,7 +60,7 @@ However to further dive into the different types of interest we will first defin
 With this definition in place we are now ready to define the three different types of interest starting with simple interest.
 \begin{definition}[Simple Interest]
     Let $v_0 \in \mathbb{R}$ be our initial capital.
-    An interest on $v_0$ is said to simple if it follows the wealth process
+    An interest on $v_0$ is said to be simple if it follows the wealth process
     \begin{align}\label{eq:simple_interest_wealth_process}
         V_t = (1 + rt)v_0, \quad 0 \leq t \leq T.
     \end{align}
@@ -78,30 +79,52 @@ on the other hand if $x < (1 + rt)v_0$
     \{\omega \in \Omega \, : \, (1 + rt)v_0 \leq x\} = \{\emptyset\} \in \mathcal{F}.
 \end{align}
 As both $\Omega$ and $\emptyset$ is contained in any $\sigma$-algebra we have shown that the wealth process in \eqref{eq:simple_interest_wealth_process} is a stochastic process in any probability space.
+Next i will define the notion of compund interest.
+\begin{definition}[Compund Interest]
+    Let $v_0 \in \mathbb{R}$ be our initial capital.
+    An interest on $v_0$ is said to be compunded over $m\in\mathbb{N}$ periods if it follows the wealth process
+    \begin{align}\label{eq:compund_interest_wealth_process}
+        V_t = \left( 1 + \frac{r}{m} \right)^{mt} v_0, \quad 0 \leq t \leq T.
+    \end{align}
+\end{definition}
+As stated in the definition $m$ can be any natural number, however if $m = 1, 12, 365$ the interest is refered to as annually, monthly and daily compounded, respectively.
+Note that we have the following properties $\forall\, 0 \leq t \leq T$
+\begin{enumerate}[label = \textit{\roman*}).]
+    \item If $m_1 > m_2, v_0 > 0 
+    \, \Rightarrow \, 
+    \left( 1 + \dfrac{r}{m_1} \right)^{m_1t}v_0
+    >
+    \left( 1 + \dfrac{r}{m_2} \right)^{m_2t}v_0$.
+    \item If $m_1 > m_2, v_0 < 0 
+    \, \Rightarrow \, 
+    \left( 1 + \dfrac{r}{m_1} \right)^{m_1t}v_0
+    <
+    \left( 1 + \dfrac{r}{m_2} \right)^{m_2t}v_0$.
+\end{enumerate}
 
 \newpage
 
 \section{Portfolio Allocation and Risk Measures}
-Try to explain what a portfolio is and how we can create (allocate) portfolio based on risk measures. In your discussion about the latter, remember to include the differences/benefits/drawbacks of considering the standard deviation, VaR and CVaR as risk measures.
+\textit{Try to explain what a portfolio is and how we can create (allocate) portfolio based on risk measures. In your discussion about the latter, remember to include the differences/benefits/drawbacks of considering the standard deviation, VaR and CVaR as risk measures.}
 
 \newpage
 
 \section{The Multi-Step Binomial Model}
-Describe the dynamics of the model. Try to discuss, among other things, the way that the market information is described through time, its absence of arbitrage, and how to find a risk-neutral measure in such model. 
+\textit{Describe the dynamics of the model. Try to discuss, among other things, the way that the market information is described through time, its absence of arbitrage, and how to find a risk-neutral measure in such model.}
 
 \newpage
 
 \section{The First Fundamental Theorem of Asset Pricing}
-Focus on explaining the hypothesis in the theorem (martingale measure, admissible strategies, arbitrage, etc.) and its applications to the pricing of financial derivatives.
+\textit{Focus on explaining the hypothesis in the theorem (martingale measure, admissible strategies, arbitrage, etc.) and its applications to the pricing of financial derivatives.}
 
 \newpage
 
 \section{Pricing in the Binomial Model}
-Explain what is the typical methodology for pricing derivatives and how such a methodology works in the Binomial model. Remember to include an example (e.g. the price of call-option).
+\textit{Explain what is the typical methodology for pricing derivatives and how such a methodology works in the Binomial model. Remember to include an example (e.g. the price of call-option).}
 
 \newpage
 
 \section{The Second Fundamental Theorem of Asset Pricing}
-Focus on explaining the hypothesis in the theorem (martingale measure, admissible strategies, arbitrage, completeness, etc.) and its consequences on the pricing of financial derivatives. You can, in particular, show that the Binomial Model is complete while the Trinomial Model is not.
+\textit{Focus on explaining the hypothesis in the theorem (martingale measure, admissible strategies, arbitrage, completeness, etc.) and its consequences on the pricing of financial derivatives. You can, in particular, show that the Binomial Model is complete while the Trinomial Model is not.}
 
 \end{document}
