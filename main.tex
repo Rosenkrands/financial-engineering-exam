@@ -80,7 +80,7 @@ on the other hand if $x < (1 + rt)v_0$
 \end{align}
 As both $\Omega$ and $\emptyset$ is contained in any $\sigma$-algebra we have shown that the wealth process in \eqref{eq:simple_interest_wealth_process} is a stochastic process in any probability space.
 Next i will define the notion of compund interest.
-\begin{definition}[Compund Interest]
+\begin{definition}[Compounded Interest]
     Let $v_0 \in \mathbb{R}$ be our initial capital.
     An interest on $v_0$ is said to be compunded over $m\in\mathbb{N}$ periods if it follows the wealth process
     \begin{align}\label{eq:compund_interest_wealth_process}
@@ -103,6 +103,43 @@ Note that we have the following properties $\forall\, 0 \leq t \leq T$
     \left( 1 + \dfrac{r}{m_2} \right)^{m_2t}v_0$.
 \end{enumerate}
 From this is follows that for an \textit{investor} compund interest is more attractive as it pays more, however as a \textit{debtor} it is less attractive as he or she will have to pay more on his or hers debt.
+
+At last i can turn to continuously compounded interest which i will present as the limit of \eqref{eq:compund_interest_wealth_process} as $m \rightarrow \infty$.
+Note that by the following definition of $e$
+\begin{align}
+    \lim_{x \rightarrow \infty} \left(1 + \frac{1}{x}\right)^x = e,
+\end{align}
+by letting $x = r/m$ in the above the limit of the wealth process of compounded interest can be seen as
+\begin{align}
+    \left[\left( 1 + \frac{r}{m} \right)^\frac{m}{r}\right]^{rt}v_0 \rightarrow
+    (e)^{rt}v_0, \quad \text{as } m \rightarrow \infty.
+\end{align} 
+This leads to the definition of continuously compounded interest
+\begin{definition}[Continuously Compounded Interest]
+    Let $v_0$ be our initial capital.
+    An interest on $v_0$ is said to be continuously compounded at rate $r>0$ if the wealth process
+    \begin{align}
+        V_t = e^{rt}v_0, \quad 0 \leq t \leq T.
+    \end{align}
+\end{definition}
+There exists the following relation between the different types of interest
+\begin{align}
+    (1 + r) \leq \left(1 + \frac{r}{m}\right)^m < e^r.
+\end{align}
+To show that the relation indeed holds i will show that the sequence
+\begin{align}
+    a_m = \left(1 + \frac{r}{m}\right)^m,
+\end{align}
+is increasing.
+
+\subsection{Bonds}
+A bond is a financial security that pays to the owner a chain of predetermined payments.
+However there are different types of bonds.
+I will discuss the following two types here
+\begin{enumerate}
+    \item zero-coupon bonds,
+    \item coupon bonds.
+\end{enumerate}
 
 \newpage
 
