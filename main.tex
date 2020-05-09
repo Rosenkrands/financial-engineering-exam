@@ -235,6 +235,9 @@ in other words the fair price of the coupon bond (as well as the zero-coupon bon
 \section{Portfolio Allocation and Risk Measures}
 \textit{Try to explain what a portfolio is and how we can create (allocate) portfolio based on risk measures. In your discussion about the latter, remember to include the differences/benefits/drawbacks of considering the standard deviation, VaR and CVaR as risk measures.}
 
+\subsection{Portfolio}
+First and foremost i will give the definition of a portfolio.
+
 \begin{definition}[Portfolio and Strategies]
     Let
     \begin{align}
@@ -252,8 +255,19 @@ in other words the fair price of the coupon bond (as well as the zero-coupon bon
     \begin{align}
         \Theta_t = \left(\varphi_t, \theta_t^{(1)}, \ldots, \theta_t^{(d)}\right),
     \end{align}
-    
+    in which
+    \begin{align}
+        \Theta_t^j = \text{Number of shares of the $j$'th asset held between time $t-1$ and $t$}.
+    \end{align}
+    for $j = 1, \ldots, d + 1$.
+    The collection $\Theta = \left( \Theta_t \right)_{0 \leq t \leq T}$, with the convention that $\Theta_0 = \Theta_1$ is termed a strategy.
 \end{definition}
+
+\subsection{Risk Measures}
+
+\subsubsection{Mean-Variance}
+
+\subsubsection{Value at Risk}
 
 \newpage
 
