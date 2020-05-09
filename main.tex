@@ -194,8 +194,41 @@ I other words how much money will i have to deposit in my bank account today if 
 \end{align*}
 and have nothing left in the bank account afterwards.
 
-
-
+In order to be able to get $C > 0$ after one year i have to put
+\begin{align}
+    \frac{C}{1+r}
+\end{align}
+in the bank.
+In order to be able to get $C > 0$ after two years i have to put 
+\begin{align}
+    \frac{C}{(1+r)^2}
+\end{align}
+in the bank.
+Generalizing this argumentat tells me that in order to $C > 0$ after $t$ years i have to put
+\begin{align}
+    \frac{C}{(1+r)^t}
+\end{align}
+in the bank.
+Lastly in order to get $F + C$ after $T$ years i have to put
+\begin{align}
+    \frac{F + C}{(1+r)^T} = \frac{F}{(1+r)^T} + \frac{C}{(1+r)^T}
+\end{align}
+in the bank.
+Adding up all these amounts it is concluded that i have to make a deposit of
+\begin{align}
+    \sum_{i = 1}^T \frac{C}{(1 + r)^i} + \frac{F}{(1+r)^T}.
+\end{align}
+The agreeable price of a coupon bond is thus given by
+\begin{align}
+    B_0 = 
+    \sum_{i = 1}^T \frac{C}{(1 + r)^i} + \frac{F}{(1+r)^T} =
+    \frac{\xi_T}{(1 + r)^T}.
+\end{align}
+Where the pay-off $\xi_T$ at time $T$ is given by
+\begin{align}
+    \xi_T := \sum_{i = 1}^T C(1 + r)^{T -i} + F,
+\end{align}
+in other words the fair price of the coupon bond (as well as the zero-coupon bond) can be written as the discounted price of the total pay-off.
 \newpage
 
 \section{Portfolio Allocation and Risk Measures}
