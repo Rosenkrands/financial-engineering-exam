@@ -133,13 +133,68 @@ To show that the relation indeed holds i will show that the sequence
 is increasing.
 
 \subsection{Bonds}
-A bond is a financial security that pays to the owner a chain of predetermined payments.
+A bond is a financial security that pays to the owner, a chain of predetermined payments.
 However there are different types of bonds.
 I will discuss the following two types here
 \begin{enumerate}
     \item zero-coupon bonds,
     \item coupon bonds.
 \end{enumerate}
+A \textbf{zero-coupon bond} is a bond with a single payment $F > 0$ at time $T > 0$.
+The pay-off F is called the face value and $T$ the maturity time.
+The next question i will answer is how much i will be willing to pay for such a financial assest.
+This depends on the way the time value of money is measured.
+Consider for example the following setup; let $B_0 \geq 0$ be the value of the zero-coupon bond with face value $F>0$ and maturity time $T>0$.
+Suppose that only annual compound interest at rate $r>0$ is available.
+From a buyers perspective what if
+\begin{align}\label{eq:zero_coupon_bond_example}
+    B_0 > \frac{F}{(1 + r)^T},
+\end{align}
+would i buy the bond? 
+No, of course not because the right side of \eqref{eq:zero_coupon_bond_example} denote the amount of money i would have to put in the bank today to recieve exactly $F$ at time $T$.
+When the aforementioned amount of monwy is less than the price of the bond, i would surely choose to put money in the bank instead of buying the bond, as the bond will pays exactly $F$ at time $T$.
+Suppose now that we flip the inequality and look from a sellers perspective, that is if
+\begin{align}\label{eq:zero_coupon_bond_example_seller}
+    B_0 < \frac{F}{(1 + r)^T},
+\end{align}
+would i sell the bond? 
+No of course not because the right side of \eqref{eq:zero_coupon_bond_example_seller} denotes the amount at i can borrow at time 0 if i agree to pay exactly $F$ at time $T$.
+For the bond i would also have to pay $F$ at time zero however i would only recieve $B_0$ at time 0.
+Therefore i would not agree to sell the bond in this situation.
+
+This implies that the only price a buyer and seller can agree to is in the situation where
+\begin{align}
+    B_0 = \frac{F}{(1 + r)^T}.
+\end{align}
+Now i will consider the situatuion where at time $1 \leq t \leq T$ i want to get rid of a bond, but i what to determine what price i should sell it to.
+At this time the bond can be considered a new zero-coupon bond with face value $F > 0$ and maturity time $T - t$.
+Thus we have from the previous argumentation that
+\begin{align}
+    B_t = \frac{F}{(1 + r)^{T - t}}, \quad 0 \leq t \leq T.
+\end{align} 
+
+The chain of argumenation holds also when the time value of money is different, if a compounded interest over $m$ periods where considered then the fair price of a zero-coupon bond at time $t$ would be
+\begin{align}
+    B_t = \frac{F}{\left(1 + \frac{r}{m}\right)^{m(T - t)}}.
+\end{align}
+If we consider the continuously compounded case the fair price would be
+\begin{align}
+    B_t = \frac{F}{e^{r(T -t)}}.
+\end{align}
+
+A \textbf{coupon bond} guarantees the owner a payment $F > 0$ at time $T > 0$, as well as a fixed amount $C > 0$ at $t = 1,2,\ldots,T$.
+To find a fair price for such a bond i will follow the same argumentation as above, namely i will compare the price of the bond with the cost of recieving the same benefits with a bank account.
+I other words how much money will i have to deposit in my bank account today if i want to
+\begin{align*}
+    \text{1.} \quad &\text{withdraw $C > 0$ after 1 year} \\
+    \text{2.} \quad &\text{withdraw $C > 0$ after 2 years} \\
+    &\quad \vdots \\
+    \text{$T-1$.} \quad &\text{withdraw $C > 0$ after $T-1$ years} \\
+    \text{$T$.} \quad &\text{withdraw $F + C$ after $T$ years} \\
+\end{align*}
+and have nothing left in the bank account afterwards.
+
+
 
 \newpage
 
