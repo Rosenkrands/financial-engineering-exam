@@ -6,12 +6,21 @@
 
     % definition of theorem enviroments and numbering scheme 
     \newtheorem{theorem}{Theorem}[section]
+    \newtheorem{proposition}[theorem]{Proposition}
 
     \theoremstyle{definition}
-    \newtheorem{definition}{Definition}[section]
+    \newtheorem{definition}[theorem]{Definition}
+    \newtheorem{problem}[theorem]{Problem}
 
     % equation numbering
     \numberwithin{equation}{section}
+
+    % math operators
+    \DeclareMathOperator*{\argmin}{argmin}
+    \DeclareMathOperator*{\var}{Var}
+    \DeclareMathOperator*{\cov}{Cov}
+    \DeclareMathOperator{\VaR}{VaR}
+    \DeclareMathOperator{\cvar}{CVaR}
 
 % additional math font types
 \usepackage{mathrsfs}
@@ -24,10 +33,20 @@
 \usepackage[dvipsnames]{xcolor}
 % definition of comment color
 \newcommand{\commentcolor}{Goldenrod}
+\newcommand{\taskcolor}{RedOrange}
 % definition of comment function itself
 \newcommand{\comment}[1]{
     \begin{center}
         \colorbox{\commentcolor}{
+            \textsf{
+                \textbf{#1}
+            }
+        }
+    \end{center}
+}
+\newcommand{\task}[1]{
+    \begin{center}
+        \colorbox{\taskcolor}{
             \textsf{
                 \textbf{#1}
             }
@@ -293,13 +312,217 @@ First and foremost i will give the definition of a portfolio.
     for $j = 1, \ldots, d + 1$.
     The collection $\Theta = \left( \Theta_t \right)_{0 \leq t \leq T}$, with the convention that $\Theta_0 = \Theta_1$ is termed a strategy.
 \end{definition}
+For every strategy on market there is an associated wealth process.
+The wealth process for $\Theta$ is defined and denoted by
+\begin{align}
+    V_t^{\Theta} = \varphi_t B_t + \sum_{j = 1}^d \theta_t^{(j)} S_t^{(j)} = \Theta_t \cdot P_t, \quad 0 \leq t \leq T.    
+\end{align}
 
 \subsection{Risk Measures}
+Any strategy on a given market inherently carries a risk because the return is random, there is in other words no way to predict our profit or losses.
+There is no one way to measure the risk associated with a strategy, however in the next to sections i will explore two approaches.
+Both of these is based on portfolio allocation as an optmization problem.
+The problem is given in this way; solve
+\begin{align}
+    \argmin_{\mathbf{w}\in\mathbb{R}^{d+1}}
+    \mathcal{R}\left( \mathbf{w} \cdot \mathbf{K}_P \right),
+\end{align}
+subject to:
+\begin{align}
+    \sum_{j = 0}^d w_j = 1, \ 
+    \mathbb{E}\left[ U(\mathbf{w} \cdot \mathbf{K}_P) \right] = \mu, \
+    \mu \in \mathbb{R},
+\end{align}
+where $\mathcal{R}$ is a measure of risk and $U(\mathbf{w} \cdot \mathbf{K}_P)$ is the utility of the strategy.
 
 \subsubsection{Mean-Variance}
+If an agent would like to maximize profit while minimizing the variance, he or she could take the mean-variance approach.
+In this approach risk is measured using standard deviations, i.e.
+\begin{align}
+    \mathcal{R}(X) = \sigma(X) = \sqrt{\var(X)} = \sqrt{\mathbb{E}\left[ (X - \mathbb{E}(X))^2 \right]}.
+\end{align}
+For a portfolio with weights $\mathbf{w}$, we have that
+\begin{align}
+    \mathcal{R}(\mathbf{w} \cdot \mathbf{K}_P) = \sqrt{\mathbf{w}^\top C \mathbf{w}},
+\end{align}
+where $C$ is a $(d + 1) \times (d + 1)$ matrix given by
+\begin{align}
+    C^{i,j} = 
+    \cov\left( \mathbf{K}_P^i, \mathbf{K}_P^j \right) =
+    \sqrt{\mathbb{E}\left[ \left( \mathbf{K}_P^i - \mathbb{E}(\mathbf{K}_P^i) \right) \left( \mathbf{K}_P^j - \mathbb{E}(\mathbf{K}_P^j) \right) \right]}.
+\end{align}
+\comment{Write exercise from lecture 2}
+The mean variance approach assumes the uitility function as the identity, that is
+\begin{align}
+    U(x) = x.
+\end{align}
+By letting
+\begin{align}
+    \mu_\mathbf{K} := \mathbb{E}\left[\mathbf{K}_P\right],
+\end{align}
+it follows that
+\begin{align}
+    \mathbb{E}\left[ U(\mathbf{w} \cdot \mathbf{K}_P) \right] = \mathbf{w} \cdot \mu_\mathbf{K}.
+\end{align}
+Thus the optimization problem, in the mean-variance approach becomes
+\begin{problem}[Optimization Problem Mean-Variance]
+    \begin{align*}
+        &\quad\argmin_{\mathbf{w}\in\mathbb{R}^{d+1}} \sqrt{\mathbf{w}^\top C \mathbf{w}} \\
+        &\text{Subject to:} \\
+        &\qquad \text{1.) }\sum_{j = 0}^d w_j = 1, \\
+        &\qquad \text{2.) }\mathbf{w} \cdot \mu_\mathbf{K} = \mu, \quad \mu \in \mathbb{R}.
+    \end{align*}
+\end{problem}
+An illustrative example to demonstrate why one might consider a different risk measure than the standard deviation is the following.
+Consider two portfolios that generate the following wealth
+\begin{align}
+    V_1^{(1)} = 
+    \begin{cases}
+        1 &\text{with probability $1/2$} \\
+        -9 &\text{with probability $1/2$}    
+    \end{cases}
+\end{align}
+and
+\begin{align}
+    V_1^{(2)} = 
+    \begin{cases}
+        5 &\text{with probability $1/2$} \\
+        -5 &\text{with probability $1/2$}    
+    \end{cases}
+\end{align}
+According to their standard deviation these two portfolios carries the same risk, but one could argue that the first is riskier that the latter.
+The next risk measure i will consider i concerned with controlling losses rather than the variation of the return.
 
 \subsubsection{Value at Risk}
+If i denote the outcome of an investment with $V_1$ then our potential losses will be given by $-V_1$.
+Suppose that for some $x \in \mathbb{R}$
+\begin{align}
+    -V_1 \leq x.
+\end{align}
+Then to cover my risk of bankruptcy i must keep at least the amount $x$ in my bank account.
+In reality the only thing i can quantify is the chance of the happening, which is denoted by
+\begin{align}
+    \mathbb{P}\left( -V_1 \leq x \right).
+\end{align}
+This is the motivation behind the risk measure value at risk.
+\begin{definition}[Value at Risk]
+    Let $0 < \alpha < 1$ and $X$ be a random variable.
+    The Value at Risk (VaR) of $X$ is defined and denoted by
+    \begin{align}
+        \VaR_\alpha(X) := \inf
+        \left\{
+            x \in \mathbb{R} \, : \,
+            \mathbb{P}(X + x \geq 0)
+            \geq 1 - \alpha
+        \right\}.
+    \end{align}
+\end{definition}
+In other words the $\VaR_\alpha(X)$ represents the amount of extra capital i need to hold in order to reduce my risk of bankruptcy to $1 - \alpha$.
+An alternative representation of $\VaR$ can be formulated using the fact that
+\begin{align}
+    \mathbb{P}(-X \leq x) \geq 1 - \alpha
+    \, \Longleftrightarrow \,
+    \mathbb{P}(X + x < 0) \leq \alpha,
+\end{align}
+this lets us formulate an equivalent representation given by
+\begin{align}
+    \VaR_\alpha(X) := \inf
+    \left\{
+        x \in \mathbb{R} \, : \,
+        \mathbb{P}(X < -x) \leq \alpha
+    \right\}.
+\end{align}
+The following proposition describes some properties for the $\VaR$.
+\begin{proposition}[Properties of $\VaR$]
+    Let $X, Y$ be arbitrary random variables.
+    Then, the following holds
+    \begin{enumerate}
+        \item If $X \geq 0$ almost surely, then $\VaR_\alpha(X) \leq 0$.
+        \item For all $y\in \mathbb{R}$ we have that $\VaR_\alpha(X + y) = \VaR_\alpha(X) - y$. In particular $\VaR_\alpha(X + \VaR_\alpha(X)) = 0$.
+        \item If $\lambda \geq 0$, then $\VaR_\alpha(\lambda X) = \lambda \VaR_\alpha(X)$.
+        \item If $X \geq Y$ almost surely, then $\VaR_\alpha(X) \leq \VaR_\alpha(Y)$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    \comment{Get back to this proof}
+\end{proof}
 
+\subsection{Coherent Risk Measures}
+
+There are one important drawback to measuring risk using $\VaR$ and that is its lack of diversification.
+
+Note that when using the standard deviation as a risk measure we get the following
+\begin{align}
+    \sigma(X + Y)^2 = \var(X) + \var(Y) + 2\rho_{X,Y}\sqrt{\var(X)\var(Y)},
+\end{align}
+where $\rho_{X,Y} = \frac{\cov(X,Y)}{\sqrt{\var(X)\var(Y)}} \leq 1$.
+Then
+\begin{align}
+    \sigma(X + Y)^2 &= \sigma(X)^2 + \sigma(Y)^2 + 2\rho_{X,Y}\sigma(X)\sigma(Y)\\
+    &\leq \sigma(X)^2 + \sigma(Y)^2 + 2\sigma(Y)\sigma(X) = \left[\sigma(X) + \sigma(Y)\right]^2, 
+\end{align}
+which would imply that
+\begin{align}
+    \sigma(X + Y) \leq \sigma(X) + \sigma(Y).
+\end{align}
+This means that, under the risk measure $\sigma$, investing in $X + Y$ carries less risk than investing in $X$ or $Y$ seperately.
+The phenomenon is better known as diversification, and it is common belief that diversification of a portfolio lowers the risk.
+However $\VaR$ as a risk measure is not able to reproduce this, that is in general we do not have that
+\begin{align}
+    \VaR_\alpha(X + Y) \leq \VaR_\alpha(X) + \VaR_\alpha(Y).
+\end{align}
+As diversification is a desired i will know introduce the concept of Coherent Risk Measures.
+
+Fix a probability space $(\Omega, \mathscr{F}, \mathbb{P})$, i will use the following notation
+\begin{align}
+    L^p = \{X \, : \, \Omega \rightarrow \mathbb{R} \, : \, X \text{ r.v. such that } \mathbb{E}(|X|^p) < \infty\}.
+\end{align}
+I will now give the definition
+\begin{definition}[Coherent Risk Measure]
+    A function $\rho \, : \, L^1 \rightarrow \mathbb{R}$ is said to be a Coherent Risk Measure if
+    \begin{enumerate}
+        \item If $X \geq 0$ almost surely, then $\rho(X) \leq 0$.
+        \item For all $y \in \mathbb{R}$ we have that $\rho(X + y) = \rho(X) - y$.
+        \item If $\lambda \geq 0$, then $\rho(\lambda X) = \lambda \rho(X)$.
+        \item We have that $\rho(X + Y) \leq \rho(X) + \rho(Y)$.
+    \end{enumerate}
+\end{definition}
+
+\subsubsection{Conditional Value at Risk}
+The Conditional Value at Risk (CVAR) is a common example of a coherent risk measure.
+This section will explore this particular risk measure further.
+
+Given a random variable $X$, we will write
+\begin{align}
+    q_\alpha(X) := \inf \{x \, : \, \mathbb{P}(X \leq x) \geq \alpha\}.
+\end{align}
+With this notation now introduced i can present the definition of CVaR
+\begin{definition}[Condition Value at Risk]
+    Let $ 0 < \alpha < 1$ and $X \in L^1$.
+    The Conditional Value at Risk or Expected Shortfall of $X$ is defined and denoted buy
+    \begin{align}
+        \cvar_\alpha := - \frac{1}{\alpha}\int_0^\alpha q_r(X) \, dr.
+    \end{align}
+\end{definition}
+The name Expected Shortfall comes from the fact that if $X$ has a continuous distribution, then
+\begin{align}
+    \cvar_\alpha(X) = - \mathbb{E}[X \, | \, X + \VaR_\alpha(X) \leq 0].
+\end{align}
+Thus, $\cvar_\alpha$ measures the expected losses given that $\VaR_\alpha(X)$ was not enough to cover our position on $X$.
+\begin{theorem}[CVaR as a Coherent Risk Measure]
+   The CVaR, i.e. 
+   \begin{align}
+        \cvar_\alpha(X) = - \frac{1}{\alpha}\int_0^\alpha q_r(X) \, dr,
+   \end{align}
+    where
+   \begin{align}
+       q_\beta(X) := \inf \{x \, : \, \mathbb{P}(X \leq x) \geq \beta\}
+   \end{align}
+   is a coherent risk measure.
+\end{theorem}
+\begin{proof}
+    \task{Get back to this proof}
+\end{proof}
 \newpage
 
 \section{The Multi-Step Binomial Model}
