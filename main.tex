@@ -1,12 +1,41 @@
+%%%%% PREAMBLE %%%%%
 \documentclass{article}
-\usepackage{amsmath,amsthm,amssymb}
-\usepackage{mathrsfs}
-\usepackage{enumitem}
-\newtheorem{theorem}{Theorem}[section]
-\theoremstyle{definition}
-\newtheorem{definition}{Definition}[section]
-\numberwithin{equation}{section}
 
+% american mathematical society
+\usepackage{amsmath,amsthm,amssymb}
+
+    % definition of theorem enviroments and numbering scheme 
+    \newtheorem{theorem}{Theorem}[section]
+
+    \theoremstyle{definition}
+    \newtheorem{definition}{Definition}[section]
+
+    % equation numbering
+    \numberwithin{equation}{section}
+
+% additional math font types
+\usepackage{mathrsfs}
+
+% add functionality to enumerate enviroment
+\usepackage{enumitem}
+
+%%% COMMENT COMMAND %%%
+% load required package
+\usepackage[dvipsnames]{xcolor}
+% definition of comment color
+\newcommand{\commentcolor}{Goldenrod}
+% definition of comment function itself
+\newcommand{\comment}[1]{
+    \begin{center}
+        \colorbox{\commentcolor}{
+            \textsf{
+                \textbf{#1}
+            }
+        }
+    \end{center}
+}
+
+%%%%% MAIN DOCUMENT %%%%%
 \begin{document}
 
 \begin{titlepage}
@@ -133,7 +162,9 @@ To show that the relation indeed holds i will show that the sequence
 \end{align}
 is increasing.
 
-\subsection{Bonds}
+\comment{Write whiteboard notes}
+
+\subsection{Types of Bonds}
 A bond is a financial security that pays to the owner, a chain of predetermined payments.
 However there are different types of bonds.
 I will discuss the following two types here
