@@ -53,6 +53,9 @@
         }
     \end{center}
 }
+                        
+% drawing functionality
+\usepackage{tikz}
 
 %%%%% MAIN DOCUMENT %%%%%
 \begin{document}
@@ -527,6 +530,14 @@ Thus, $\cvar_\alpha$ measures the expected losses given that $\VaR_\alpha(X)$ wa
 
 \section{The Multi-Step Binomial Model}
 \textit{Describe the dynamics of the model. Try to discuss, among other things, the way that the market information is described through time, its absence of arbitrage, and how to find a risk-neutral measure in such model.}
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        \draw (0,0) -- (4,0) -- (4,4) -- (0,4) -- (0,0);
+    \end{tikzpicture}
+    \caption{a drawing.}
+\end{figure}
 
 \newpage
 
