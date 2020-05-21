@@ -58,6 +58,9 @@
 \usepackage{tikz}
 \usetikzlibrary{matrix}
 
+% automatically include a float barrier in sections
+\usepackage[section]{placeins}
+
 %%%%% MAIN DOCUMENT %%%%%
 \begin{document}
 
@@ -532,7 +535,7 @@ Thus, $\cvar_\alpha$ measures the expected losses given that $\VaR_\alpha(X)$ wa
 \section{The Multi-Step Binomial Model}
 \textit{Describe the dynamics of the model. Try to discuss, among other things, the way that the market information is described through time, its absence of arbitrage, and how to find a risk-neutral measure in such model.}
 
-\begin{figure}[h]
+\begin{figure}
     \centering
     \begin{tikzpicture}[>=stealth,sloped]
         \matrix (tree) [%
@@ -542,11 +545,11 @@ Thus, $\cvar_\alpha$ measures the expected losses given that $\VaR_\alpha(X)$ wa
           row sep=.25cm,
         ]
         {
-              &   & $S_2^{u,u}$ \\
-              & $S_1^u$ &   \\
-          $S_0$ &   & $S_2^{u,d}$ \\
-              & $S_1^d$ &   \\
-              &   & $S_2^{d,d}$ \\
+                &           & $S_2^{u,u}$   \\
+                & $S_1^u$   &               \\
+          $S_0$ &           & $S_2^{u,d}$   \\
+                & $S_1^d$   &               \\
+                &           & $S_2^{d,d}$   \\
         };
         \draw[->, thick] (tree-3-1) -- (tree-2-2) node [midway,above] {\footnotesize{$1 + R_u$}};
         \draw[->, thick] (tree-3-1) -- (tree-4-2) node [midway,below] {\footnotesize{$1 + R_d$}};
@@ -559,6 +562,78 @@ Thus, $\cvar_\alpha$ measures the expected losses given that $\VaR_\alpha(X)$ wa
     \label{fig:2_step_binomial_model}
 \end{figure}
 
+\subsection{Model Setup}
+Consider a model where only two assets are traded: A bond and a risky asset.
+The bond satisfies that
+\begin{align}
+    B_t = (1+r), \quad t = 0,1, \ldots, T.
+\end{align}
+The price process $(S_t)_{t = 0,1, \ldots, T}$ satisfies that $S_0 > 0$ (non-random) and
+\begin{align}
+    S_t = S_{t - 1} (1 + K_s(t)), \quad t = 1, \ldots, T.
+\end{align}
+The returns are independent and identically distributed with
+\begin{align}
+    K_s(t) =
+    \begin{cases}
+        R_u &\text{with probability } p; \\
+        R_d &\text{with probability } 1-p,
+    \end{cases}
+\end{align}
+with the relation
+\begin{align}
+    R_u < R_d.
+\end{align}
+
+\subsection{Probability Space in the MSBM}
+I am considering the multi-step financial market
+\begin{align}
+    \mathfrak{M} = \left\{
+        (\Omega, \mathscr{F}, \mathbb{P}),
+        P = \left(
+            B_t, S_t^{(1)}, S_t^{(2)}, \ldots, S_t^{(d)}
+        \right)_{t = 0,1, \ldots, T}
+    \right\}.
+\end{align}
+In order to further explain how information flows in the market i need to be more specific about the definition of the probability space.
+I will start by letting
+\begin{align}
+    \Omega = \left\{
+        \left(
+            \omega^{(1)}, \omega^{(2)}, \ldots, \omega^{(T)}
+        \right)
+        \, : \,
+        \omega^{(t)} \in \{u,d\}, \, t = 1, 2, \ldots, T
+    \right\}.
+\end{align}
+Take for example the two-step binomial model, that is $T = 2$.
+The vector $(d,u)$ represent the event in which the price went down in the first period and then up in the second period.
+
+I will consider all possible events, which means that the $\sigma$-algebra in this case is
+\begin{align}
+    \mathscr{F} = 2^{\Omega}. \quad \text{(The power set)}
+\end{align}
+Using this set-up the return process can be written as
+\begin{align}
+    K_s(t)(\omega^{(1)}, \omega^{(2)}, \ldots, \omega^{(T)}) =
+    \begin{cases}
+        R_u & \text{if } \omega^{(t)} = u; \\
+        R_d & \text{if } \omega^{(t)} = d. 
+    \end{cases}
+\end{align}
+To ensure that the reurns are independent and can go up and down with probability $p$ and $(1-p)$ respectively, i let
+\begin{align}
+    \mathbb{P}\left(
+        \left\{
+            \omega^{(1)}, \omega^{(2)}, \ldots, \omega^{(d)}
+        \right\}
+    \right) =
+    P^k(1 - p)^{T-k},
+\end{align}
+where
+\begin{align}
+    k = \text{number of $u$'s in } \left(\omega^{(1)}, \omega^{(2)}, \ldots, \omega^{(d)}\right). 
+\end{align}
 \newpage
 
 \section{The First Fundamental Theorem of Asset Pricing}
