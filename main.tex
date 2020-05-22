@@ -585,7 +585,7 @@ with the relation
     R_u < R_d.
 \end{align}
 
-\subsection{Probability Space in the MSBM}
+\subsection{Market Information}
 I am considering the multi-step financial market
 \begin{align}
     \mathfrak{M} = \left\{
@@ -743,6 +743,57 @@ A formal defintion is now given.
         \sigma(X_t) \subseteq \mathscr{F}_t, \quad \forall 0 \leq t \leq T.
     \end{align}
 \end{definition}
+
+I am now able to give a formal definition of a financial market with information.
+\begin{definition}[Financial Markets with Information]
+    Fix $T, d \in \mathbb{N}$.
+    A finite-horizon financial market with information is the pair
+    \begin{align}
+        \mathfrak{M} =
+        \left\{
+            \left(
+                \Omega, 
+                \mathscr{F}, 
+                \left(
+                    \mathscr{F}
+                \right)_{0 \leq t \leq T},
+                \mathbb{P}
+            \right),
+            P =
+            \left(
+                B_t,
+                S_t^{(1)},
+                \ldots,
+                S_t^{(d)}
+            \right)_{0 \leq t \leq T}
+        \right\},
+    \end{align}
+    consisting of
+    \begin{enumerate}
+        \item A filtered probability space 
+        $\left(
+            \Omega, 
+            \mathscr{F}, 
+            \left(
+                \mathscr{F}
+            \right)_{0 \leq t \leq T},
+            \mathbb{P}
+        \right)$
+        \item $P_t$ is adapted.
+        \item $S^{(j)}$ is the price process of the $j$'th asset traded in the market
+        \item B is a numéraire (e.g. a bond), i.e.
+        \begin{align}
+            \mathbb{P}(B_t > 0) = 1, 0 \leq t \leq T.
+        \end{align}
+    \end{enumerate}
+\end{definition}
+
+\subsection{Absence of Arbitrage}
+
+
+\subsection{Risk-Neutral Measure}
+
+
 \newpage
 
 \section{The First Fundamental Theorem of Asset Pricing}
