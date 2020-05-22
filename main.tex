@@ -712,8 +712,37 @@ At the end of the trading period, in this case $t = 2$, the outcome of the price
 \end{align}
 Furthermore there has been constructed a family of sub-$\sigma$-algebras of $\mathscr{F}$;
 \begin{align}
-    \mathscr{F}_1 &= \sigma(K_S(1)) = \left\{B_u, B_d, \Omega, \emptyset\right\}.
+    \mathscr{F}_1 &= \sigma(K_S(1)) = \left\{B_u, B_d, \Omega, \emptyset\right\}. \\
+    \mathscr{F}_2 &= \sigma(K_S(1), K_S(2)) = \mathscr{F}.
 \end{align}
+Note that by construction, $\mathscr{F}$ contains the whole information available on the price movements up until time $t$.
+Mathematically this means that the price process $S_t$ is adapted to $\mathscr{F}$;
+\begin{align}
+    \sigma(S_t) \subseteq \mathscr{F}_t, \quad  t = 0,1,2 \text{ where } \mathscr{F}_0 = \left\{ \Omega, \emptyset \right\},
+\end{align}
+and moreover
+\begin{align}
+    \mathscr{F}_{t - 1} \subseteq \mathscr{F}_t, \quad t = 1,2.
+\end{align}
+A collection of sub-$\sigma$-algebras satisfying the previous relation is called a filtration.
+A formal defintion is now given.
+\begin{definition}[Filtrations and Adapted Process]
+    Fix a probability space $(\Omega, \mathscr{F}, \mathbb{R})$.
+    A collection of $\sigma$-algebras $\mathbb{F} = \left(\mathscr{F}_t\right)_{t = 0,1,\ldots,T}$ is called a filtration if for all $1 \leq t \leq T,$
+    \begin{align}
+        \mathscr{F}_{t - 1} \subseteq \mathscr{F}_{t} \subseteq \mathscr{F}.
+    \end{align}
+    The quadruplet
+    \begin{align}
+        (\Omega, \mathscr{F}, \left(\mathscr{F}_t\right)_{0 \leq t \leq T}, \mathbb{P}),
+    \end{align}
+    is termed a filteres probability space.
+    
+    Furthermore, a stochastic process $(X_t)_{0 \leq t \leq T}$ is said to be adapted to a filtration $\mathbb{F}$ if
+    \begin{align}
+        \sigma(X_t) \subseteq \mathscr{F}_t, \quad \forall 0 \leq t \leq T.
+    \end{align}
+\end{definition}
 \newpage
 
 \section{The First Fundamental Theorem of Asset Pricing}
