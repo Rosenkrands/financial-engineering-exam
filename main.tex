@@ -3,6 +3,8 @@
 
 % american mathematical society
 \usepackage{amsmath,amsthm,amssymb}
+% allow align enviroment to be split on multiple pages
+\allowdisplaybreaks
 
     % definition of theorem enviroments and numbering scheme 
     \newtheorem{theorem}{Theorem}[section]
@@ -60,6 +62,12 @@
 
 % automatically include a float barrier in sections
 \usepackage[section]{placeins}
+
+% reference name
+\usepackage{nameref}
+
+% clickable references
+\usepackage[hidelinks]{hyperref}
 
 %%%%% MAIN DOCUMENT %%%%%
 \begin{document}
@@ -243,13 +251,13 @@ If we consider the continuously compounded case the fair price would be
 A \textbf{coupon bond} guarantees the owner a payment $F > 0$ at time $T > 0$, as well as a fixed amount $C > 0$ at $t = 1,2,\ldots,T$.
 To find a fair price for such a bond i will follow the same argumentation as above, namely i will compare the price of the bond with the cost of recieving the same benefits with a bank account.
 I other words how much money will i have to deposit in my bank account today if i want to
-\begin{align*}
+\begin{align}
     \text{1.} \quad &\text{withdraw $C > 0$ after 1 year} \\
     \text{2.} \quad &\text{withdraw $C > 0$ after 2 years} \\
     &\quad \vdots \\
     \text{$T-1$.} \quad &\text{withdraw $C > 0$ after $T-1$ years} \\
     \text{$T$.} \quad &\text{withdraw $F + C$ after $T$ years} \\
-\end{align*}
+\end{align}
 and have nothing left in the bank account afterwards.
 
 In order to be able to get $C > 0$ after one year i have to put
@@ -373,12 +381,12 @@ it follows that
 \end{align}
 Thus the optimization problem, in the mean-variance approach becomes
 \begin{problem}[Optimization Problem Mean-Variance]
-    \begin{align*}
+    \begin{align}
         &\quad\argmin_{\mathbf{w}\in\mathbb{R}^{d+1}} \sqrt{\mathbf{w}^\top C \mathbf{w}} \\
         &\text{Subject to:} \\
         &\qquad \text{1.) }\sum_{j = 0}^d w_j = 1, \\
         &\qquad \text{2.) }\mathbf{w} \cdot \mu_\mathbf{K} = \mu, \quad \mu \in \mathbb{R}.
-    \end{align*}
+    \end{align}
 \end{problem}
 An illustrative example to demonstrate why one might consider a different risk measure than the standard deviation is the following.
 Consider two portfolios that generate the following wealth
@@ -894,7 +902,86 @@ With this definition now in place i am able to define the concept of arbitrage i
 \end{definition}
 
 \subsection{Risk-Neutral Measure}
-\task{Get back to this}
+To begin this section i will define the notion of a martingale.
+Fix a filtered probability space
+\begin{align}
+    \left(
+        \Omega, 
+        \mathscr{F}, 
+        \left(
+            \mathscr{F}
+        \right)_{0 \leq t \leq T},
+        \mathbb{P}
+    \right).
+\end{align}
+Recall that this means that $(\Omega, \mathscr{F}, (\mathscr{F}_t)_{0 \leq t \leq T}, \mathbb{P})$ is a probability space and $(\mathscr{F}_t)_{0 \leq t \leq T}$ is a filtration, i.e. a nested collection of sub-$\sigma$-algebras of $\mathscr{F}$: In symbols
+\begin{align}
+    \mathscr{F}_{t-1} \subseteq \mathscr{F}_t \subseteq \mathscr{F}, \quad \forall \, 1 \leq t \leq T. 
+\end{align}
+We are given a discrete time stochastic process
+\begin{align}
+    X = (X_t)_{0 \leq t \leq T}. 
+\end{align}
+Under this framework i give the definition of a martingale.
+\begin{definition}[Martingale]\label{def:martingale}
+    The collection $\{ (X_t, \mathscr{F}_t): t = 0,1, \ldots, T \}$ is said to be a martingale if
+    \begin{enumerate}
+        \item $X$ is adapted, i.e. $\sigma(X_t) \subseteq \mathscr{F}_t, \quad \forall \, 0 \leq t \leq T$.
+        \item $X_t$ has finite first moment, that is $\mathbb{E}(|X_t|) < \infty$. 
+        \item For all $0 \leq t \leq T-1$ we have that almost surely $\mathbb{E}(X_{t + 1} | \mathscr{F}_t) = X_t$. 
+    \end{enumerate}
+\end{definition}
+
+\subsubsection{Binomial Model under Risk-Neutrality}
+Consider the risk neutral Multi-step binomial model: $B_0 = 1$, $S_0 > 0$ is a non-random constant and
+\begin{align}
+    B_t = (1 + r)^t; \quad S_t = S_{t-1}(1 + K_S(t)), \quad t = 1, \ldots, T. 
+\end{align}
+$(K_S(t))_{t = 1, \ldots, T}$ are i.i.d. with 
+\begin{align}
+    K_S(t) = 
+    \begin{cases}
+        R_u &\text{ with probability } q^* \\
+        R_d &\text{ with probability } 1-q*
+    \end{cases}
+\end{align}
+with the relation $R_d < r < R_u$ and
+\begin{align}
+    q^* = \frac{r - R_d}{R_u - R_d}; \quad R_d < r < R_u.
+\end{align}
+I will now show that the discounted price
+\begin{align}
+    X_t := \frac{S_t}{B_t}, \quad 0 \leq t \leq T, 
+\end{align}
+is a martingale under the filtration
+\begin{align}
+    \mathscr{F}_0 &= \{ \emptyset, \Omega\} \label{eq:information_at_time_0} \\
+    \mathscr{F}_t &= \sigma(K_S(1), \ldots, K_S(t)), \quad 1 \leq t \leq T. \label{eq:information_at_time_1}  
+\end{align}
+In order to show this, i need to verify that the discounted price satisfies all three conditions in definiton \ref{def:martingale} (\nameref{def:martingale})
+\paragraph{Adapted}
+\task{Get back to this lecture 6 part 5}
+
+\paragraph{Finite First Moment}
+\task{Get back to this lecture 6 part 5}
+
+\paragraph{Martingale Property}
+By definition
+\begin{align}
+    \mathbb{E}\left(X_{t + 1} | \mathscr{F}_t\right) &= \mathbb{E}\left(\frac{S_{t + 1}}{B_{t + 1}} \, \bigg| \, \mathscr{F}_t\right) \\
+    &= \mathbb{E}\left(\frac{S_{t}(1 + K_S(t + 1))}{B_{t + 1}} \, \bigg| \, \mathscr{F}_t\right) \\
+    &= \mathbb{E}\left(\frac{S_{t}(1 + K_S(t + 1))}{(1 + r)^{t + 1}} \, \bigg| \, \mathscr{F}_t\right) \\
+    &= \mathbb{E}\left(\frac{S_{t}}{(1 + r)^{t + 1}}(1 + K_S(t + 1)) \, \bigg| \, \mathscr{F}_t\right) \\
+    \text{{\footnotesize (By the Product Rule)}} &= \frac{S_{t}}{(1 + r)^{t + 1}}\mathbb{E}\left((1 + K_S(t + 1)) \, \bigg| \, \mathscr{F}_t\right) \\
+    &= \frac{S_{t}}{(1 + r)^{t}}\frac{1}{(1 + r)}\mathbb{E}\left((1 + K_S(t + 1)) \, \bigg| \, \mathscr{F}_t\right) \\
+    &= X_t\frac{1}{(1 + r)}\mathbb{E}\left((1 + K_S(t + 1)) \, \bigg| \, \mathscr{F}_t\right).
+\end{align}
+I am now left to show that
+\begin{align}
+    \mathbb{E}\left((1 + K_S(t + 1)) \, \bigg| \, \mathscr{F}_t\right) = 1,
+\end{align}
+to do this i will use the independence of the returns but let me start by considering $t = 0$.
+Remeber that 
 
 \newpage
 
