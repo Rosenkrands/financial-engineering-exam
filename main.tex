@@ -978,10 +978,21 @@ By definition
 \end{align}
 I am now left to show that
 \begin{align}
-    \mathbb{E}\left((1 + K_S(t + 1)) \, \bigg| \, \mathscr{F}_t\right) = 1,
+    \mathbb{E}\left((1 + K_S(t + 1) \, \bigg| \, \mathscr{F}_t\right) = 1,
 \end{align}
 to do this i will use the independence of the returns but let me start by considering $t = 0$.
-Remeber that 
+In this case
+\begin{align}
+    \mathbb{E}\left((1 + K_S(1)\,|\,\mathscr{F}_0\right) &= \mathbb{E}\left((1 + K_S(1)\,|\,\left\{\emptyset, \Omega\right\}\right) \\
+    \text{{\footnotesize (Conditioning on the trivial $\sigma$-algebra)}} &= \mathbb{E}\left((1 + K_S(1)\right) \\
+    \text{{\footnotesize (From Risk-Neutrality)}}&= (1 + r).
+\end{align}
+Let me now consider the case when $t \geq 1$
+\begin{align}
+    \mathbb{E}\left((1 + K_S(t + 1)\,|\,\mathscr{F}_t\right) &= \mathbb{E}\left((1 + K_S(t + 1)\,|\,K_S(1),\ldots,K_S(t)\right) \\
+    \text{{\footnotesize (Indepence prop. of the cond. expectation)}} &= \mathbb{E}\left((1 + K_S(1)\right) \\
+    &= (1 + r).
+\end{align}
 
 \newpage
 
