@@ -1004,6 +1004,7 @@ Let me now consider the case when $t \geq 1$
 \section{The First Fundamental Theorem of Asset Pricing}
 \textit{Focus on explaining the hypothesis in the theorem (martingale measure, admissible strategies, arbitrage, etc.) and its applications to the pricing of financial derivatives.}
 
+\subsection{The Theorem}
 The Fundamental theorem of asset pricing gives necessary and sufficient conditions for the absence of arbitrage in the market with information, given by
 \begin{align}\label{eq:market_with_information}
     \mathfrak{M} =
@@ -1029,6 +1030,9 @@ The Fundamental theorem of asset pricing gives necessary and sufficient conditio
 \begin{theorem}[FFTAP]
     The market given by \eqref{eq:market_with_information} is arbitrage free if and only if there is a martingale measure. 
 \end{theorem}
+
+\subsection{Explaining the Hypothesis}
+
 To understand the hypothesis presented in the theorem lets first remember the concept of an admissible strategy.
 \begin{definition}[Admissible Strategy]
     Let $\Theta = \left(\varphi_t, \theta_t^{(1)}, \ldots, \theta_t^{(d)}\right)_{0 \leq t \leq T}$ be strategy on the market
@@ -1165,6 +1169,9 @@ Consider the martingale property
     \mathbb{E}_*\left( K_S(t + 1) \right) &= K_B(t + 1).
 \end{align}
 This is exactly the definition of risk-neutral probabilities.
+
+\task{Add application to the pricing of financial derivaties.}
+
 \newpage
 
 \section{Pricing in the Binomial Model}
