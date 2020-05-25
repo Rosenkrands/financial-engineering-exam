@@ -119,7 +119,7 @@ However to further dive into the different types of interest we will first defin
     \begin{align}
         V = (V_t)_{0 \leq t \leq T}.
     \end{align}
-    The initial capital is denoted by $v_0$, and we assume that $V$ is a real-valued stochastic process on a given probability space $(\Omega, \mathcal{F}, \mathbb{P})$.
+    The initial capital is denoted by $v_0$, and we assume that $V$ is a real-valued stochastic process on a given probability space $(\Omega, \mathscr{F}, \mathbb{P})$.
 \end{definition}
 With this definition in place we are now ready to define the three different types of interest starting with simple interest.
 \begin{definition}[Simple Interest]
@@ -130,17 +130,17 @@ With this definition in place we are now ready to define the three different typ
     \end{align}
 \end{definition}
 I will now show that the wealth process in \eqref{eq:simple_interest_wealth_process} is indeed a stochastic process in any probability space.
-Any stochastic process $X$ on the probability space $(\Omega, \mathcal{F}, \mathbb{P})$ satisfies
+Any stochastic process $X$ on the probability space $(\Omega, \mathscr{F}, \mathbb{P})$ satisfies
 \begin{align}
-    \{\omega \in \Omega \, : \, X(\omega) \leq x\} \in \mathcal{F}, \quad \forall x \in \mathbb{R}.
+    \{\omega \in \Omega \, : \, X(\omega) \leq x\} \in \mathscr{F}, \quad \forall x \in \mathbb{R}.
 \end{align}
 Suppose $v_0 > 0$ and $x \geq (1 + rt)v_0$ then
 \begin{align}
-    \{\omega \in \Omega \, : \, (1 + rt)v_0 \leq x\} = \{\Omega\} \in \mathcal{F},
+    \{\omega \in \Omega \, : \, (1 + rt)v_0 \leq x\} = \{\Omega\} \in \mathscr{F},
 \end{align}
 on the other hand if $x < (1 + rt)v_0$
 \begin{align}
-    \{\omega \in \Omega \, : \, (1 + rt)v_0 \leq x\} = \{\emptyset\} \in \mathcal{F}.
+    \{\omega \in \Omega \, : \, (1 + rt)v_0 \leq x\} = \{\emptyset\} \in \mathscr{F}.
 \end{align}
 As both $\Omega$ and $\emptyset$ is contained in any $\sigma$-algebra we have shown that the wealth process in \eqref{eq:simple_interest_wealth_process} is a stochastic process in any probability space.
 Next i will define the notion of compund interest.
@@ -590,7 +590,7 @@ The returns are independent and identically distributed with
 \end{align}
 with the relation
 \begin{align}
-    R_u < R_d.
+    R_d < R_u.
 \end{align}
 
 \subsection{Market Information}
@@ -848,10 +848,15 @@ I therefore introduce the notion of an admissible strategy.
             \right)_{0 \leq t \leq T}
         \right\}.
     \end{align}
-    We will say that $\Theta$ is admissible if:
+    I will say that $\Theta$ is admissible if:
     \begin{enumerate}
         \item \textbf{It is self-financed}: It only requires initial capital.
+        I will say that $\Theta$ is self financed if
+        \begin{align*}
+            V_t^{\Theta} = \varphi_{t+1}B_t + \sum_{j=1}^d \theta_{t+1}^{(j)}S_t^{(j)}, \quad 0 \leq t \leq T-1. 
+        \end{align*}
         \item \textbf{Non-anticipative}: It is build up only on current information.
+        I will say that $\Theta$ is non-anticipative or predictable if $\Theta_{t+1}$ depends only on the information at time $t$, that is $\Theta_{t+1}$ is $\mathscr{F}_t$-measurable.
         \item \textbf{It has a limited credit line}: There is a non-random constant $C > 0$, such that
         \begin{align}
             V_t^{\Theta} \geq -C, \ \forall \, 0 \leq t \leq T.
@@ -1024,7 +1029,142 @@ The Fundamental theorem of asset pricing gives necessary and sufficient conditio
 \begin{theorem}[FFTAP]
     The market given by \eqref{eq:market_with_information} is arbitrage free if and only if there is a martingale measure. 
 \end{theorem}
+To understand the hypothesis presented in the theorem lets first remember the concept of an admissible strategy.
+\begin{definition}[Admissible Strategy]
+    Let $\Theta = \left(\varphi_t, \theta_t^{(1)}, \ldots, \theta_t^{(d)}\right)_{0 \leq t \leq T}$ be strategy on the market
+    \begin{align}
+        \mathfrak{M} =
+        \left\{
+            \left(
+                \Omega, 
+                \mathscr{F}, 
+                \left(
+                    \mathscr{F}
+                \right)_{0 \leq t \leq T},
+                \mathbb{P}
+            \right),
+            P =
+            \left(
+                B_t,
+                S_t^{(1)},
+                \ldots,
+                S_t^{(d)}
+            \right)_{0 \leq t \leq T}
+        \right\}.
+    \end{align}
+    I will say that $\Theta$ is admissible if:
+    \begin{enumerate}
+        \item \textbf{It is self-financed}: It only requires initial capital.
+        I will say that $\Theta$ is self financed if
+        \begin{align*}
+            V_t^{\Theta} = \varphi_{t+1}B_t + \sum_{j=1}^d \theta_{t+1}^{(j)}S_t^{(j)}, \quad 0 \leq t \leq T-1. 
+        \end{align*}
+        \item \textbf{Non-anticipative}: It is build up only on current information.
+        I will say that $\Theta$ is non-anticipative or predictable if $\Theta_{t+1}$ depends only on the information at time $t$, that is $\Theta_{t+1}$ is $\mathscr{F}_t$-measurable.
+        \item \textbf{It has a limited credit line}: There is a non-random constant $C > 0$, such that
+        \begin{align}
+            V_t^{\Theta} \geq -C, \ \forall \, 0 \leq t \leq T.
+        \end{align}
+    \end{enumerate}
+\end{definition}
+Next let me recall the notion of arbitrage.
+\begin{definition}[Arbitrage]
+    Consider the market
+    \begin{align}
+        \mathfrak{M} =
+        \left\{
+            \left(
+                \Omega, 
+                \mathscr{F}, 
+                \left(
+                    \mathscr{F}
+                \right)_{0 \leq t \leq T},
+                \mathbb{P}
+            \right),
+            P =
+            \left(
+                B_t,
+                S_t^{(1)},
+                \ldots,
+                S_t^{(d)}
+            \right)_{0 \leq t \leq T}
+        \right\}.
+    \end{align}
+    An admissible strategy $\Theta = \left(\varphi_t, \theta_t^{(1)}, \ldots, \theta_t^{(d)}\right)_{0 \leq t \leq T}$ is said to be an arbitrage if:
+    \begin{enumerate}
+        \item It has zero initial capital:
+        \begin{align}
+            V_0^\Theta = \varphi_0B_0 + \sum_{j = 1}^d\theta_0^{(j)} \cdot S_0^{(j)} = 0.
+        \end{align}
+        \item At time $t = T$, i am out of debts with 100 \% certainty: Almost surely
+        \begin{align}
+            V_T^\Theta = \varphi_T B_T + \sum_{j = 1}^d\theta_T^{(j)} \cdot S_T^{(j)} \geq 0.
+        \end{align}
+        \item I have a chance to make a profit:
+        \begin{align}
+            \mathbb{P}
+            \left(
+                \varphi_TB_T + \sum_{j = 1}^d \theta_T^{(j)} \cdot S_T^{(j)} > 0
+            \right) > 0.
+        \end{align}
+    \end{enumerate}
+\end{definition}
+In defining arbitrage i used the term admissible strategy, this will be repeated here.
 
+Lastly i will define a martingale measure.
+\begin{definition}[Martingale Measure]
+    %Let 
+    %\begin{align*}
+    %    \mathfrak{M} = \{ (\Omega, \mathscr{F}, (\mathscr{F}_t)_{0 \leq t \leq T}%, \mathbb{P}), P = (B_t, S_t^{(1)}, \ldots, S_t^{(d)})_{0 \leq t \leq T} \}
+    %\end{align*}
+    %be the market. 
+    Let $\mathbb{Q}$ be probability measure on $(\Omega, \mathscr{F})$, that is there are $0 < q^*_i < 1, i = 1, \ldots, N$ such that $\sum_{i=1}^N q^*_i = 1$ and 
+    \begin{align*}
+        \mathbb{Q}(\{ \omega_i \}) = q^*_i \quad \text{for } i = 1, \ldots, N. 
+    \end{align*}
+    We will say that $\mathbb{Q}$ is a martingale measure if under $\mathbb{Q}$ the discounted price $(\Tilde{P}_j^{(j)})_{0 \leq t \leq T}$ is a martingale w.r.t $(\mathscr{F}_t)_{0 \leq t \leq T}$, for every $j = 1,2, \ldots, d+1$.
+\end{definition}
+
+\subsection{Risk-Neutral and Martingale Measures}
+In the binomial model $q^*$ plays two roles
+\begin{enumerate}
+    \item It transform the real-world probabilities (the one observed in the market) (p, 1-p) satisfying that
+    \begin{align}
+        K_S(t) =
+        \begin{cases}
+            R_u & \text{with probability } p; \\
+            R_d & \text{with probability } 1 - p,            
+        \end{cases}
+    \end{align}
+    into a risk-neutral world in which the ``new'' distribution for the returns
+    \begin{align}
+        K_S(t) =
+        \begin{cases}
+            R_u & \text{with probability } q^*; \\
+            R_d & \text{with probability } 1 - q^*,            
+        \end{cases}
+    \end{align}
+    is such that
+    \begin{align}
+        \mathbb{E}_*(K_S(t)) = r, \quad t = 1,2,\ldots,T.
+    \end{align}
+    \item It transforms the discounted prices into a martingale.
+\end{enumerate}
+In this model the two are actually equivalent.
+Consider the martingale property
+\begin{align}
+    \mathbb{E}_*\left( \frac{S_{t + 1}^{(j)}}{B_{t + 1}} \, \bigg| \, \mathscr{F}_t \right) &= \frac{S_{t}^{(j)}}{B_{t}} \\
+    \frac{1}{B_{t + 1}}\mathbb{E}_*\left( S_{t + 1}^{(j)} \, \bigg| \, \mathscr{F}_t \right) &= \frac{S_{t}^{(j)}}{B_{t}} \\
+    \frac{1}{S_{t}^{(j)}}\mathbb{E}_*\left( S_{t + 1}^{(j)} \, \bigg| \, \mathscr{F}_t \right) &= \frac{B_{t + 1}}{B_{t}} \\
+    \mathbb{E}_*\left( \frac{S_{t + 1}^{(j)}}{S_{t}^{(j)}} \, \bigg| \, \mathscr{F}_t \right) &= \frac{B_{t + 1}}{B_{t}},
+\intertext{subtracting 1 from both sides i get}
+    \mathbb{E}_*\left( \frac{S_{t + 1}^{(j)}}{S_{t}^{(j)}} - 1 \, \bigg| \, \mathscr{F}_t \right) &= \frac{B_{t + 1}}{B_{t}} - 1,
+\intertext{taking expectations gives}
+    \mathbb{E}\left[\mathbb{E}_*\left( \frac{S_{t + 1}^{(j)}}{S_{t}^{(j)}} - 1 \, \bigg| \, \mathscr{F}_t \right)\right] &= \mathbb{E}\left[\frac{B_{t + 1}}{B_{t}} - 1\right] \\
+    \mathbb{E}_*\left( \frac{S_{t + 1}^{(j)}}{S_{t}^{(j)}} - 1 \right) &= \frac{B_{t + 1}}{B_{t}} - 1 \\
+    \mathbb{E}_*\left( K_S(t + 1) \right) &= K_B(t + 1).
+\end{align}
+This is exactly the definition of risk-neutral probabilities.
 \newpage
 
 \section{Pricing in the Binomial Model}
