@@ -852,9 +852,9 @@ I therefore introduce the notion of an admissible strategy.
     \begin{enumerate}
         \item \textbf{It is self-financed}: It only requires initial capital.
         I will say that $\Theta$ is self financed if
-        \begin{align*}
+        \begin{align}
             V_t^{\Theta} = \varphi_{t+1}B_t + \sum_{j=1}^d \theta_{t+1}^{(j)}S_t^{(j)}, \quad 0 \leq t \leq T-1. 
-        \end{align*}
+        \end{align}
         \item \textbf{Non-anticipative}: It is build up only on current information.
         I will say that $\Theta$ is non-anticipative or predictable if $\Theta_{t+1}$ depends only on the information at time $t$, that is $\Theta_{t+1}$ is $\mathscr{F}_t$-measurable.
         \item \textbf{It has a limited credit line}: There is a non-random constant $C > 0$, such that
@@ -954,6 +954,7 @@ with the relation $R_d < r < R_u$ and
 \begin{align}
     q^* = \frac{r - R_d}{R_u - R_d}; \quad R_d < r < R_u.
 \end{align}
+\task{Show derivation of $q^*$ (Thea)}
 I will now show that the discounted price
 \begin{align}
     X_t := \frac{S_t}{B_t}, \quad 0 \leq t \leq T, 
@@ -1027,7 +1028,7 @@ The Fundamental theorem of asset pricing gives necessary and sufficient conditio
     \right\}.
 \end{align}
 
-\begin{theorem}[FFTAP]
+\begin{theorem}[FFTAP]\label{th:fftap}
     The market given by \eqref{eq:market_with_information} is arbitrage free if and only if there is a martingale measure. 
 \end{theorem}
 
@@ -1060,9 +1061,9 @@ To understand the hypothesis presented in the theorem lets first remember the co
     \begin{enumerate}
         \item \textbf{It is self-financed}: It only requires initial capital.
         I will say that $\Theta$ is self financed if
-        \begin{align*}
+        \begin{align}
             V_t^{\Theta} = \varphi_{t+1}B_t + \sum_{j=1}^d \theta_{t+1}^{(j)}S_t^{(j)}, \quad 0 \leq t \leq T-1. 
-        \end{align*}
+        \end{align}
         \item \textbf{Non-anticipative}: It is build up only on current information.
         I will say that $\Theta$ is non-anticipative or predictable if $\Theta_{t+1}$ depends only on the information at time $t$, that is $\Theta_{t+1}$ is $\mathscr{F}_t$-measurable.
         \item \textbf{It has a limited credit line}: There is a non-random constant $C > 0$, such that
@@ -1118,21 +1119,21 @@ In defining arbitrage i used the term admissible strategy, this will be repeated
 Lastly i will define a martingale measure.
 \begin{definition}[Martingale Measure]
     %Let 
-    %\begin{align*}
+    %\begin{align}
     %    \mathfrak{M} = \{ (\Omega, \mathscr{F}, (\mathscr{F}_t)_{0 \leq t \leq T}%, \mathbb{P}), P = (B_t, S_t^{(1)}, \ldots, S_t^{(d)})_{0 \leq t \leq T} \}
-    %\end{align*}
+    %\end{align}
     %be the market. 
     Let $\mathbb{Q}$ be probability measure on $(\Omega, \mathscr{F})$, that is there are $0 < q^*_i < 1, i = 1, \ldots, N$ such that $\sum_{i=1}^N q^*_i = 1$ and 
-    \begin{align*}
+    \begin{align}
         \mathbb{Q}(\{ \omega_i \}) = q^*_i \quad \text{for } i = 1, \ldots, N. 
-    \end{align*}
+    \end{align}
     We will say that $\mathbb{Q}$ is a martingale measure if under $\mathbb{Q}$ the discounted price $(\Tilde{P}_j^{(j)})_{0 \leq t \leq T}$ is a martingale w.r.t $(\mathscr{F}_t)_{0 \leq t \leq T}$, for every $j = 1,2, \ldots, d+1$.
 \end{definition}
 
 \subsection{Risk-Neutral and Martingale Measures}
 In the binomial model $q^*$ plays two roles
 \begin{enumerate}
-    \item It transform the real-world probabilities (the one observed in the market) (p, 1-p) satisfying that
+    \item It transform the real-world probabilities (the one observed in the market) ($p$, $1-p$) satisfying that
     \begin{align}
         K_S(t) =
         \begin{cases}
@@ -1176,6 +1177,212 @@ This is exactly the definition of risk-neutral probabilities.
 
 \section{Pricing in the Binomial Model}
 \textit{Explain what is the typical methodology for pricing derivatives and how such a methodology works in the Binomial model. Remember to include an example (e.g. the price of call-option).}
+
+\subsection{Methodology for Pricing}
+I will start by outlining the methodology used for pricing derivatives in the binomial model.
+\begin{enumerate}
+    \item \textbf{Define a model for the prices}: Specify the dynamics for
+    \begin{align}
+        P = 
+        \left(
+            B_t, S_t^{(1)}, \ldots, S_t^{(d)}
+        \right)_{0 \leq t \leq T},
+    \end{align}
+    i.e. describe how the distribution, evolution and behavior of the prices should be\dots according to some empirical facts observed in the data.
+    \item \textbf{Indicate a set of information}: Determine what information is available at each point in time, i.e. specify $\left(\mathscr{F}_t\right)_{0 \leq t \leq T}$.
+    \item \textbf{Check for arbitrage opportunities}: Establish under which circumstances the proprosed model does not admit an arbitrage, i.e. by the First Fundamental Theorem of Asset Pricing find a martingale measure $\mathbb{Q}$ for the model.
+    \item \textbf{Dynamics in the risk-neutral world}: Investigate what the distribution of the price process is under the martingale measure.
+    This is necessary as the $\xi = \Phi(P_0, \dots, P_T)$ is a function of the prices.
+    \item \textbf{Price the derivative}: Compute the prices of the derivative by
+    \begin{align}
+        \xi_t := \mathbb{E}_*\left(\frac{B_t}{B_T}\xi \, \bigg| \, \mathscr{F}_t\right)
+    \end{align}
+\end{enumerate}
+
+\subsection{Define a model for the prices}
+In this part I will consider multi-step binomial model. 
+Only a bond and a risky asset are traded. 
+The bond price is given by
+\begin{align}
+    B_t = (1+r)^t, \quad t= 0,1, \ldots, T.
+\end{align}
+The price of the risky asset is given by $S_0 > 0$ (non-random) and 
+\begin{align}
+    S_t = S_{t-1} (1 + K_S(t)), \quad t = 1, \ldots, T
+\end{align}
+where 
+\begin{align}
+    K_S(t) = 
+    \begin{cases} 
+        R_u & \text{ with probability } p;\\ 
+        R_d & \text{ with probability } 1 - p,
+    \end{cases}
+\end{align}
+with the relation $R_d < R_u$. 
+
+\subsection{Indicate a set of information}
+I assume that the market movements are exclusively determined by the behavior of the returns, that is
+\begin{align}
+    \mathscr{F}_0 = \{\emptyset, \Omega\}, \ \mathscr{F}_t = \sigma(K_S(1), \ldots, K_S(t)), \quad 1 \leq t \leq T. 
+\end{align}
+
+\subsection{Check for arbitrage opportunities}
+The market does not admit an arbitrage if and only if
+\begin{align}
+    R_d < r < R_u. 
+\end{align}
+\task{Explain why}
+In this situation a martingale measure exists: Under $\mathbb{Q}$ the returns are i.i.d. and satisfies that 
+\begin{align}
+    \mathbb{Q}(K_S(t) &= R_u) = q^*;\\
+    \mathbb{Q}(K_S(t) &= R_d) = 1 - q^*. 
+\end{align}
+Where
+\begin{align}
+    q^* = \frac{r - R_d}{R_u - R_d}. 
+\end{align}
+
+\subsection{Dynamics in the risk-neutral world}
+To find the distribution of prices under $\mathbb{Q}$ in the multistep binomial model, i present the following proposition. 
+\begin{proposition}
+    In the multi-step binomial model it holds that for all $t = 1, \ldots, T$
+    \begin{align}
+        S_t = S_0(1 + R_u)^{N_t}(1+R_d)^{t-N_t}
+    \end{align}
+    where $N_t$ is the number of times the price went up during $t$ periods and
+    \begin{align}
+        \mathbb{Q}(N_t = x) = \binom{t}{x}(q^*)^x(1-q)^{t-x}, x = 0, \ldots, t. 
+    \end{align}
+    In particular 
+    \begin{align}
+        \mathbb{Q} \Big[S_t = S_0(1+R_u)^x(1+R_d)^{t-x}\Big] = \binom{t}{x} (q^*)^x(1-q^*)^{t-x},
+    \end{align}
+    for $x = 0, 1, \ldots, t$. 
+\end{proposition}
+\textbf{Remark:} $N_t$ represents the number of times that the price went up during the periods $1, 2, \ldots, t$. In particular, under the risk neutral measure
+\begin{align}
+    N_t \sim Bin(t, q^*)
+\end{align}
+
+\subsection{Pricing a Call Option}
+Let us now find the inital price of a call option. 
+Recall that such a contract gives the owner the right but not the obligation to buyi an asset at a given value, say $C > 0$ at a predetermined point in time, say $T > 0$. 
+
+The pay-off is then given by the random variable
+\begin{align}
+    \xi = \max\{ S_T - C, 0\} = (S_T - C)^+.
+\end{align}
+Independently of the model, we know by theorem \ref{th:fftap} (FFTAP) that the arbitrage free initial price of such an option is 
+\begin{align}
+    \xi_0 = \mathbb{E}_*\left( \frac{B_0}{B_T}(S_T - C)^+\right). 
+\end{align}
+In the multi-step binomial model we have
+\begin{align}
+    \xi_0 = \mathbb{E}_* \left( \frac{B_0}{B_T}(S_T - C)^+ \right) = \frac{1}{(1+r)^T} \mathbb{E}_* \left( (S_T-C)^+\right). 
+\end{align}
+Using that under the probability measure $\mathbb{Q}$ we have that for all $x = 0, \ldots, T$
+\begin{align}
+    p_T(x; q^*) &= \mathbb{Q}\left[ S_T := S_0(1+ R_u)^x(1+R_d)^{T-x}\right]\\
+    &= \binom{T}{x}( q^* )^x(1-q^*)^{T-x}
+\end{align}
+it follows that 
+\begin{align}
+    \mathbb{E}_* \left( (S_T - C)^+ \right) = \sum_{x=0}^T \left( S_0(1+R_u)^x(1+R_d)^{T-x} - C \right)^+ p_T(x; q^*).
+\end{align}
+Observe that 
+\begin{align}
+    \left( S_0(1+R_u)^x(1+R_d)^{T-x} - C \right)^+ \neq 0
+\end{align}
+if and only if 
+\begin{align}
+     S_0(1+R_u)^x(1+R_d)^{T-x} > C. 
+\end{align}
+Let (with the convention that $\min\{ \emptyset \} = + \infty$)
+\begin{align}
+    x_0(S_0, R_u, R_d, T) = \min\{ 0 \leq x \leq T : S_0(1 + R_u)^x(1+R_d)^{T-x} > C\}. 
+\end{align}
+Then 
+\begin{align}
+    \mathbb{E}_*\left( (S_T - C)^+\right) &= \sum_{x=0}^T \left( S_0(1+R_u)^x(1 + R_d)^{T-x}  - C \right)^+ p_T(x; q^*)\\
+    &= \sum_{x=x_0}^T \left( S_0(1+R_u)^x(1 + R_d)^{T-x}  - C \right)^+ p_T(x; q^*)\\
+    &= S_0 \sum_{x=x_0}^T \left((1+R_u)^x(1 + R_d)^{T-x}  - C \right)^+ p_T(x; q^*)
+    \\ &\qquad 
+    - C \sum_{x=x_0}^T p_T (x; q^*). 
+\end{align}
+Since 
+\begin{align}
+    p_T(x; q^*) = \mathbb{Q} \left[ S_T = S_0(1 + R_u)^x(1+R_d)^{t-x} \right] = \binom{T}{x}(q^*)^x(1-q^*)^{T-x}
+\end{align}
+Then
+\begin{align}
+   (1+R_u)^x(1+R_d)^{T-x} p_T(x; q^*) &= (1+R_u)^x(1+R_d)^{T-x} \times \binom{T}{x} (q^*)^x(1-q^*)^{T-x}\\
+&= \binom{T}{x} [(1 + R_u)q^*]^x \times [(1+R_d)(1-q^*)]^{T-x}
+\end{align}
+All in all this implies that the arbitrage free initial price of a call option in the multi step binomial model is given by the formula
+\begin{align}\label{eq:crr}
+    \xi_0 = \mathbb{E}_* \left( \frac{(S_T - C)^+}{(1+r)^T} \right) = S_0 \Psi_1(T, S_0, C, q^*) - \frac{C}{(1+r)^T} \Psi_2(T, S_0, C, q^*)
+\end{align}
+where 
+\begin{align}
+    \Psi_1 (T, S_0, C, q^*) &:= \sum_{x = x_0}^T \binom{T}{x} \left[ \frac{1 + R_u}{1+r} q^* \right]^x\left[ \frac{1+R_d}{1+r}(1 - q^*) \right]^{T-x}\\
+    \Psi_2 (T, S_0, C, q^*) &:= \sum_{x = x_0}^T p_T(x; q^*)
+\end{align}
+in which 
+\begin{align}
+    x_0 = x_0(S_0, R_u, R_d, T) = min\{ 0 \leq x \leq T : S_0(1+R_u)^x(1+R_d)^{T-x} > C\}
+\end{align}
+The expression in \eqref{eq:crr} is known as the \textbf{Cox-Ross-Rubenstein} formula.
+
+\subsection{Price function for simple derivatives}
+
+\begin{theorem}[Price Function]\label{th:price_function}
+    Within the framework of the multi-step binomial model, let $\xi$ be a simple derivative, that is $\xi = \varphi(S_T)$. 
+    Put
+    \begin{align}
+        F(t,y) := \frac{1}{(1+r)^{T-t}} \mathbb{E}_* \{ \varphi (S_{T-t}^y) \}, \quad y \geq 0, \ 0 \leq t \leq T, 
+    \end{align}
+    where $(S_t^y)_{0 \leq t \leq T}$ is a process satisfying that $S_0^y = y$ and 
+    \begin{align}
+        S_t^y = S_{t-1}^y(1 + K_S(t)), t = 1, \ldots, T. 
+    \end{align}
+    Then, almost surely
+    \begin{align}
+        F(t, S_t) = \frac{1}{(1+r)^{T-t}} \mathbb{E}_* (\varphi(S_T) | \mathcal{F}_t), 0 \leq t \leq T. 
+    \end{align}
+    In other words the arbitrage free price of the simple derivative $\xi = \varphi(S_T)$ at time $0 \leq t \leq T$ is given by $F(t, S_t)$. 
+\end{theorem}
+
+\textbf{Remark: } The function $F$ is known as the price function associated to the pay-off function $\varphi$. 
+
+\textbf{Interpretation: } The function $F(t,y)$ can be though as the initial price of a single derivative with maturity time $T-t$ and pay-off function $\varphi$ under the circumstances that the initial price of the risky asset is $y \geq 0$. 
+
+\subsection{General Price of a Call option in the Binomial Model}
+According to the previous theorem the price of a call option in the multi step binomial model at time $t = 0,1, \ldots, T$ is given by 
+\begin{align}
+    \xi_t = F(t, S_t) = \frac{1}{(1+r)^{T-t}} \mathbb{E}_* \left( (S_T - C)^+ | \mathcal{F}_t \right)
+\end{align}
+where 
+\begin{align}
+    F(t,y) = \mathbb{E}_* \left[ \frac{(S_{T-t}^y - C)^+}{(1+r)^{T-t}} \right], y \geq 0, 0 \leq t \leq T
+\end{align}
+in which $(S_t^y)_{0 \leq t \leq T}$ is a process satisfying that $S_0^y = y$ and 
+\begin{align}
+    S_t^y = S_{t-1}^y(1 + K_S(t)), t = 1, \ldots, T. 
+\end{align}
+The Cox-Ross-Rubunstein formula dictates that 
+\begin{align}
+    F(t, S_0) &= \mathbb{E}_* \left(  \frac{(S_{T-t} - C)^+}{(1+r)^{T-t}} \right)\\
+    &= S_0 \Psi_1 (T-t, S_0, C, q^*) - \frac{C}{(1+r)^{T_0}} \Psi_2(T-t, S_0, C, q^*).
+\end{align}
+
+Replacing $S_0$ by $y$ the Cox-Ross-Rubenstein formula we get that 
+\begin{align}
+    F(t, y) = y \Psi_1 (T-t, y, C, q^*) - \frac{C}{(1+r)^{T-t}}\Psi_2(T-t, y, C, q^*). 
+\end{align}
+Hence the price call option in the multi-step binomial model is 
+\begin{align}
+    \xi_t = F(t, S_t) = S_t \Psi_1(T-t, S_t,C, q^*) - \frac{C}{(1+r)^{T-t}} \Psi_2(T-t, S_t, C, q^*)
+\end{align}
 
 \newpage
 
