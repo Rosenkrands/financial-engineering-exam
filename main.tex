@@ -196,7 +196,26 @@ To show that the relation indeed holds i will show that the sequence
 \end{align}
 is increasing.
 
-\comment{Write whiteboard notes}
+Using the binomial theorem
+\begin{align*}
+    (x+y)^n = \sum_{k=0}^n \begin{pmatrix} n \\ k \end{pmatrix} x^k y^{n-k}
+\end{align*}
+we have 
+\begin{align*}
+    \left( 1 + \frac{r}{m} \right)^m &= \sum_{k=0}^m \begin{pmatrix} m \\ k \end{pmatrix} 1^{m-k}\begin{pmatrix} \frac{r}{m} \end{pmatrix}^k\\
+    &= \sum_{k=0}^m \begin{pmatrix} m \\ k \end{pmatrix} \begin{pmatrix} \frac{r}{m} \end{pmatrix}^k := \clubsuit
+\end{align*}
+Each term is of the form
+\begin{align*}
+    \begin{pmatrix} m \\ k \end{pmatrix}\begin{pmatrix} \frac{r}{m} \end{pmatrix}^k = \prod_{l=0}^{k-1} \frac{m-l}{k + l} \begin{pmatrix} \frac{r}{m} \end{pmatrix}
+\end{align*}
+Each term is of the form
+\begin{align*}
+    \frac{m-l}{k+l} \frac{r}{m} &= \frac{rm - lr}{m(k+l)}\\
+    &= \frac{m(r - lr/m)}{m(k+1)}\\
+    &= \frac{r - lr/m}{k+l} := \bigstar
+\end{align*}
+The term $\bigstar$ increases with $m$ and thus the product increases with $m$ and thus the sum $\clubsuit$ increases with $m$ and therefore it is an increasing sequence. 
 
 \subsection{Types of Bonds}
 A bond is a financial security that pays to the owner, a chain of predetermined payments.
