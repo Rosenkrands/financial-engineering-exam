@@ -340,7 +340,7 @@ Both of these is based on portfolio allocation as an optmization problem.
 The problem is given in this way; solve
 \begin{align}
     \argmin_{\mathbf{w}\in\mathbb{R}^{d+1}}
-    \mathcal{R}\left( \mathbf{w} \cdot \mathbf{K}_P \right),
+    \mathscr{R}\left( \mathbf{w} \cdot \mathbf{K}_P \right),
 \end{align}
 subject to:
 \begin{align}
@@ -348,17 +348,17 @@ subject to:
     \mathbb{E}\left[ U(\mathbf{w} \cdot \mathbf{K}_P) \right] = \mu, \
     \mu \in \mathbb{R},
 \end{align}
-where $\mathcal{R}$ is a measure of risk and $U(\mathbf{w} \cdot \mathbf{K}_P)$ is the utility of the strategy.
+where $\mathscr{R}$ is a measure of risk and $U(\mathbf{w} \cdot \mathbf{K}_P)$ is the utility of the strategy.
 
 \subsubsection{Mean-Variance}
 If an agent would like to maximize profit while minimizing the variance, he or she could take the mean-variance approach.
 In this approach risk is measured using standard deviations, i.e.
 \begin{align}
-    \mathcal{R}(X) = \sigma(X) = \sqrt{\var(X)} = \sqrt{\mathbb{E}\left[ (X - \mathbb{E}(X))^2 \right]}.
+    \mathscr{R}(X) = \sigma(X) = \sqrt{\var(X)} = \sqrt{\mathbb{E}\left[ (X - \mathbb{E}(X))^2 \right]}.
 \end{align}
 For a portfolio with weights $\mathbf{w}$, we have that
 \begin{align}
-    \mathcal{R}(\mathbf{w} \cdot \mathbf{K}_P) = \sqrt{\mathbf{w}^\top C \mathbf{w}},
+    \mathscr{R}(\mathbf{w} \cdot \mathbf{K}_P) = \sqrt{\mathbf{w}^\top C \mathbf{w}},
 \end{align}
 where $C$ is a $(d + 1) \times (d + 1)$ matrix given by
 \begin{align}
@@ -1347,7 +1347,7 @@ The expression in \eqref{eq:crr} is known as the \textbf{Cox-Ross-Rubenstein} fo
     \end{align}
     Then, almost surely
     \begin{align}
-        F(t, S_t) = \frac{1}{(1+r)^{T-t}} \mathbb{E}_* (\varphi(S_T) | \mathcal{F}_t), 0 \leq t \leq T. 
+        F(t, S_t) = \frac{1}{(1+r)^{T-t}} \mathbb{E}_* (\varphi(S_T) | \mathscr{F}_t), 0 \leq t \leq T. 
     \end{align}
     In other words the arbitrage free price of the simple derivative $\xi = \varphi(S_T)$ at time $0 \leq t \leq T$ is given by $F(t, S_t)$. 
 \end{theorem}
@@ -1359,7 +1359,7 @@ The expression in \eqref{eq:crr} is known as the \textbf{Cox-Ross-Rubenstein} fo
 \subsection{General Price of a Call option in the Binomial Model}
 According to the previous theorem the price of a call option in the multi step binomial model at time $t = 0,1, \ldots, T$ is given by 
 \begin{align}
-    \xi_t = F(t, S_t) = \frac{1}{(1+r)^{T-t}} \mathbb{E}_* \left( (S_T - C)^+ | \mathcal{F}_t \right)
+    \xi_t = F(t, S_t) = \frac{1}{(1+r)^{T-t}} \mathbb{E}_* \left( (S_T - C)^+ | \mathscr{F}_t \right)
 \end{align}
 where 
 \begin{align}
@@ -1388,5 +1388,158 @@ Hence the price call option in the multi-step binomial model is
 
 \section{The Second Fundamental Theorem of Asset Pricing}
 \textit{Focus on explaining the hypothesis in the theorem (martingale measure, admissible strategies, arbitrage, completeness, etc.) and its consequences on the pricing of financial derivatives. You can, in particular, show that the Binomial Model is complete while the Trinomial Model is not.}
+
+\subsection{Market}
+The market with information is given
+\begin{align*}
+    \mathfrak{M} = \{ (\Omega, \mathscr{F}, (\mathscr{F}_t)_{0 \leq t \leq T}, \mathbb{P}), P = (B_t, S_t^{(1)}, \ldots, S_t^{(d)})_{0 \leq t \leq T} \}. 
+\end{align*} 
+The filtered probability space $(\Omega, \mathscr{F}, (\mathscr{F}_t)_{0 \leq t \leq T}, \mathbb{P})$ satisfies that 
+\begin{enumerate}
+    \item The sample space is finite and our $\sigma$-algebra is the power set: 
+    \begin{align*}
+       \Omega = \{ \omega_1, \ldots, \omega_N\}, \ N \in \mathbb{N}, \ \mathscr{F} = 2^{\Omega}.
+    \end{align*}
+    \item There are $0 < p_i < 1$ for $i = 1, \ldots, N$ such that 
+    \begin{align*}
+        \sum_{i=1}^N p_i &= 1\\
+        \mathbb{P}(\{ \omega_i \}) &= p_i, \quad i = 1, \ldots, N
+    \end{align*}
+    \item The set of information satisfies that $\mathscr{F}_0 = \{ \emptyset, \Omega\}, \mathscr{F}_T = \mathscr{F}$, and 
+    \begin{align*}
+        \mathscr{F}_{t-1} \subseteq \mathscr{F}_t, \quad 1 \leq t \leq T-1. 
+    \end{align*}
+\end{enumerate}
+We will assume that $B$ is deterministic, $B_0 = 1$ and $B_t > 0$, $\forall \ 1 \leq t \leq T$.
+
+\subsection{The Theorem}
+\begin{theorem}[Second Fundamental Theorem of Asset Pricing]
+    Let the market 
+    \begin{align*}
+        \mathfrak{M} = \left\{ (\Omega, \mathscr{F}, (\mathscr{F}_t)_{0 \leq t \leq T}, \mathbb{P}), P = \left(B_t, S_t^{(1)}, \ldots, S_t^{(d)}\right)_{0 \leq t \leq T} \right\}. 
+    \end{align*} 
+    be as described. 
+    Then $\mathfrak{M}$ is complete and arbitrage free if and only if there is a unique martingale measure.
+\end{theorem}
+
+\subsection{Definitions}
+\begin{definition}[Martingale]
+    The collection $\{ (X_t, \mathscr{F}_t): t = 0,1, \ldots, T \}$ is said to be a martingale if
+    \begin{enumerate}
+        \item $X$ is adapted, i.e. $\sigma(X_t) \subseteq \mathscr{F}_t, \quad \forall \, 0 \leq t \leq T$.
+        \item $X_t$ has finite first moment, that is $\mathbb{E}(|X_t|) < \infty$. 
+        \item For all $0 \leq t \leq T-1$ we have that almost surely $\mathbb{E}(X_{t + 1} | \mathscr{F}_t) = X_t$. 
+    \end{enumerate}
+\end{definition}
+\begin{definition}[Martingale Measure]
+    %Let 
+    %\begin{align}
+    %    \mathfrak{M} = \{ (\Omega, \mathscr{F}, (\mathscr{F}_t)_{0 \leq t \leq T}%, \mathbb{P}), P = (B_t, S_t^{(1)}, \ldots, S_t^{(d)})_{0 \leq t \leq T} \}
+    %\end{align}
+    %be the market. 
+    Let $\mathbb{Q}$ be probability measure on $(\Omega, \mathscr{F})$, that is there are $0 < q^*_i < 1, i = 1, \ldots, N$ such that $\sum_{i=1}^N q^*_i = 1$ and 
+    \begin{align}
+        \mathbb{Q}(\{ \omega_i \}) = q^*_i \quad \text{for } i = 1, \ldots, N. 
+    \end{align}
+    We will say that $\mathbb{Q}$ is a martingale measure if under $\mathbb{Q}$ the discounted price $(\Tilde{P}_j^{(j)})_{0 \leq t \leq T}$ is a martingale w.r.t $(\mathscr{F}_t)_{0 \leq t \leq T}$, for every $j = 1,2, \ldots, d+1$.
+\end{definition}
+\begin{definition}[Admissible Strategy]
+    Let $\Theta = \left(\varphi_t, \theta_t^{(1)}, \ldots, \theta_t^{(d)}\right)_{0 \leq t \leq T}$ be strategy on the market
+    \begin{align}
+        \mathfrak{M} =
+        \left\{
+            \left(
+                \Omega, 
+                \mathscr{F}, 
+                \left(
+                    \mathscr{F}
+                \right)_{0 \leq t \leq T},
+                \mathbb{P}
+            \right),
+            P =
+            \left(
+                B_t,
+                S_t^{(1)},
+                \ldots,
+                S_t^{(d)}
+            \right)_{0 \leq t \leq T}
+        \right\}.
+    \end{align}
+    I will say that $\Theta$ is admissible if:
+    \begin{enumerate}
+        \item \textbf{It is self-financed}: It only requires initial capital.
+        I will say that $\Theta$ is self financed if
+        \begin{align}
+            V_t^{\Theta} = \varphi_{t+1}B_t + \sum_{j=1}^d \theta_{t+1}^{(j)}S_t^{(j)}, \quad 0 \leq t \leq T-1. 
+        \end{align}
+        \item \textbf{Non-anticipative}: It is build up only on current information.
+        I will say that $\Theta$ is non-anticipative or predictable if $\Theta_{t+1}$ depends only on the information at time $t$, that is $\Theta_{t+1}$ is $\mathscr{F}_t$-measurable.
+        \item \textbf{It has a limited credit line}: There is a non-random constant $C > 0$, such that
+        \begin{align}
+            V_t^{\Theta} \geq -C, \ \forall \, 0 \leq t \leq T.
+        \end{align}
+    \end{enumerate}
+\end{definition}
+\begin{definition}[Arbitrage]
+    Consider the market
+    \begin{align}
+        \mathfrak{M} =
+        \left\{
+            \left(
+                \Omega, 
+                \mathscr{F}, 
+                \left(
+                    \mathscr{F}
+                \right)_{0 \leq t \leq T},
+                \mathbb{P}
+            \right),
+            P =
+            \left(
+                B_t,
+                S_t^{(1)},
+                \ldots,
+                S_t^{(d)}
+            \right)_{0 \leq t \leq T}
+        \right\}.
+    \end{align}
+    An admissible strategy $\Theta = \left(\varphi_t, \theta_t^{(1)}, \ldots, \theta_t^{(d)}\right)_{0 \leq t \leq T}$ is said to be an arbitrage if:
+    \begin{enumerate}
+        \item It has zero initial capital:
+        \begin{align}
+            V_0^\Theta = \varphi_0B_0 + \sum_{j = 1}^d\theta_0^{(j)} \cdot S_0^{(j)} = 0.
+        \end{align}
+        \item At time $t = T$, i am out of debts with 100 \% certainty: Almost surely
+        \begin{align}
+            V_T^\Theta = \varphi_T B_T + \sum_{j = 1}^d\theta_T^{(j)} \cdot S_T^{(j)} \geq 0.
+        \end{align}
+        \item I have a chance to make a profit:
+        \begin{align}
+            \mathbb{P}
+            \left(
+                \varphi_TB_T + \sum_{j = 1}^d \theta_T^{(j)} \cdot S_T^{(j)} > 0
+            \right) > 0.
+        \end{align}
+    \end{enumerate}
+\end{definition}
+\begin{definition}[Complete Financial Market]
+    The market is said to be complete if every European contingent claim $\xi$ (i.e. a random variable that depends on the information up to time $T$) can be replicated, that is, there exists an admissible strategy
+    \begin{align}
+        \Theta = \left(\varphi_t, \theta_t^{(1)}, \ldots, \theta_t^{(d)}\right)_{0 \leq t \leq T}
+    \end{align}
+    such that almost surely
+    \begin{align}
+        \xi = V_T^{\Theta} = \varphi B_T + \sum_{j = 1}^d \theta_T^{(j)}S_T^{(j)}.
+    \end{align}
+\end{definition}
+This means that, if the market is arbitrage free and $\mathbb{P}\left(\xi > 0\right) > 0$, then necessarily
+\begin{align}
+    V_0^\Theta > 0.
+\end{align}
+
+\subsection{Remarks}
+If the market is arbitrage free and complete, the we have a unique arbitrage-free price for any derivative with pay-off $\xi$ which is given by
+\begin{align}
+    \mathbb{E}_*\left(\frac{B_t}{B_T}\xi\,\bigg|\,\mathscr{F}_t\right).
+\end{align}
 
 \end{document}
