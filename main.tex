@@ -344,7 +344,7 @@ First and foremost i will give the definition of a portfolio.
         \Theta_t^j = \text{Number of shares of the $j$'th asset held between time $t-1$ and $t$}.
     \end{align}
     for $j = 1, \ldots, d + 1$.
-    The collection $\Theta = \left( \Theta_t \right)_{0 \leq t \leq T}$, with the convention that $\Theta_0 = \Theta_1$ is termed a strategy.
+    The collection $\Theta = \left( \Theta_t \right)_{0 \leq t \leq T}$, with the convention that $\Theta_0 = \Theta_1$, is termed a strategy.
 \end{definition}
 For every strategy on market there is an associated wealth process.
 The wealth process for $\Theta$ is defined and denoted by
@@ -353,13 +353,13 @@ The wealth process for $\Theta$ is defined and denoted by
 \end{align}
 
 \subsection{Risk Measures}
-Any strategy on a given market inherently carries a risk because the return is random, there is in other words no way to predict our profit or losses.
-There is no one way to measure the risk associated with a strategy, however in the next to sections i will explore two approaches.
-Both of these is based on portfolio allocation as an optmization problem.
+Any strategy on a given market inherently carries a risk because the return is random, there is in other words no way to predict our profit or losses with certainty.
+There is no one way to measure the risk associated with a strategy, however in the next two sections i will explore two approaches.
+Both of these is based on portfolio allocation as an optimization problem.
 The problem is given in this way; solve
 \begin{align}
     \argmin_{\mathbf{w}\in\mathbb{R}^{d+1}}
-    \mathscr{R}\left( \mathbf{w} \cdot \mathbf{K}_P \right),
+    \mathcal{R}\left( \mathbf{w} \cdot \mathbf{K}_P \right),
 \end{align}
 subject to:
 \begin{align}
@@ -367,17 +367,17 @@ subject to:
     \mathbb{E}\left[ U(\mathbf{w} \cdot \mathbf{K}_P) \right] = \mu, \
     \mu \in \mathbb{R},
 \end{align}
-where $\mathscr{R}$ is a measure of risk and $U(\mathbf{w} \cdot \mathbf{K}_P)$ is the utility of the strategy.
+where $\mathcal{R}$ is a measure of risk and $U(\mathbf{w} \cdot \mathbf{K}_P)$ is the utility of the strategy.
 
 \subsubsection{Mean-Variance}
 If an agent would like to maximize profit while minimizing the variance, he or she could take the mean-variance approach.
 In this approach risk is measured using standard deviations, i.e.
 \begin{align}
-    \mathscr{R}(X) = \sigma(X) = \sqrt{\var(X)} = \sqrt{\mathbb{E}\left[ (X - \mathbb{E}(X))^2 \right]}.
+    \mathcal{R}(X) = \sigma(X) = \sqrt{\var(X)} = \sqrt{\mathbb{E}\left[ (X - \mathbb{E}(X))^2 \right]}.
 \end{align}
 For a portfolio with weights $\mathbf{w}$, we have that
 \begin{align}
-    \mathscr{R}(\mathbf{w} \cdot \mathbf{K}_P) = \sqrt{\mathbf{w}^\top C \mathbf{w}},
+    \mathcal{R}(\mathbf{w} \cdot \mathbf{K}_P) = \sqrt{\mathbf{w}^\top C \mathbf{w}},
 \end{align}
 where $C$ is a $(d + 1) \times (d + 1)$ matrix given by
 \begin{align}
@@ -402,7 +402,7 @@ Thus the optimization problem, in the mean-variance approach becomes
 \begin{problem}[Optimization Problem Mean-Variance]
     \begin{align}
         &\quad\argmin_{\mathbf{w}\in\mathbb{R}^{d+1}} \sqrt{\mathbf{w}^\top C \mathbf{w}} \\
-        &\text{Subject to:} \\
+        &\text{Subject to:} \nonumber \\
         &\qquad \text{1.) }\sum_{j = 0}^d w_j = 1, \\
         &\qquad \text{2.) }\mathbf{w} \cdot \mu_\mathbf{K} = \mu, \quad \mu \in \mathbb{R}.
     \end{align}
