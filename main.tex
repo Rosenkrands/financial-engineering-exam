@@ -648,7 +648,7 @@ Using this set-up the return process can be written as
         R_d & \text{if } \omega^{(t)} = d. 
     \end{cases}
 \end{align}
-To ensure that the reurns are independent and can go up and down with probability $p$ and $(1-p)$ respectively, i let
+To ensure that the returns are independent and can go up and down with probability $p$ and $(1-p)$ respectively, i let
 \begin{align}
     \mathbb{P}\left(
         \left\{
@@ -675,7 +675,7 @@ using the notational convention that
     \omega^{(1)}\omega^{(2)}.
 \end{align}
 At time $t = 0$ no information is available but as time goes by, the price movements reveal information about future outcomes.
-Say for example that at time $t = 1$ the price went down, the the future outcomes are restricted to the set
+Say for example that at time $t = 1$ the price went down, the future outcomes are restricted to the set
 \begin{align}
     B_d := \left\{ du, dd \right\},
 \end{align}
@@ -733,7 +733,7 @@ It is in fact so, that because $K_S(1)$ only takes two values
     \sigma(K_S(1)) = \left\{B_u, B_d, \Omega, \emptyset\right\}.
 \end{align}
 
-At the end of the trading period, in this case $t = 2$, the outcome of the price movements are known and stored in
+At the end of the trading period, in this case $t = T = 2$, the outcome of the price movements are known and stored in
 \begin{align}
     \mathscr{F} = \sigma\left(K_S(1), K_S(2)\right).
 \end{align}
@@ -763,7 +763,7 @@ A formal defintion is now given.
     \begin{align}
         (\Omega, \mathscr{F}, \left(\mathscr{F}_t\right)_{0 \leq t \leq T}, \mathbb{P}),
     \end{align}
-    is termed a filteres probability space.
+    is termed a filtered probability space.
     
     Furthermore, a stochastic process $(X_t)_{0 \leq t \leq T}$ is said to be adapted to a filtration $\mathbb{F}$ if
     \begin{align}
@@ -911,7 +911,7 @@ With this definition now in place i am able to define the concept of arbitrage i
         \begin{align}
             V_0^\Theta = \varphi_0B_0 + \sum_{j = 1}^d\theta_0^{(j)} \cdot S_0^{(j)} = 0.
         \end{align}
-        \item At time $t = T$, i am out of debts with 100 \% certainty: Almost surely
+        \item At time $t = T$, i am out of debts with 100\% certainty: Almost surely
         \begin{align}
             V_T^\Theta = \varphi_T B_T + \sum_{j = 1}^d\theta_T^{(j)} \cdot S_T^{(j)} \geq 0.
         \end{align}
@@ -957,7 +957,7 @@ Under this framework i give the definition of a martingale.
 \end{definition}
 
 \subsubsection{Binomial Model under Risk-Neutrality}
-Consider the risk neutral Multi-step binomial model: $B_0 = 1$, $S_0 > 0$ is a non-random constant and
+Consider the risk neutral multi-step binomial model: $B_0 = 1$, $S_0 > 0$ is a non-random constant and
 \begin{align}
     B_t = (1 + r)^t; \quad S_t = S_{t-1}(1 + K_S(t)), \quad t = 1, \ldots, T. 
 \end{align}
@@ -983,7 +983,7 @@ is a martingale under the filtration
     \mathscr{F}_0 &= \{ \emptyset, \Omega\} \label{eq:information_at_time_0} \\
     \mathscr{F}_t &= \sigma(K_S(1), \ldots, K_S(t)), \quad 1 \leq t \leq T. \label{eq:information_at_time_1}  
 \end{align}
-In order to show this, i need to verify that the discounted price satisfies all three conditions in definiton \ref{def:martingale} (\nameref{def:martingale})
+In order to show this, i need to verify that the discounted price satisfies all three conditions in definition \ref{def:martingale} (\nameref{def:martingale})
 \paragraph{Adapted}
 \task{Get back to this lecture 6 part 5}
 
