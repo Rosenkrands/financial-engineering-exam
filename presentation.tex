@@ -1,7 +1,23 @@
 \documentclass{beamer}
 
+\setbeamertemplate{section in toc}[sections numbered]
+\setbeamertemplate{subsection in toc}[subsections numbered]
+
 % american mathematical society
 \usepackage{amsmath,amsthm,amssymb}
+
+% equation numbering
+\numberwithin{equation}{section}
+
+% theorem types
+\newtheorem{proposition}{Proposition}
+
+% math operators
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\var}{Var}
+\DeclareMathOperator*{\cov}{Cov}
+\DeclareMathOperator{\VaR}{VaR}
+\DeclareMathOperator{\cvar}{CVaR}
 
 % additional mathematical fonts
 \usepackage{mathrsfs}
@@ -323,8 +339,183 @@
 \end{frame}
 
 \section{Portfolio Allocation and Risk Measures}
+
 \subsection{Portfolio}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    Let
+        \begin{align}
+            \mathfrak{M} = \left\{ 
+                \left(
+                    \Omega, \mathscr{F}, \mathbb{P}
+                \right),
+                P = \left(
+                    B_t, S_t^{(1)}, \ldots, S_t^{(d)}
+                \right)_{0 \leq t \leq T}
+            \right\},
+        \end{align}
+        be a finite-horizon financial market.
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    %First and foremost i will give the definition of a portfolio.
+    \begin{definition}[Portfolio and Strategies]
+        A portfolio in $\mathfrak{M}$ is a $(d + 1)$-dimensional vector
+        \begin{align}
+            \Theta_t = \left(\varphi_t, \theta_t^{(1)}, \ldots, \theta_t^{(d)}\right),
+        \end{align}
+        in which
+        \begin{align}
+            \Theta_t^j = \text{Number of shares of the $j$'th asset held between time $t-1$ and $t$}.
+        \end{align}
+        for $j = 1, \ldots, d + 1$.
+        The collection $\Theta = \left( \Theta_t \right)_{0 \leq t \leq T}$, with the convention that $\Theta_0 = \Theta_1$, is termed a strategy.
+    \end{definition}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    For every strategy on market there is an associated wealth process.
+    The wealth process for $\Theta$ is defined and denoted by
+    \begin{align}
+        V_t^{\Theta} = \varphi_t B_t + \sum_{j = 1}^d \theta_t^{(j)} S_t^{(j)} = \Theta_t \cdot P_t, \quad 0 \leq t \leq T.    
+    \end{align}
+\end{frame}
+
 \subsection{Risk Measures}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    Any strategy on a given market inherently carries a risk because the return is random, there is in other words no way to predict our profit or losses with certainty.
+    There is no one way to measure the risk associated with a strategy, however in the next two sections i will explore two approaches.
+    Both of these is based on portfolio allocation as an optimization problem.
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    The problem is given in this way; solve
+    \begin{align}
+        \argmin_{\textbf{w}\in\mathbb{R}^{d+1}}
+        \mathcal{R}\left( \textbf{w} \cdot \textbf{K}_P \right),
+    \end{align}
+    subject to:
+    \begin{align}
+        \sum_{j = 0}^d w_j = 1, \ 
+        \mathbb{E}\left[ U(\textbf{w} \cdot \textbf{K}_P) \right] = \mu, \
+        \mu \in \mathbb{R},
+    \end{align}
+    where $\mathcal{R}$ is a measure of risk and $U(\textbf{w} \cdot \textbf{K}_P)$ is the utility of the strategy.
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    The mean variance approach assumes the uitility function as the identity, that is
+    \begin{align}
+        U(x) = x.
+    \end{align}
+    By letting
+    \begin{align}
+        \mu_\mathbf{K} := \mathbb{E}\left[\mathbf{K}_P\right],
+    \end{align}
+    it follows that
+    \begin{align}
+        \mathbb{E}\left[ U(\mathbf{w} \cdot \mathbf{K}_P) \right] = \mathbf{w} \cdot \mu_\mathbf{K}.
+    \end{align}
+    Thus the optimization problem, in the mean-variance approach becomes
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    \begin{problem}[Optimization Problem Mean-Variance]
+        \begin{align}
+            &\quad\argmin_{\mathbf{w}\in\mathbb{R}^{d+1}} \sqrt{\mathbf{w}^\top C \mathbf{w}} \\
+            &\text{Subject to:} \nonumber \\
+            &\qquad \text{1.) }\sum_{j = 0}^d w_j = 1, \\
+            &\qquad \text{2.) }\mathbf{w} \cdot \mu_\mathbf{K} = \mu, \quad \mu \in \mathbb{R}.
+        \end{align}
+    \end{problem}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    An illustrative example to demonstrate why one might consider a different risk measure than the standard deviation is the following.
+    Consider two portfolios that generate the following wealth
+    \begin{align}
+        V_1^{(1)} = 
+        \begin{cases}
+            1 &\text{with probability $1/2$} \\
+            -9 &\text{with probability $1/2$}
+        \end{cases}
+    \end{align}
+    and
+    \begin{align}
+        V_1^{(2)} = 
+        \begin{cases}
+            5 &\text{with probability $1/2$} \\
+            -5 &\text{with probability $1/2$}
+        \end{cases}
+    \end{align}
+    According to their standard deviation these two portfolios carries the same risk, but one could argue that the first is riskier that the latter.
+    The next risk measure i will consider i concerned with controlling losses rather than the variation of the return.
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    If i denote the outcome of an investment with $V_1$ then my potential losses will be given by $-V_1$.
+    Suppose that for some $x \in \mathbb{R}$
+    \begin{align}
+        -V_1 \leq x.
+    \end{align}
+    Then to cover my risk of bankruptcy i must keep at least the amount $x$ in my bank account.
+    In reality the only thing i can quantify is the chance of that happening, which is denoted by
+    \begin{align}
+        \mathbb{P}\left( -V_1 \leq x \right).
+    \end{align}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    This is the motivation behind the risk measure Value at Risk.
+    \begin{definition}[Value at Risk]
+        Let $0 < \alpha < 1$ and $X$ be a random variable.
+        The Value at Risk (VaR) of $X$ is defined and denoted by
+        \begin{align}
+            \VaR_\alpha(X) := \inf
+            \left\{
+                x \in \mathbb{R} \, : \,
+                \mathbb{P}(X + x \geq 0)
+                \geq 1 - \alpha
+            \right\}.
+        \end{align}
+    \end{definition}
+    In other words the $\VaR_\alpha(X)$ represents the amount of extra capital i need to hold in order to reduce my risk of bankruptcy to $1 - \alpha$.
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    An alternative representation of $\VaR$ can be formulated using the fact that
+    \begin{align}
+        \mathbb{P}(-X \leq x) \geq 1 - \alpha
+        \, \Longleftrightarrow \,
+        \mathbb{P}(X + x < 0) \leq \alpha,
+    \end{align}
+    this lets us formulate an equivalent representation given by
+    \begin{align}
+        \VaR_\alpha(X) := \inf
+        \left\{
+            x \in \mathbb{R} \, : \,
+            \mathbb{P}(X < -x) \leq \alpha
+        \right\}.
+    \end{align}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    \begin{proposition}[Properties of $\VaR$]
+        Let $X, Y$ be arbitrary random variables.
+        Then, the following holds
+        \begin{enumerate}
+            \item If $X \geq 0$ almost surely, then $\VaR_\alpha(X) \leq 0$.
+            \item For all $y\in \mathbb{R}$ we have that $\VaR_\alpha(X + y) = \VaR_\alpha(X) - y$. In particular $\VaR_\alpha(X + \VaR_\alpha(X)) = 0$.
+            \item If $\lambda \geq 0$, then $\VaR_\alpha(\lambda X) = \lambda \VaR_\alpha(X)$.
+            \item If $X \geq Y$ almost surely, then $\VaR_\alpha(X) \leq \VaR_\alpha(Y)$.
+        \end{enumerate}
+    \end{proposition}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+\end{frame}
+
 \subsection{Coherent Risk Measures}
 
 \section{The Multi-Step Binomial Model}
