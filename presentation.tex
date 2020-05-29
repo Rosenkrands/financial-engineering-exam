@@ -44,6 +44,27 @@
   \end{frame}
 }
 
+
+% definition of comment function itself
+\newcommand{\comment}[1]{
+    \begin{center}
+        \colorbox{yellow}{
+            \textsf{
+                \textbf{#1}
+            }
+        }
+    \end{center}
+}
+\newcommand{\task}[1]{
+    \begin{center}
+        \colorbox{red}{
+            \textsf{
+                \textbf{#1}
+            }
+        }
+    \end{center}
+}
+
 \begin{document}
 
 \frame{\titlepage}
@@ -514,9 +535,78 @@
 \end{frame}
 
 \begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    Proof:
+    \vspace{6cm}
 \end{frame}
 
 \subsection{Coherent Risk Measures}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    %There are one important drawback to measuring risk using $\VaR$ and that is its lack of diversification.
+    Note that when using standard deviation as a risk measure we get the following
+    \begin{align}
+        \sigma(X + Y)^2 = \var(X) + \var(Y) + 2\rho_{X,Y}\sqrt{\var(X)\var(Y)},
+    \end{align}
+    where $\rho_{X,Y} = \frac{\cov(X,Y)}{\sqrt{\var(X)\var(Y)}} \leq 1$.
+    Then
+    \begin{align}
+        \sigma(X + Y)^2 &= \sigma(X)^2 + \sigma(Y)^2 + 2\rho_{X,Y}\sigma(X)\sigma(Y)\\
+        &\leq \sigma(X)^2 + \sigma(Y)^2 + 2\sigma(Y)\sigma(X) = \left[\sigma(X) + \sigma(Y)\right]^2, 
+    \end{align}
+    which would imply that
+    \begin{align}
+        \sigma(X + Y) \leq \sigma(X) + \sigma(Y).
+    \end{align}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    However $\VaR$ as a risk measure is not able to reproduce this, that is in general we do not have that
+    \begin{align}
+        \VaR_\alpha(X + Y) \leq \VaR_\alpha(X) + \VaR_\alpha(Y).
+    \end{align}
+    As diversification is a desired i will know introduce the concept of Coherent Risk Measures.
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    \begin{definition}[Coherent Risk Measure]
+        A function $\rho \, : \, L^1 \rightarrow \mathbb{R}$ is said to be a Coherent Risk Measure if
+        \begin{enumerate}
+            \item If $X \geq 0$ almost surely, then $\rho(X) \leq 0$.
+            \item For all $y \in \mathbb{R}$ we have that $\rho(X + y) = \rho(X) - y$.
+            \item If $\lambda \geq 0$, then $\rho(\lambda X) = \lambda \rho(X)$.
+            \item We have that $\rho(X + Y) \leq \rho(X) + \rho(Y)$.
+        \end{enumerate}
+    \end{definition}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    The Conditional Value at Risk (CVAR) is a common example of a coherent risk measure.
+
+    Given a random variable $X$, we will write
+    \begin{align}
+        q_\alpha(X) := \inf \{x \in \mathbb{R} \, : \, \mathbb{P}(X \leq x) \geq \alpha\}.
+    \end{align}
+    With this notation now introduced i can present the definition of CVaR.
+    \pause
+    \begin{definition}[Condition Value at Risk]
+        Let $ 0 < \alpha < 1$ and $X \in L^1$.
+        The Conditional Value at Risk or Expected Shortfall of $X$ is defined and denoted buy
+        \begin{align}
+            \cvar_\alpha := - \frac{1}{\alpha}\int_0^\alpha q_r(X) \, dr.
+        \end{align}
+    \end{definition}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    The name Expected Shortfall comes from the fact that if $X$ has a continuous distribution, then
+    \begin{align}
+        \cvar_\alpha(X) = - \mathbb{E}[X \, | \, X + \VaR_\alpha(X) \leq 0].
+    \end{align}
+    Thus, $\cvar_\alpha$ measures the expected losses given that $\VaR_\alpha(X)$ was not enough to cover our position on $X$.
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+\end{frame}
 
 \section{The Multi-Step Binomial Model}
 \subsection{Model Setup}
