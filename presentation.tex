@@ -6,6 +6,10 @@
 % american mathematical society
 \usepackage{amsmath,amsthm,amssymb}
 
+% drawing functionality
+\usepackage{tikz}
+\usetikzlibrary{matrix}
+
 % equation numbering
 \numberwithin{equation}{section}
 
@@ -605,16 +609,534 @@
     Thus, $\cvar_\alpha$ measures the expected losses given that $\VaR_\alpha(X)$ was not enough to cover our position on $X$.
 \end{frame}
 
+\section{The Multi-Step Binomial Model}
+
+\subsection{Model Setup}
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    Consider a model where only two assets are traded: A bond and a risky asset.
+    The bond satisfies that
+    \begin{align}
+        B_t = (1+r), \quad t = 0,1, \ldots, T.
+    \end{align}
+    The price process $(S_t)_{t = 0,1, \ldots, T}$ satisfies that $S_0 > 0$ (non-random) and
+    \begin{align}
+        S_t = S_{t - 1} (1 + K_s(t)), \quad t = 1, \ldots, T.
+    \end{align}
+    The returns are independent and identically distributed with
+    \begin{align}
+        K_s(t) =
+        \begin{cases}
+            R_u &\text{with probability } p; \\
+            R_d &\text{with probability } 1-p,
+        \end{cases}
+    \end{align}
+    with the relation
+    \begin{align}
+        R_d < R_u.
+    \end{align}
+\end{frame}
+
+\subsection{Market Information}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    I am considering the multi-step financial market
+    \begin{align}
+        \mathfrak{M} = \left\{
+            (\Omega, \mathscr{F}, \mathbb{P}),
+            P = \left(
+                B_t, S_t^{{\color{black!20!white}(1)}}{\color{black!20!white}, S_t^{(2)}, \ldots, S_t^{(d)}}
+            \right)_{t = 0,1, \ldots, T}
+        \right\}.
+    \end{align}
+    In order to further explain how information flows in the market i need to be more specific about the definition of the probability space.
+    I will start by letting
+    \begin{align}
+        \Omega = \left\{
+            \left(
+                \omega^{(1)}, \omega^{(2)}, \ldots, \omega^{(T)}
+            \right)
+            \, : \,
+            \omega^{(t)} \in \{u,d\}, \, t = 1, 2, \ldots, T
+        \right\}.
+    \end{align}
+    Take for example the two-step binomial model, that is $T = 2$.
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    I will consider all possible events, which means that the $\sigma$-algebra in this case is
+    \begin{align}
+        \mathscr{F} = 2^{\Omega}. \quad \text{(The power set)}
+    \end{align}
+    Using this set-up the return process can be written as
+    \begin{align}
+        K_s(t)(\omega^{(1)}, \omega^{(2)}, \ldots, \omega^{(T)}) =
+        \begin{cases}
+            R_u & \text{if } \omega^{(t)} = u; \\
+            R_d & \text{if } \omega^{(t)} = d. 
+        \end{cases}
+    \end{align}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    To ensure that the returns are independent and can go up and down with probability $p$ and $(1-p)$ respectively, i let
+    \begin{align}
+        \mathbb{P}\left(
+            \left\{
+                \omega^{(1)}, \omega^{(2)}, \ldots, \omega^{{\color{red}(d)}}
+            \right\}
+        \right) =
+        p^k(1 - p)^{T-k},
+    \end{align}
+    where
+    \begin{align}
+        k = \text{number of $u$'s in } \left(\omega^{(1)}, \omega^{(2)}, \ldots, \omega^{{\color{red}(d)}}\right). 
+    \end{align} 
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    As an example lets consider the two-step binomial model, that is $T = 2$ and we have that
+    \begin{align}
+        \Omega = \left\{ uu, ud, du, dd \right\},
+    \end{align}
+    using the notational convention that
+    \begin{align}
+        \left(
+            \omega^{(1)}, \omega^{(2)}
+        \right)
+        =
+        \omega^{(1)}\omega^{(2)}.
+    \end{align}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    \begin{figure}
+        \centering
+        \begin{tikzpicture}[>=stealth,sloped]
+            \matrix (tree) [%
+              matrix of nodes,
+              minimum size=1cm,
+              column sep=2.0cm,
+              row sep=.25cm,
+              ampersand replacement=\&
+            ]
+            {
+                    \&           \& $S_2^{u,u}$   \\
+                    \& $S_1^u$   \&               \\
+              $S_0$ \&           \& $S_2^{u,d}$   \\
+                    \& $S_1^d$   \&               \\
+                    \&           \& $S_2^{d,d}$   \\
+            };
+            \draw[->, thick] (tree-3-1) -- (tree-2-2) node [midway,above] {\footnotesize{$1 + R_u$}};
+            \draw[->, thick] (tree-3-1) -- (tree-4-2) node [midway,below] {\footnotesize{$1 + R_d$}};
+            \draw[->, thick] (tree-2-2) -- (tree-1-3) node [midway,above] {\footnotesize{$1 + R_u$}};
+            \draw[->, thick] (tree-2-2) -- (tree-3-3) node [midway,below] {\footnotesize{$1 + R_d$}};
+            \draw[->, thick] (tree-4-2) -- (tree-3-3) node [midway,above] {\footnotesize{$1 + R_u$}};
+            \draw[->, thick] (tree-4-2) -- (tree-5-3) node [midway,below] {\footnotesize{$1 + R_d$}};
+          \end{tikzpicture}
+        \caption{A graphical representation of the 2-step binomial model.}
+        \label{fig:2_step_binomial_model}
+    \end{figure}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    At time $t = 0$ no information is available but as time goes by, the price movements reveal information about future outcomes.
+    Say for example that at time $t = 1$ the price went down, the future outcomes are restricted to the set
+    \begin{align}
+        B_d := \left\{ du, dd \right\},
+    \end{align}
+    as the the events $(uu)$ and $(ud)$ are no longer possible.
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    The aforementioned set is related to the information generated by the return process.
+    Consider the $\sigma$-field generated by a random variable, which is given by
+    \begin{align}
+        \sigma(X) = \left\{
+            X^{-1}(A) \, : \, A \in \mathscr{B}(\mathbb{R}).
+        \right\}
+    \end{align}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    This tells me that, in the event that $K_S(1) = R_d$ it follows that
+    \begin{align}
+        \left\{
+            \left(
+                \omega^{(1)}, \omega^{(2)}
+            \right)
+            \, : \,
+            K_S(1) = R_d
+        \right\} =
+        \left\{
+            du, dd 
+        \right\} = B_d.
+    \end{align}
+    On the other hand if $K_S(1) = R_u$ it follows that
+    \begin{align}
+        \left\{
+            \left(
+                \omega^{(1)}, \omega^{(2)}
+            \right)
+            \, : \,
+            K_S(1) = R_u
+        \right\} =
+        \left\{
+            uu, ud 
+        \right\} = B_u.
+    \end{align}
+    Therefore
+    \begin{align}
+        B_u, B_d \subseteq \sigma\left(K_S(1)\right).
+    \end{align}
+    It is in fact so, that because $K_S(1)$ only takes two values
+    \begin{align}
+        \sigma(K_S(1)) = \left\{B_u, B_d, \Omega, \emptyset\right\}.
+    \end{align}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    At the end of the trading period, in this case $t = T = 2$, the outcome of the price movements are known and stored in
+    \begin{align}
+        \mathscr{F} = \sigma\left(K_S(1), K_S(2)\right).
+    \end{align}
+    Furthermore there has been constructed a family of sub-$\sigma$-algebras of $\mathscr{F}$;
+    \begin{align}
+        \mathscr{F}_1 &= \sigma(K_S(1)) = \left\{B_u, B_d, \Omega, \emptyset\right\}. \\
+        \mathscr{F}_2 &= \sigma(K_S(1), K_S(2)) = \mathscr{F}.
+    \end{align}
+    Note that by construction, $\mathscr{F}$ contains the whole information available on the price movements up until time $t$.
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    Mathematically this means that the price process $S_t$ is adapted to $\mathscr{F}$;
+    \begin{align}
+        \sigma(S_t) \subseteq \mathscr{F}_t, \quad  t = 0,1,2 \text{ where } \mathscr{F}_0 = \left\{ \Omega, \emptyset \right\},
+    \end{align}
+    and moreover
+    \begin{align}
+        \mathscr{F}_{t - 1} \subseteq \mathscr{F}_t, \quad t = 1,2.
+    \end{align}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    %A collection of sub-$\sigma$-algebras satisfying the previous relation is called a filtration.
+    %A formal defintion is now given.
+    \begin{definition}[Filtrations and Adapted Process]
+        Fix a probability space $(\Omega, \mathscr{F}, \mathbb{R})$.
+        A collection of $\sigma$-algebras $\mathbb{F} = \left(\mathscr{F}_t\right)_{t = 0,1,\ldots,T}$ is called a filtration if for all $1 \leq t \leq T,$
+        \begin{align}
+            \mathscr{F}_{t - 1} \subseteq \mathscr{F}_{t} \subseteq \mathscr{F}.
+        \end{align}
+        The quadruplet
+        \begin{align}
+            (\Omega, \mathscr{F}, \left(\mathscr{F}_t\right)_{0 \leq t \leq T}, \mathbb{P}),
+        \end{align}
+        is termed a filtered probability space.
+        
+        Furthermore, a stochastic process $(X_t)_{0 \leq t \leq T}$ is said to be adapted to a filtration $\mathbb{F}$ if
+        \begin{align}
+            \sigma(X_t) \subseteq \mathscr{F}_t, \quad \forall 0 \leq t \leq T.
+        \end{align}
+    \end{definition}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    \begin{definition}[Financial Markets with Information]
+        Fix $T, d \in \mathbb{N}$.
+        A finite-horizon financial market with information is the pair
+        \begin{align}
+            \mathfrak{M} =
+            \left\{
+                \left(
+                    \Omega, 
+                    \mathscr{F}, 
+                    \left(
+                        \mathscr{F}_t
+                    \right)_{0 \leq t \leq T},
+                    \mathbb{P}
+                \right),
+                P =
+                \left(
+                    B_t,
+                    S_t^{(1)},
+                    \ldots,
+                    S_t^{(d)}
+                \right)_{0 \leq t \leq T}
+            \right\},
+        \end{align}
+        consisting of
+        \begin{enumerate}
+            \item A filtered probability space 
+            $\left(
+                \Omega, 
+                \mathscr{F}, 
+                \left(
+                    \mathscr{F}_t
+                \right)_{0 \leq t \leq T},
+                \mathbb{P}
+            \right)$
+            \item $P_t$ is adapted.
+            \item $S^{(j)}$ is the price process of the $j$'th asset traded in the market
+            \item B is a numéraire (e.g. a bond), i.e.
+            \begin{align}
+                \mathbb{P}(B_t > 0) = 1, \quad \forall \, 0 \leq t \leq T.
+            \end{align}
+        \end{enumerate}
+    \end{definition}
+\end{frame}
+
+\subsection{Absence of Arbitrage}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    An arbitrage is understood as a way to generate positive wealth with zero investment and zero risk.
+    In the one-step binomial model it is only allowed to allocate wealth ones, namely at time $t = 0$.
+    Returns are then measured at time $t = T = 1$.
+
+    In the multi-step binomial model agents will redesign their strategies based on the available information.
+    In order to create an arbitrage the portfolio need to be updated every time the price changes.
+    Therefore, instead of considering a single portfolio, an arbitrage now consists of a collection of portfolios $\left(\Theta_t\right)_{0 \leq t \leq T}$.
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    \begin{definition}[Portfolio and Strategy]
+        \begingroup
+        \footnotesize
+        A portfolio in $\mathfrak{M}$ is a $(d + 1)$-dimensional vector $\Theta_t = \left(\varphi_t, \theta_t^{(1)}, \ldots, \theta_t^{(d)}\right)$, in which
+        \begin{align}
+            \Theta_t^{(j)} = \text{ Number of shares of the $j$'th asset held between time $t - 1$ and $t$.}
+        \end{align}
+        The collection $\Theta = \left(\Theta_t\right)_{0 \leq t \leq T}$, with the convention that $\Theta_0 = \Theta_1$ is termed a strategy.
+        
+        The wealth process associated to $\Theta = \left(\Theta_t\right)_{0\leq t \leq T}$ is defined and denoted by
+        \begin{align}
+            V_t^\Theta :&= \varphi_tB_t + \sum_{j = 1}^d\theta_t^{(j)}S_t^{(j)} = \Theta_t \cdot P_t, \quad 0 \leq t \leq T \\
+            \Rightarrow V_0^\Theta &= \varphi_0B_0 + \sum_{j = 1}^d\theta_0^{(j)}S_0^{(j)} = \varphi_1B_0 + \sum_{j = 1}^d\theta_1^{(j)}S_0^{(j)} 
+        \end{align} 
+        \endgroup
+    \end{definition}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    The arbitrage approach from the one-step binomial model can not be used when considering the multi-step binomial model as many strategies that from an intuitive point of view should not be thought of as an arbitrage, will be believed to be an arbitrage.
+    Consider for example the following situation
+    \begin{enumerate}
+        \item Injection of capital at $t \geq 1$.
+        \item Priviliged information.
+        \item Unlimited credit.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    \begin{definition}[Admissible Strategy]
+        \begingroup
+        %\footnotesize
+        Let $\Theta = \left(\varphi_t, \theta_t^{(1)}, \ldots, \theta_t^{(d)}\right)_{0 \leq t \leq T}$ be strategy on the market
+        \begin{align}
+            \mathfrak{M} =
+            \left\{
+                \left(
+                    \Omega, 
+                    \mathscr{F}, 
+                    \left(
+                        \mathscr{F}
+                    \right)_{0 \leq t \leq T},
+                    \mathbb{P}
+                \right),
+                P =
+                \left(
+                    B_t,
+                    S_t^{(1)},
+                    \ldots,
+                    S_t^{(d)}
+                \right)_{0 \leq t \leq T}
+            \right\}.
+        \end{align}
+        I will say that $\Theta$ is admissible if:
+        \endgroup
+    \end{definition}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    \begin{enumerate}
+        \item \textbf{It is self-financed}: It only requires initial capital.
+        I will say that $\Theta$ is self financed if
+        \begin{align}
+            V_t^{\Theta} = \varphi_{t+1}B_t + \sum_{j=1}^d \theta_{t+1}^{(j)}S_t^{(j)}, \quad 0 \leq t \leq T-1. 
+        \end{align}
+        \item \textbf{Non-anticipative}: It is build up only on current information.
+        I will say that $\Theta$ is non-anticipative or predictable if $\Theta_{t+1}$ depends only on the information at time $t$, that is $\Theta_{t+1}$ is $\mathscr{F}_t$-measurable.
+        \item \textbf{It has a limited credit line}: There is a non-random constant $C > 0$, such that
+        \begin{align}
+            V_t^{\Theta} \geq -C, \ \forall \, 0 \leq t \leq T.
+        \end{align}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    \begin{definition}[Arbitrage]
+        Consider the market
+        \begin{align}
+            \mathfrak{M} =
+            \left\{
+                \left(
+                    \Omega, 
+                    \mathscr{F}, 
+                    \left(
+                        \mathscr{F}
+                    \right)_{0 \leq t \leq T},
+                    \mathbb{P}
+                \right),
+                P =
+                \left(
+                    B_t,
+                    S_t^{(1)},
+                    \ldots,
+                    S_t^{(d)}
+                \right)_{0 \leq t \leq T}
+            \right\}.
+        \end{align}
+        An admissible strategy $\Theta = \left(\varphi_t, \theta_t^{(1)}, \ldots, \theta_t^{(d)}\right)_{0 \leq t \leq T}$ is said to be an arbitrage if:
+    \end{definition}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    \begin{enumerate}
+        \item It has zero initial capital:
+        \begin{align}
+            V_0^\Theta = \varphi_0B_0 + \sum_{j = 1}^d\theta_0^{(j)} \cdot S_0^{(j)} = 0.
+        \end{align}
+        \item At time $t = T$, i am out of debts with 100\% certainty: Almost surely
+        \begin{align}
+            V_T^\Theta = \varphi_T B_T + \sum_{j = 1}^d\theta_T^{(j)} \cdot S_T^{(j)} \geq 0.
+        \end{align}
+        \item I have a chance to make a profit:
+        \begin{align}
+            \mathbb{P}
+            \left(
+                \varphi_TB_T + \sum_{j = 1}^d \theta_T^{(j)} \cdot S_T^{(j)} > 0
+            \right) > 0.
+        \end{align}
+    \end{enumerate}
+\end{frame}
+
+\subsection{Risk-Neutral Measure}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    To begin this section i will define the notion of a martingale.
+    Fix a filtered probability space
+    \begin{align}
+        \left(
+            \Omega, 
+            \mathscr{F}, 
+            \left(
+                \mathscr{F}_t
+            \right)_{0 \leq t \leq T},
+            \mathbb{P}
+        \right).
+    \end{align}
+    %Recall that this means that $(\Omega, \mathscr{F}, (\mathscr{F}_t)_{0 \leq t \leq T}, \mathbb{P})$ is a probability space and $(\mathscr{F}_t)_{0 \leq t \leq T}$ is a filtration, i.e. a nested collection of sub-$\sigma$-algebras of $\mathscr{F}$: In symbols
+    %\begin{align}
+    %    \mathscr{F}_{t-1} \subseteq \mathscr{F}_t \subseteq \mathscr{F}, \quad \forall \, 1 \leq t \leq T. 
+    %\end{align}
+    I am given a discrete time stochastic process
+    \begin{align}
+        X = (X_t)_{0 \leq t \leq T}. 
+    \end{align}
+    Under this framework i give the definition of a martingale.
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    \begin{definition}[Martingale]\label{def:martingale}
+        The collection $\{ (X_t, \mathscr{F}_t): t = 0,1, \ldots, T \}$ is said to be a martingale if
+        \begin{enumerate}
+            \item $X$ is adapted, i.e. $\sigma(X_t) \subseteq \mathscr{F}_t, \quad \forall \, 0 \leq t \leq T$.
+            \item $X_t$ has finite first moment, that is $\mathbb{E}(|X_t|) < \infty$. 
+            \item For all $0 \leq t \leq T-1$ we have that almost surely $\mathbb{E}(X_{t + 1} | \mathscr{F}_t) = X_t$. 
+        \end{enumerate}
+    \end{definition}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    Consider the risk neutral multi-step binomial model: $B_0 = 1$, $S_0 > 0$ is a non-random constant and
+    \begin{align}
+        B_t = (1 + r)^t; \quad S_t = S_{t-1}(1 + K_S(t)), \quad t = 1, \ldots, T. 
+    \end{align}
+    $(K_S(t))_{t = 1, \ldots, T}$ are i.i.d. with 
+    \begin{align}
+        K_S(t) = 
+        \begin{cases}
+            R_u &\text{ with probability } q^* \\
+            R_d &\text{ with probability } 1-q*
+        \end{cases}
+    \end{align}
+    with the relation $R_d < r < R_u$ and
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    The risk neutral measure is the following:
+    \vspace{6cm}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    I will now show that the discounted price
+    \begin{align}
+        X_t := \frac{S_t}{B_t}, \quad 0 \leq t \leq T, 
+    \end{align}
+    is a martingale under the filtration
+    \begin{align}
+        \mathscr{F}_0 &= \{ \emptyset, \Omega\} \label{eq:information_at_time_0} \\
+        \mathscr{F}_t &= \sigma(K_S(1), \ldots, K_S(t)), \quad 1 \leq t \leq T. \label{eq:information_at_time_1}  
+    \end{align}
+    In order to show this, i need to verify that the discounted price satisfies all three conditions in definition \ref{def:martingale} (\nameref{def:martingale})
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    By definition
+    \begingroup
+    \footnotesize
+    \begin{align}
+        \mathbb{E}\left(X_{t + 1} | \mathscr{F}_t\right) &= \mathbb{E}\left(\frac{S_{t + 1}}{B_{t + 1}} \, \bigg| \, \mathscr{F}_t\right) \\
+        &= \mathbb{E}\left(\frac{S_{t}(1 + K_S(t + 1))}{B_{t + 1}} \, \bigg| \, \mathscr{F}_t\right) \\
+        &= \mathbb{E}\left(\frac{S_{t}(1 + K_S(t + 1))}{(1 + r)^{t + 1}} \, \bigg| \, \mathscr{F}_t\right) \\
+        &= \mathbb{E}\left(\frac{S_{t}}{(1 + r)^{t + 1}}(1 + K_S(t + 1)) \, \bigg| \, \mathscr{F}_t\right) \\
+        \text{{\footnotesize (By the Product Rule)}} &= \frac{S_{t}}{(1 + r)^{t + 1}}\mathbb{E}\left((1 + K_S(t + 1)) \, \bigg| \, \mathscr{F}_t\right) \\
+        &= \frac{S_{t}}{(1 + r)^{t}}\frac{1}{(1 + r)}\mathbb{E}\left((1 + K_S(t + 1)) \, \bigg| \, \mathscr{F}_t\right) \\
+        &= X_t\frac{1}{(1 + r)}\mathbb{E}\left((1 + K_S(t + 1)) \, \bigg| \, \mathscr{F}_t\right).
+    \end{align}
+    \endgroup
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    I am now left to show that
+    \begin{align}
+        \mathbb{E}\left((1 + K_S(t + 1) \, \bigg| \, \mathscr{F}_t\right) = 1,
+    \end{align}
+    to do this i will use the independence of the returns but let me start by considering $t = 0$.
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    \begingroup
+    \footnotesize
+    In this case
+    \begin{align}
+        \mathbb{E}\left((1 + K_S(1)\,|\,\mathscr{F}_0\right) &= \mathbb{E}\left((1 + K_S(1)\,|\,\left\{\emptyset, \Omega\right\}\right) \\
+        \text{{\footnotesize (Conditioning on the trivial $\sigma$-algebra)}} &= \mathbb{E}\left((1 + K_S(1)\right) \\
+        \text{{\footnotesize (From Risk-Neutrality)}}&= (1 + r).
+    \end{align}
+    Let me now consider the case when $t \geq 1$
+    \begin{align}
+        \mathbb{E}\left((1 + K_S(t + 1)\,|\,\mathscr{F}_t\right) &= \mathbb{E}\left((1 + K_S(t + 1)\,|\,K_S(1),\ldots,K_S(t)\right) \\
+        \text{{\footnotesize (Indepence prop. of the cond. expectation)}} &= \mathbb{E}\left((1 + K_S(1)\right) \\
+        &= (1 + r).
+    \end{align}
+    \endgroup
+\end{frame}
+
+\section{The First Fundamental Theorem of Asset Pricing}
+
 \begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
 \end{frame}
 
-\section{The Multi-Step Binomial Model}
-\subsection{Model Setup}
-\subsection{Market Information}
-\subsection{Absence of Arbitrage}
-\subsection{Risk-Neutral Measure}
-
-\section{The First Fundamental Theorem of Asset Pricing}
 \subsection{The Theorem}
 \subsection{Explaining the Hypothesis}
 \subsection{Risk-Neutral and Martingale Measures}
