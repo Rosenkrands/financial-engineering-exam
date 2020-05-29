@@ -1,5 +1,17 @@
 \documentclass{beamer}
 
+% american mathematical society
+\usepackage{amsmath,amsthm,amssymb}
+
+% additional mathematical fonts
+\usepackage{mathrsfs}
+
+% remove navigation bar
+\beamertemplatenavigationsymbolsempty
+
+% add slide numbers
+\setbeamertemplate{footline}[frame number]
+
 % title
 \title{Financial Engineering}
 \subtitle{Exam}
@@ -26,15 +38,289 @@
 \end{frame}
 
 \section{Bonds and the Value of Money Through Time}
+
 \subsection{Bonds}
 
-\begin{frame}\frametitle{{\normalsize \secname} \\ {\normalsize \subsecname}}
-    Here is some text.
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    \begin{definition}[Bond]\label{def:bond}
+        A bond is a financial security that pays the owner a chain of predetermined payments.
+    \end{definition}
+    \pause
+    \begin{itemize}
+        \item Financial asset with no risk
+    \end{itemize}
 \end{frame}
 
-\subsection{Value of Money Through Time}
+%\subsection{Value of Money Through Time}
+%
+%\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+%    \begin{itemize}
+%        \item You are offered an amount of money with value $M$
+%        \begin{itemize}
+%            \item Recieve right away
+%            \item Recieve one year from now
+%        \end{itemize}
+%    \end{itemize}
+%\end{frame}
+
 \subsection{Interest Rate}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    \begin{itemize}
+        \item Predetermined payments are also known as interest
+        \item Fraction of an investment paid either ones for several periods
+        \item Different types of interest
+        \begin{enumerate}
+            \item Simple
+            \item Compounded
+            \item Continuously compounded
+        \end{enumerate}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    \begin{definition}[Wealth Process]
+        The evolution of an investment over time is called the wealth process of that investment and is denoted by
+        \begin{align}
+            V = (V_t)_{0 \leq t \leq T}.
+        \end{align}
+        The initial capital is denoted by $v_0$, and we assume that $V$ is a real-valued stochastic process on a given probability space $(\Omega, \mathscr{F}, \mathbb{P})$.
+    \end{definition}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    \begin{definition}[Simple Interest]
+        Let $v_0 \in \mathbb{R}$ be our initial capital.
+        An interest on $v_0$ is said to be simple if it follows the wealth process
+        \begin{align}\label{eq:simple_interest_wealth_process}
+            V_t = (1 + rt)v_0, \quad 0 \leq t \leq T.
+        \end{align}
+    \end{definition}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    I will now show that the wealth process in \eqref{eq:simple_interest_wealth_process} is indeed a stochastic process in any probability space.
+    Any stochastic process $X$ on the probability space $(\Omega, \mathscr{F}, \mathbb{P})$ satisfies
+    \begin{align}
+        \{\omega \in \Omega \, : \, X(\omega) \leq x\} \in \mathscr{F}, \quad \forall x \in \mathbb{R}.
+    \end{align}
+    Suppose $v_0 > 0$ and $x \geq (1 + rt)v_0$ then
+    \begin{align}
+        \{\omega \in \Omega \, : \, (1 + rt)v_0 \leq x\} = \{\Omega\} \in \mathscr{F},
+    \end{align}
+    on the other hand if $x < (1 + rt)v_0$
+    \begin{align}
+        \{\omega \in \Omega \, : \, (1 + rt)v_0 \leq x\} = \{\emptyset\} \in \mathscr{F}.
+    \end{align}
+    As both $\Omega$ and $\emptyset$ is contained in any $\sigma$-algebra we have shown that the wealth process in \eqref{eq:simple_interest_wealth_process} is a stochastic process in any probability space.
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    \begin{definition}[Compounded Interest]
+        Let $v_0 \in \mathbb{R}$ be our initial capital.
+        An interest on $v_0$ is said to be compunded over $m\in\mathbb{N}$ periods if it follows the wealth process
+        \begin{align}\label{eq:compund_interest_wealth_process}
+            V_t = \left( 1 + \frac{r}{m} \right)^{mt} v_0, \quad 0 \leq t \leq T.
+        \end{align}
+    \end{definition}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    Note that we have the following properties $\forall\, 0 \leq t \leq T$
+    \begin{enumerate}
+        \item $V_{t + 1} = \left( 1 + \dfrac{r}{m} \right)^{m}V_t$,
+        \item If $m_1 > m_2, v_0 > 0 
+        \, \Rightarrow \, 
+        \left( 1 + \dfrac{r}{m_1} \right)^{m_1t}v_0
+        >
+        \left( 1 + \dfrac{r}{m_2} \right)^{m_2t}v_0$,
+        \item If $m_1 > m_2, v_0 < 0 
+        \, \Rightarrow \, 
+        \left( 1 + \dfrac{r}{m_1} \right)^{m_1t}v_0
+        <
+        \left( 1 + \dfrac{r}{m_2} \right)^{m_2t}v_0$.
+    \end{enumerate}
+    From this is follows that for an \textit{investor} compund interest is more attractive as it pays more, however as a \textit{debtor} it is less attractive as he or she will have to pay more on his or hers debt.
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    At last i can turn to continuously compounded interest which i will present as the limit of \eqref{eq:compund_interest_wealth_process} as $m \rightarrow \infty$.
+    Note that by the following definition of $e$
+    \begin{align}
+        \lim_{x \rightarrow \infty} \left(1 + \frac{1}{x}\right)^x = e,
+    \end{align}
+    by letting $x = r/m$ in the above the limit of the wealth process of compounded interest can be seen as
+    \begin{align}
+        \left[\left( 1 + \frac{r}{m} \right)^\frac{m}{r}\right]^{rt}v_0 \rightarrow
+        (e)^{rt}v_0, \quad \text{as } m \rightarrow \infty.
+    \end{align} 
+    This leads to the definition of continuously compounded interest.
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    \begin{definition}[Continuously Compounded Interest]
+        Let $v_0$ be our initial capital.
+        An interest on $v_0$ is said to be continuously compounded at rate $r>0$ if the wealth process
+        \begin{align}
+            V_t = e^{rt}v_0, \quad 0 \leq t \leq T.
+        \end{align}
+    \end{definition}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    There exists the following relation between the different types of interest
+    \begin{align}
+        (1 + r) \leq \left(1 + \frac{r}{m}\right)^m < e^r.
+    \end{align}
+    To show that the relation indeed holds i will show that the sequence
+    \begin{align}
+        a_m = \left(1 + \frac{r}{m}\right)^m,
+    \end{align}
+    is increasing.
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    Using the binomial theorem
+    \begin{align*}
+        (x+y)^n = \sum_{k=0}^n \begin{pmatrix} n \\ k \end{pmatrix} x^k y^{n-k}
+    \end{align*}
+    we have 
+    \begin{align*}
+        \left( 1 + \frac{r}{m} \right)^m &= \sum_{k=0}^m \begin{pmatrix} m \\ k \end{pmatrix} 1^{m-k}\begin{pmatrix} \frac{r}{m} \end{pmatrix}^k\\
+        &= \sum_{k=0}^m \begin{pmatrix} m \\ k \end{pmatrix} \begin{pmatrix} \frac{r}{m} \end{pmatrix}^k := \clubsuit
+    \end{align*}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    Each term is of the form
+    \begin{align*}
+        \begin{pmatrix} m \\ k \end{pmatrix}\begin{pmatrix} \frac{r}{m} \end{pmatrix}^k = \prod_{l=0}^{k-1} \frac{m-l}{k - l} \begin{pmatrix} \frac{r}{m} \end{pmatrix}
+    \end{align*}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    Each term is of the form
+    \begin{align*}
+        \frac{m-l}{k-l} \frac{r}{m} &= \frac{rm - lr}{m(k-l)}\\
+        &= \frac{m(r - lr/m)}{m(k - l)}\\
+        &= \frac{r - lr/m}{k-l} := \bigstar
+    \end{align*}
+    The term $\bigstar$ increases with $m$ and thus the product increases with $m$ and thus the sum $\clubsuit$ increases with $m$ and therefore it is an increasing sequence.
+\end{frame}
+
 \subsection{Types of Bonds}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    I will discuss the following two types here
+    \begin{enumerate}
+        \item zero-coupon bonds,
+        \item coupon bonds.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    A \textbf{zero-coupon bond} is a bond with a single payment $F > 0$ at time $T > 0$.
+    The pay-off F is called the face value and $T$ the maturity time.
+    The next question i will answer is how much i will be willing to pay for such a financial assest.
+    This depends on the way the time value of money is measured.
+    Consider for example the following setup; let $B_0 \geq 0$ be the value of the zero-coupon bond with face value $F>0$ and maturity time $T>0$.
+    Suppose that only annual compound interest at rate $r>0$ is available.
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    From a buyers perspective what if
+    \begin{align}\label{eq:zero_coupon_bond_example}
+        B_0 > \frac{F}{(1 + r)^T},
+    \end{align}
+    would i buy the bond?
+    \pause
+    
+    Suppose now that we flip the inequality and look from a sellers perspective, that is if
+    \begin{align}\label{eq:zero_coupon_bond_example_seller}
+        B_0 < \frac{F}{(1 + r)^T},
+    \end{align}
+    would i sell the bond?
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    Now i will consider the situatuion where at time $1 \leq t \leq T$ i want to get rid of a bond, but i what to determine what price i should sell it to.
+    At this time the bond can be considered a new zero-coupon bond with face value $F > 0$ and maturity time $T - t$.
+    Thus we have from the previous argumentation that
+    \begin{align}
+        B_t = \frac{F}{(1 + r)^{T - t}}, \quad 0 \leq t \leq T.
+    \end{align} 
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    The chain of arguments holds also when the time value of money is different, if a compounded interest over $m$ periods where considered then the fair price of a zero-coupon bond at time $t$ would be
+    \begin{align}
+        B_t = \frac{F}{\left(1 + \frac{r}{m}\right)^{m(T - t)}}.
+    \end{align}
+    If we consider the continuously compounded case the fair price would be
+    \begin{align}
+        B_t = \frac{F}{e^{r(T -t)}}.
+    \end{align}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    how much money will i have to deposit in my bank account today if i want to
+    \begin{align}
+        \text{1.} \quad &\text{withdraw $C > 0$ after 1 year} \\
+        \text{2.} \quad &\text{withdraw $C > 0$ after 2 years} \\
+        &\quad \vdots \nonumber \\
+        \text{$T-1$.} \quad &\text{withdraw $C > 0$ after $T-1$ years} \\
+        \text{$T$.} \quad &\text{withdraw $F + C$ after $T$ years}
+    \end{align}
+    and have nothing left in the bank account afterwards.
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    In order to be able to get $C > 0$ after one year i have to put
+    \begin{align}
+        \frac{C}{1+r}
+    \end{align}
+    in the bank.
+    \pause
+
+    In order to be able to get $C > 0$ after two years i have to put 
+    \begin{align}
+        \frac{C}{(1+r)^2}
+    \end{align}
+    in the bank.
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    Generalizing this argument tells me that in order to recieve $C > 0$ after $t$ years i have to put
+    \begin{align}
+        \frac{C}{(1+r)^t}
+    \end{align}
+    in the bank.
+    \pause
+
+    Lastly in order to get $F + C$ after $T$ years i have to put
+    \begin{align}
+        \frac{F + C}{(1+r)^T} = \frac{F}{(1+r)^T} + \frac{C}{(1+r)^T}
+    \end{align}
+    in the bank.
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    Adding up all these amounts it is concluded that i have to make a deposit of
+    \begin{align}
+        \sum_{i = 1}^T \frac{C}{(1 + r)^i} + \frac{F}{(1+r)^T}.
+    \end{align}\pause
+    The agreeable price of a coupon bond is thus given by
+    \begin{align}
+        B_0 = 
+        \sum_{i = 1}^T \frac{C}{(1 + r)^i} + \frac{F}{(1+r)^T} =
+        \frac{\xi_T}{(1 + r)^T}.
+    \end{align}\pause
+    Where the pay-off $\xi_T$ at time $T$ is given by
+    \begin{align}
+        \xi_T := \sum_{i = 1}^T C(1 + r)^{T -i} + F,
+    \end{align}\pause
+    in other words the fair price of the coupon bond (as well as the zero-coupon bond) can be written as the discounted price of the total pay-off.
+\end{frame}
 
 \section{Portfolio Allocation and Risk Measures}
 \subsection{Portfolio}
