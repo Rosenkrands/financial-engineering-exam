@@ -1285,7 +1285,7 @@ To find the distribution of prices under $\mathbb{Q}$ in the multistep binomial 
 
 \subsection{Pricing a Call Option}
 Let us now find the inital price of a call option. 
-Recall that such a contract gives the owner the right but not the obligation to buyi an asset at a given value, say $C > 0$ at a predetermined point in time, say $T > 0$. 
+Recall that such a contract gives the owner the right but not the obligation to buy an asset at a given value, say $C > 0$ at a predetermined point in time, say $T > 0$. 
 
 The pay-off is then given by the random variable
 \begin{align}
@@ -1373,7 +1373,7 @@ The expression in \eqref{eq:crr} is known as the \textbf{Cox-Ross-Rubenstein} fo
 
 \textbf{Remark: } The function $F$ is known as the price function associated to the pay-off function $\varphi$. 
 
-\textbf{Interpretation: } The function $F(t,y)$ can be though as the initial price of a single derivative with maturity time $T-t$ and pay-off function $\varphi$ under the circumstances that the initial price of the risky asset is $y \geq 0$. 
+\textbf{Interpretation: } The function $F(t,y)$ can be thought as the initial price of a simple derivative with maturity time $T-t$ and pay-off function $\varphi$ under the circumstances that the initial price of the risky asset is $y \geq 0$. 
 
 \subsection{General Price of a Call option in the Binomial Model}
 According to the previous theorem the price of a call option in the multi step binomial model at time $t = 0,1, \ldots, T$ is given by 
@@ -1400,7 +1400,7 @@ Replacing $S_0$ by $y$ the Cox-Ross-Rubenstein formula we get that
 \end{align}
 Hence the price call option in the multi-step binomial model is 
 \begin{align}
-    \xi_t = F(t, S_t) = S_t \Psi_1(T-t, S_t,C, q^*) - \frac{C}{(1+r)^{T-t}} \Psi_2(T-t, S_t, C, q^*)
+    \xi_t = F(t, S_t) = S_t \Psi_1(T-t, S_t,C, q^*) - \frac{C}{(1+r)^{T-t}} \Psi_2(T-t, S_t, C, q^*).
 \end{align}
 
 \newpage
