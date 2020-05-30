@@ -1134,15 +1134,238 @@
 
 \section{The First Fundamental Theorem of Asset Pricing}
 
+\subsection{The Theorem}
+
 \begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    The Fundamental theorem of asset pricing gives necessary and sufficient conditions for the absence of arbitrage in the market with information, given by
+    \begingroup
+    \footnotesize
+    \begin{align}\label{eq:market_with_information}
+        \mathfrak{M} =
+        \left\{
+            \left(
+                \Omega, 
+                \mathscr{F}, 
+                \left(
+                    \mathscr{F}_t
+                \right)_{0 \leq t \leq T},
+                \mathbb{P}
+            \right),
+            P =
+            \left(
+                B_t,
+                S_t^{(1)},
+                \ldots,
+                S_t^{(d)}
+            \right)_{0 \leq t \leq T}
+        \right\}.
+    \end{align}
+    \endgroup
+
+    \begin{theorem}[FFTAP]\label{th:fftap}
+        The market given by \eqref{eq:market_with_information} is arbitrage free if and only if there is a martingale measure. 
+    \end{theorem}
 \end{frame}
 
-\subsection{The Theorem}
 \subsection{Explaining the Hypothesis}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    To understand the hypothesis presented in the theorem lets first remember the concept of an admissible strategy.
+    \begin{definition}[Admissible Strategy]
+        Let $\Theta = \left(\varphi_t, \theta_t^{(1)}, \ldots, \theta_t^{(d)}\right)_{0 \leq t \leq T}$ be strategy on the market
+        \begingroup
+        \footnotesize
+        \begin{align}
+            \mathfrak{M} =
+            \left\{
+                \left(
+                    \Omega, 
+                    \mathscr{F}, 
+                    \left(
+                        \mathscr{F}_t
+                    \right)_{0 \leq t \leq T},
+                    \mathbb{P}
+                \right),
+                P =
+                \left(
+                    B_t,
+                    S_t^{(1)},
+                    \ldots,
+                    S_t^{(d)}
+                \right)_{0 \leq t \leq T}
+            \right\}.
+        \end{align}
+        \endgroup
+        I will say that $\Theta$ is admissible if:
+    \end{definition}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    \begin{enumerate}
+        \item \textbf{It is self-financed}: It only requires initial capital.
+        I will say that $\Theta$ is self financed if
+        \begin{align}
+            V_t^{\Theta} = \varphi_{t+1}B_t + \sum_{j=1}^d \theta_{t+1}^{(j)}S_t^{(j)}, \quad 0 \leq t \leq T-1. 
+        \end{align}
+        \item \textbf{Non-anticipative}: It is build up only on current information.
+        I will say that $\Theta$ is non-anticipative or predictable if $\Theta_{t+1}$ depends only on the information at time $t$, that is $\Theta_{t+1}$ is $\mathscr{F}_t$-measurable.
+        \item \textbf{It has a limited credit line}: There is a non-random constant $C > 0$, such that
+        \begin{align}
+            V_t^{\Theta} \geq -C, \ \forall \, 0 \leq t \leq T.
+        \end{align}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    Next let me recall the notion of arbitrage.
+    \begin{definition}[Arbitrage]
+        Consider the market
+        \begingroup
+        \footnotesize
+        \begin{align}
+            \mathfrak{M} =
+            \left\{
+                \left(
+                    \Omega, 
+                    \mathscr{F}, 
+                    \left(
+                        \mathscr{F}
+                    \right)_{0 \leq t \leq T},
+                    \mathbb{P}
+                \right),
+                P =
+                \left(
+                    B_t,
+                    S_t^{(1)},
+                    \ldots,
+                    S_t^{(d)}
+                \right)_{0 \leq t \leq T}
+            \right\}.
+        \end{align}
+        \endgroup
+        An admissible strategy $\Theta = \left(\varphi_t, \theta_t^{(1)}, \ldots, \theta_t^{(d)}\right)_{0 \leq t \leq T}$ is said to be an arbitrage if:
+    \end{definition}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    \begin{enumerate}
+        \item It has zero initial capital:
+        \begin{align}
+            V_0^\Theta = \varphi_0B_0 + \sum_{j = 1}^d\theta_0^{(j)} \cdot S_0^{(j)} = 0.
+        \end{align}
+        \item At time $t = T$, i am out of debts with 100 \% certainty: Almost surely
+        \begin{align}
+            V_T^\Theta = \varphi_T B_T + \sum_{j = 1}^d\theta_T^{(j)} \cdot S_T^{(j)} \geq 0.
+        \end{align}
+        \item I have a chance to make a profit:
+        \begin{align}
+            \mathbb{P}
+            \left(
+                \varphi_TB_T + \sum_{j = 1}^d \theta_T^{(j)} \cdot S_T^{(j)} > 0
+            \right) > 0.
+        \end{align}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    Lastly i will define a martingale measure.
+    \begin{definition}[Martingale Measure]
+        %Let 
+        %\begin{align}
+        %    \mathfrak{M} = \{ (\Omega, \mathscr{F}, (\mathscr{F}_t)_{0 \leq t \leq T}%, \mathbb{P}), P = (B_t, S_t^{(1)}, \ldots, S_t^{(d)})_{0 \leq t \leq T} \}
+        %\end{align}
+        %be the market. 
+        Let $\mathbb{Q}$ be probability measure on $(\Omega, \mathscr{F})$, that is there are $0 < q^*_i < 1, i = 1, \ldots, N$ such that $\sum_{i=1}^N q^*_i = 1$ and 
+        \begin{align}
+            \mathbb{Q}(\{ \omega_i \}) = q^*_i \quad \text{for } i = 1, \ldots, N. 
+        \end{align}
+        We will say that $\mathbb{Q}$ is a martingale measure if under $\mathbb{Q}$ the discounted price $(\Tilde{P}_j^{(j)})_{0 \leq t \leq T}$ is a martingale w.r.t $(\mathscr{F}_t)_{0 \leq t \leq T}$, for every $j = 1,2, \ldots, d+1$.
+    \end{definition}
+\end{frame}
+
 \subsection{Risk-Neutral and Martingale Measures}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    In the binomial model $q^*$ plays two roles
+    \begin{enumerate}
+        \item It transform the real-world probabilities (the one observed in the market) ($p$, $1-p$) satisfying that
+        \begin{align}
+            K_S(t) =
+            \begin{cases}
+                R_u & \text{with probability } p; \\
+                R_d & \text{with probability } 1 - p,            
+            \end{cases}
+        \end{align}
+        into a risk-neutral world in which the ``new'' distribution for the returns
+        \begin{align}
+            K_S(t) =
+            \begin{cases}
+                R_u & \text{with probability } q^*; \\
+                R_d & \text{with probability } 1 - q^*,            
+            \end{cases}
+        \end{align}
+        is such that
+        \begin{align}
+            \mathbb{E}_*(K_S(t)) = r, \quad t = 1,2,\ldots,T.
+        \end{align}
+        \item It transforms the discounted prices into a martingale.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    In this model the two are actually equivalent.
+    Consider the martingale property
+    \begin{align}
+        \mathbb{E}_*\left( \frac{S_{t + 1}^{(j)}}{B_{t + 1}} \, \bigg| \, \mathscr{F}_t \right) &= \frac{S_{t}^{(j)}}{B_{t}} \\
+        \frac{1}{B_{t + 1}}\mathbb{E}_*\left( S_{t + 1}^{(j)} \, \bigg| \, \mathscr{F}_t \right) &= \frac{S_{t}^{(j)}}{B_{t}} \\
+        \frac{1}{S_{t}^{(j)}}\mathbb{E}_*\left( S_{t + 1}^{(j)} \, \bigg| \, \mathscr{F}_t \right) &= \frac{B_{t + 1}}{B_{t}} \\
+        \mathbb{E}_*\left( \frac{S_{t + 1}^{(j)}}{S_{t}^{(j)}} \, \bigg| \, \mathscr{F}_t \right) &= \frac{B_{t + 1}}{B_{t}},
+    \end{align}
+    subtracting 1 from both sides i get:
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    \begin{align}
+        \mathbb{E}_*\left( \frac{S_{t + 1}^{(j)}}{S_{t}^{(j)}} - 1 \, \bigg| \, \mathscr{F}_t \right) &= \frac{B_{t + 1}}{B_{t}} - 1,
+    \intertext{taking expectations gives}
+        \mathbb{E}_*\left[\mathbb{E}_*\left( \frac{S_{t + 1}^{(j)}}{S_{t}^{(j)}} - 1 \, \bigg| \, \mathscr{F}_t \right)\right] &= \mathbb{E}_*\left[\frac{B_{t + 1}}{B_{t}} - 1\right] \\
+        \mathbb{E}_*\left( \frac{S_{t + 1}^{(j)}}{S_{t}^{(j)}} - 1 \right) &= \frac{B_{t + 1}}{B_{t}} - 1 \\
+        \mathbb{E}_*\left( K_S(t + 1) \right) &= K_B(t + 1).
+    \end{align}
+    This is exactly the definition of risk-neutral probabilities.
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    \task{Add application to the pricing of financial derivaties.}
+\end{frame}
 
 \section{Pricing in the Binomial Model}
 \subsection{Methodology for Pricing}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+\end{frame}
+
 \subsection{Define a model for the prices}
 \subsection{Indicate a set of information}
 \subsection{Check for arbitrage opportunities}
