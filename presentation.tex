@@ -1343,39 +1343,224 @@
 \subsection{Methodology for Pricing}
 
 \begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    I will start by outlining the methodology used for pricing derivatives in the binomial model.
+    \begingroup
+    \footnotesize
+    \begin{enumerate}
+        \item \textbf{Define a model for the prices}: Specify the dynamics for
+        \begin{align}
+            P = 
+            \left(
+                B_t, S_t^{(1)}, \ldots, S_t^{(d)}
+            \right)_{0 \leq t \leq T},
+        \end{align}
+        i.e. describe how the distribution, evolution and behavior of the prices should be\dots according to some empirical facts observed in the data.
+        \item \textbf{Indicate a set of information}: Determine what information is available at each point in time, i.e. specify $\left(\mathscr{F}_t\right)_{0 \leq t \leq T}$.
+        \item \textbf{Check for arbitrage opportunities}: Establish under which circumstances the proprosed model does not admit an arbitrage, i.e. by the First Fundamental Theorem of Asset Pricing find a martingale measure $\mathbb{Q}$ for the model.
+        \item \textbf{Dynamics in the risk-neutral world}: Investigate what the distribution of the price process is under the martingale measure.
+        This is necessary as the $\xi = \Phi(P_0, \dots, P_T)$ is a function of the prices.
+        \item \textbf{Price the derivative}: Compute the prices of the derivative by
+        \begin{align}
+            \xi_t := \mathbb{E}_*\left(\frac{B_t}{B_T}\xi \, \bigg| \, \mathscr{F}_t\right)
+        \end{align}
+    \end{enumerate}
+    \endgroup
 \end{frame}
 
-\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
-\end{frame}
+%\subsection{Define a model for the prices}
+%\subsection{Indicate a set of information}
+%\subsection{Check for arbitrage opportunities}
+%\subsection{Dynamics in the risk-neutral world}
 
-\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
-\end{frame}
-
-\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
-\end{frame}
-
-\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
-\end{frame}
-
-\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
-\end{frame}
-
-\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
-\end{frame}
-
-\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
-\end{frame}
-
-\subsection{Define a model for the prices}
-\subsection{Indicate a set of information}
-\subsection{Check for arbitrage opportunities}
-\subsection{Dynamics in the risk-neutral world}
 \subsection{Pricing a Call Option}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    Let us now find the inital price of a call option. 
+    Recall that such a contract gives the owner the right but not the obligation to buy an asset at a given value, say $C > 0$ at a predetermined point in time, say $T > 0$. 
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    The pay-off is then given by the random variable
+    \begin{align}
+        \xi = \max\{ S_T - C, 0\} = (S_T - C)^+.
+    \end{align}
+    Independently of the model, we know by theorem \ref{th:fftap} (FFTAP) that the arbitrage free initial price of such an option is 
+    \begin{align}
+        \xi_0 = \mathbb{E}_*\left( \frac{B_0}{B_T}(S_T - C)^+\right). 
+    \end{align}
+    In the multi-step binomial model we have
+    \begin{align}
+        \xi_0 = \mathbb{E}_* \left( \frac{B_0}{B_T}(S_T - C)^+ \right) = \frac{1}{(1+r)^T} \mathbb{E}_* \left( (S_T-C)^+\right). 
+    \end{align}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    Using that under the probability measure $\mathbb{Q}$ we have that for all $x = 0, \ldots, T$
+    \begin{align}
+        p_T(x; q^*) &= \mathbb{Q}\left[ S_T := S_0(1+ R_u)^x(1+R_d)^{T-x}\right]\\
+        &= \binom{T}{x}( q^* )^x(1-q^*)^{T-x}
+    \end{align}
+    it follows that
+    \begingroup
+    \footnotesize
+    \begin{align}
+        \mathbb{E}_* \left( (S_T - C)^+ \right) = \sum_{x=0}^T \left( S_0(1+R_u)^x(1+R_d)^{T-x} - C \right)^+ p_T(x; q^*).
+    \end{align}
+    \endgroup
+    Observe that 
+    \begin{align}
+        \left( S_0(1+R_u)^x(1+R_d)^{T-x} - C \right)^+ \neq 0
+    \end{align}
+    if and only if 
+    \begin{align}
+        S_0(1+R_u)^x(1+R_d)^{T-x} > C. 
+    \end{align}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    Let (with the convention that $\min\{ \emptyset \} = + \infty$)
+    \begingroup
+    \footnotesize
+    \begin{align}
+        x_0(S_0, R_u, R_d, T) = \min\{ 0 \leq x \leq T : S_0(1 + R_u)^x(1+R_d)^{T-x} > C\}.
+    \end{align}
+    \endgroup
+    Then
+    \begingroup
+    \footnotesize 
+    \begin{align}
+        \mathbb{E}_*\left( (S_T - C)^+\right) &= \sum_{x=0}^T \left( S_0(1+R_u)^x(1 + R_d)^{T-x}  - C \right)^+ p_T(x; q^*)\\
+        &= \sum_{x=x_0}^T \left( S_0(1+R_u)^x(1 + R_d)^{T-x}  - C \right)^+ p_T(x; q^*)\\
+        &= S_0 \sum_{x=x_0}^T \left((1+R_u)^x(1 + R_d)^{T-x}  - C \right)^+ p_T(x; q^*)
+        \\ &\qquad 
+        - C \sum_{x=x_0}^T p_T (x; q^*). 
+    \end{align}
+    \endgroup
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    Since
+    \begingroup
+    \footnotesize 
+    \begin{align}
+        p_T(x; q^*) = \mathbb{Q} \left[ S_T = S_0(1 + R_u)^x(1+R_d)^{t-x} \right] = \binom{T}{x}(q^*)^x(1-q^*)^{T-x}
+    \end{align}
+    \endgroup
+    Then
+    \begingroup
+    \footnotesize
+    \begin{align}
+    (1+R_u)^x(1+R_d)^{T-x} p_T(x; q^*) &= (1+R_u)^x(1+R_d)^{T-x} \times \binom{T}{x} (q^*)^x(1-q^*)^{T-x}\\
+    &= \binom{T}{x} [(1 + R_u)q^*]^x \times [(1+R_d)(1-q^*)]^{T-x}
+    \end{align}
+    \endgroup
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    All in all this implies that the arbitrage free initial price of a call option in the multi step binomial model is given by the formula
+    \begingroup
+    \small
+    \begin{align}\label{eq:crr}
+        \xi_0 = \mathbb{E}_* \left( \frac{(S_T - C)^+}{(1+r)^T} \right) = S_0 \Psi_1(T, S_0, C, q^*) - \frac{C}{(1+r)^T} \Psi_2(T, S_0, C, q^*)
+    \end{align}
+    \endgroup
+    where
+    \begingroup
+    \small
+    \begin{align}
+        \Psi_1 (T, S_0, C, q^*) &:= \sum_{x = x_0}^T \binom{T}{x} \left[ \frac{1 + R_u}{1+r} q^* \right]^x\left[ \frac{1+R_d}{1+r}(1 - q^*) \right]^{T-x}\\
+        \Psi_2 (T, S_0, C, q^*) &:= \sum_{x = x_0}^T p_T(x; q^*)
+    \end{align}
+    \endgroup
+    The expression in \eqref{eq:crr} is known as the \textbf{Cox-Ross-Rubenstein} formula.
+\end{frame}
+
 \subsection{Price function for simple derivatives}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    \begingroup
+    \small
+    \begin{theorem}[Price Function]\label{th:price_function}
+        Within the framework of the multi-step binomial model, let $\xi$ be a simple derivative, that is $\xi = \varphi(S_T)$. 
+        Put
+        \begin{align}
+            F(t,y) := \frac{1}{(1+r)^{T-t}} \mathbb{E}_* \{ \varphi (S_{T-t}^y) \}, \quad y \geq 0, \ 0 \leq t \leq T, 
+        \end{align}
+        where $(S_t^y)_{0 \leq t \leq T}$ is a process satisfying that $S_0^y = y$ and 
+        \begin{align}
+            S_t^y = S_{t-1}^y(1 + K_S(t)), t = 1, \ldots, T. 
+        \end{align}
+        Then, almost surely
+        \begin{align}
+            F(t, S_t) = \frac{1}{(1+r)^{T-t}} \mathbb{E}_* (\varphi(S_T) | \mathscr{F}_t), 0 \leq t \leq T. 
+        \end{align}
+        In other words the arbitrage free price of the simple derivative $\xi = \varphi(S_T)$ at time $0 \leq t \leq T$ is given by $F(t, S_t)$. 
+    \end{theorem}
+    \endgroup
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    \textbf{Remark:} The function $F$ is known as the price function associated to the pay-off function $\varphi$. 
+    \vspace{1cm}
+
+    \textbf{Interpretation:} The function $F(t,y)$ can be thought as the initial price of a simple derivative with maturity time $T-t$ and pay-off function $\varphi$ under the circumstances that the initial price of the risky asset is $y \geq 0$. 
+\end{frame}
+
 \subsection{General Price of a Call option in the Binomial Model}
 
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    According to the previous theorem the price of a call option in the multi step binomial model at time $t = 0,1, \ldots, T$ is given by 
+    \begin{align}
+        \xi_t = F(t, S_t) = \frac{1}{(1+r)^{T-t}} \mathbb{E}_* \left( (S_T - C)^+ | \mathscr{F}_t \right)
+    \end{align}
+    where 
+    \begin{align}
+        F(t,y) = \mathbb{E}_* \left[ \frac{(S_{T-t}^y - C)^+}{(1+r)^{T-t}} \right], y \geq 0, 0 \leq t \leq T
+    \end{align}
+    in which $(S_t^y)_{0 \leq t \leq T}$ is a process satisfying that $S_0^y = y$ and 
+    \begin{align}
+        S_t^y = S_{t-1}^y(1 + K_S(t)), t = 1, \ldots, T. 
+    \end{align}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    The Cox-Ross-Rubunstein formula dictates that 
+    \begin{align}
+        F(t, S_0) &= \mathbb{E}_* \left(  \frac{(S_{T-t} - C)^+}{(1+r)^{T-t}} \right)\\
+        &= S_0 \Psi_1 (T-t, S_0, C, q^*) - \frac{C}{(1+r)^{T_0}} \Psi_2(T-t, S_0, C, q^*).
+    \end{align}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    Replacing $S_0$ by $y$ the Cox-Ross-Rubenstein formula we get that 
+    \begin{align}
+        F(t, y) = y \Psi_1 (T-t, y, C, q^*) - \frac{C}{(1+r)^{T-t}}\Psi_2(T-t, y, C, q^*). 
+    \end{align}
+    Hence the price call option in the multi-step binomial model is 
+    \begingroup
+    \small
+    \begin{align}
+        \xi_t = F(t, S_t) = S_t \Psi_1(T-t, S_t,C, q^*) - \frac{C}{(1+r)^{T-t}} \Psi_2(T-t, S_t, C, q^*).
+    \end{align}
+    \endgroup
+\end{frame}
+
 \section{The Second Fundamental Theorem of Asset Pricing}
+
 \subsection{Market}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+\end{frame}
+
 \subsection{The Theorem}
 \subsection{Definitions}
 \subsection{Remarks}
