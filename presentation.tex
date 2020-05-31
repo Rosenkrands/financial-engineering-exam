@@ -1550,19 +1550,195 @@
 \subsection{Market}
 
 \begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    The market with information is given
+    \begin{align*}
+        \mathfrak{M} = \{ (\Omega, \mathscr{F}, (\mathscr{F}_t)_{0 \leq t \leq T}, \mathbb{P}), P = (B_t, S_t^{(1)}, \ldots, S_t^{(d)})_{0 \leq t \leq T} \}. 
+    \end{align*} 
+    The filtered probability space $(\Omega, \mathscr{F}, (\mathscr{F}_t)_{0 \leq t \leq T}, \mathbb{P})$ satisfies that 
 \end{frame}
 
 \begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
-\end{frame}
-
-\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
-\end{frame}
-
-\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    \begin{enumerate}
+        \item The sample space is finite and our $\sigma$-algebra is the power set: 
+        \begin{align*}
+           \Omega = \{ \omega_1, \ldots, \omega_N\}, \ N \in \mathbb{N}, \ \mathscr{F} = 2^{\Omega}.
+        \end{align*}
+        \item There are $0 < p_i < 1$ for $i = 1, \ldots, N$ such that 
+        \begin{align*}
+            \sum_{i=1}^N p_i &= 1\\
+            \mathbb{P}(\{ \omega_i \}) &= p_i, \quad i = 1, \ldots, N
+        \end{align*}
+        \item The set of information satisfies that $\mathscr{F}_0 = \{ \emptyset, \Omega\}, \mathscr{F}_T = \mathscr{F}$, and 
+        \begin{align*}
+            \mathscr{F}_{t-1} \subseteq \mathscr{F}_t, \quad 1 \leq t \leq T-1. 
+        \end{align*}
+    \end{enumerate}
+    We will assume that $B$ is deterministic, $B_0 = 1$ and $B_t > 0$, $\forall \ 1 \leq t \leq T$.
 \end{frame}
 
 \subsection{The Theorem}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    \begin{theorem}[Second Fundamental Theorem of Asset Pricing]
+        Let the market 
+        \begin{align*}
+            \mathfrak{M} = \left\{ (\Omega, \mathscr{F}, (\mathscr{F}_t)_{0 \leq t \leq T}, \mathbb{P}), P = \left(B_t, S_t^{(1)}, \ldots, S_t^{(d)}\right)_{0 \leq t \leq T} \right\}. 
+        \end{align*} 
+        be as described. 
+        Then $\mathfrak{M}$ is complete and arbitrage free if and only if there is a unique martingale measure.
+    \end{theorem}
+\end{frame}
+
 \subsection{Definitions}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    \begin{definition}[Martingale]
+        The collection $\{ (X_t, \mathscr{F}_t): t = 0,1, \ldots, T \}$ is said to be a martingale if
+        \begin{enumerate}
+            \item $X$ is adapted, i.e. $\sigma(X_t) \subseteq \mathscr{F}_t, \quad \forall \, 0 \leq t \leq T$.
+            \item $X_t$ has finite first moment, that is $\mathbb{E}(|X_t|) < \infty$. 
+            \item For all $0 \leq t \leq T-1$ we have that almost surely $\mathbb{E}(X_{t + 1} | \mathscr{F}_t) = X_t$. 
+        \end{enumerate}
+    \end{definition}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    \begin{definition}[Martingale Measure]
+        %Let 
+        %\begin{align}
+        %    \mathfrak{M} = \{ (\Omega, \mathscr{F}, (\mathscr{F}_t)_{0 \leq t \leq T}%, \mathbb{P}), P = (B_t, S_t^{(1)}, \ldots, S_t^{(d)})_{0 \leq t \leq T} \}
+        %\end{align}
+        %be the market. 
+        Let $\mathbb{Q}$ be probability measure on $(\Omega, \mathscr{F})$, that is there are $0 < q^*_i < 1, i = 1, \ldots, N$ such that $\sum_{i=1}^N q^*_i = 1$ and 
+        \begin{align}
+            \mathbb{Q}(\{ \omega_i \}) = q^*_i \quad \text{for } i = 1, \ldots, N. 
+        \end{align}
+        We will say that $\mathbb{Q}$ is a martingale measure if under $\mathbb{Q}$ the discounted price $(\Tilde{P}_j^{(j)})_{0 \leq t \leq T}$ is a martingale w.r.t $(\mathscr{F}_t)_{0 \leq t \leq T}$, for every $j = 1,2, \ldots, d+1$.
+    \end{definition}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    \begin{definition}[Admissible Strategy]
+        Let $\Theta = \left(\varphi_t, \theta_t^{(1)}, \ldots, \theta_t^{(d)}\right)_{0 \leq t \leq T}$ be strategy on the market
+        \begin{align}
+            \mathfrak{M} =
+            \left\{
+                \left(
+                    \Omega, 
+                    \mathscr{F}, 
+                    \left(
+                        \mathscr{F}
+                    \right)_{0 \leq t \leq T},
+                    \mathbb{P}
+                \right),
+                P =
+                \left(
+                    B_t,
+                    S_t^{(1)},
+                    \ldots,
+                    S_t^{(d)}
+                \right)_{0 \leq t \leq T}
+            \right\}.
+        \end{align}
+        I will say that $\Theta$ is admissible if:
+    \end{definition}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    \begin{enumerate}
+        \item \textbf{It is self-financed}: It only requires initial capital.
+        I will say that $\Theta$ is self financed if
+        \begin{align}
+            V_t^{\Theta} = \varphi_{t+1}B_t + \sum_{j=1}^d \theta_{t+1}^{(j)}S_t^{(j)}, \quad 0 \leq t \leq T-1. 
+        \end{align}
+        \item \textbf{Non-anticipative}: It is build up only on current information.
+        I will say that $\Theta$ is non-anticipative or predictable if $\Theta_{t+1}$ depends only on the information at time $t$, that is $\Theta_{t+1}$ is $\mathscr{F}_t$-measurable.
+        \item \textbf{It has a limited credit line}: There is a non-random constant $C > 0$, such that
+        \begin{align}
+            V_t^{\Theta} \geq -C, \ \forall \, 0 \leq t \leq T.
+        \end{align}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    \begin{definition}[Arbitrage]
+        Consider the market
+        \begin{align}
+            \mathfrak{M} =
+            \left\{
+                \left(
+                    \Omega, 
+                    \mathscr{F}, 
+                    \left(
+                        \mathscr{F}_t
+                    \right)_{0 \leq t \leq T},
+                    \mathbb{P}
+                \right),
+                P =
+                \left(
+                    B_t,
+                    S_t^{(1)},
+                    \ldots,
+                    S_t^{(d)}
+                \right)_{0 \leq t \leq T}
+            \right\}.
+        \end{align}
+        An admissible strategy $\Theta = \left(\varphi_t, \theta_t^{(1)}, \ldots, \theta_t^{(d)}\right)_{0 \leq t \leq T}$ is said to be an arbitrage if:
+    \end{definition}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    \begin{enumerate}
+        \item It has zero initial capital:
+        \begin{align}
+            V_0^\Theta = \varphi_0B_0 + \sum_{j = 1}^d\theta_0^{(j)} \cdot S_0^{(j)} = 0.
+        \end{align}
+        \item At time $t = T$, i am out of debts with 100 \% certainty: Almost surely
+        \begin{align}
+            V_T^\Theta = \varphi_T B_T + \sum_{j = 1}^d\theta_T^{(j)} \cdot S_T^{(j)} \geq 0.
+        \end{align}
+        \item I have a chance to make a profit:
+        \begin{align}
+            \mathbb{P}
+            \left(
+                \varphi_TB_T + \sum_{j = 1}^d \theta_T^{(j)} \cdot S_T^{(j)} > 0
+            \right) > 0.
+        \end{align}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    \begingroup
+    \small
+    \begin{definition}[Complete Financial Market]
+        The market is said to be complete if every European contingent claim $\xi$ (i.e. a random variable that depends on the information up to time $T$) can be replicated, that is, there exists an admissible strategy
+        \begin{align}
+            \Theta = \left(\varphi_t, \theta_t^{(1)}, \ldots, \theta_t^{(d)}\right)_{0 \leq t \leq T}
+        \end{align}
+        such that almost surely
+        \begin{align}
+            \xi = V_T^{\Theta} = \varphi B_T + \sum_{j = 1}^d \theta_T^{(j)}S_T^{(j)}.
+        \end{align}
+    \end{definition}
+    \endgroup
+    \begingroup
+    \footnotesize
+    This means that, if the market is arbitrage free and $\mathbb{P}\left(\xi > 0\right) > 0$, then necessarily
+    \begin{align}
+        V_0^\Theta > 0.
+    \end{align}
+    \endgroup
+\end{frame}
+
 \subsection{Remarks}
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    If the market is arbitrage free and complete, the we have a unique arbitrage-free price for any derivative with pay-off $\xi$ which is given by
+    \begin{align}
+        \mathbb{E}_*\left(\frac{B_t}{B_T}\xi\,\bigg|\,\mathscr{F}_t\right).
+    \end{align}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+\end{frame}
 
 \end{document}
