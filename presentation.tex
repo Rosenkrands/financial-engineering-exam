@@ -170,13 +170,13 @@
     Note that we have the following properties $\forall\, 0 \leq t \leq T$
     \begin{enumerate}
         \item $V_{t + 1} = \left( 1 + \dfrac{r}{m} \right)^{m}V_t$,
-        \item If $m_1 > m_2, v_0 > 0 
-        \, \Rightarrow \, 
+        \item If $m_1 > m_2, v_0 > 0
+        \, \Rightarrow \,
         \left( 1 + \dfrac{r}{m_1} \right)^{m_1t}v_0
         >
         \left( 1 + \dfrac{r}{m_2} \right)^{m_2t}v_0$,
-        \item If $m_1 > m_2, v_0 < 0 
-        \, \Rightarrow \, 
+        \item If $m_1 > m_2, v_0 < 0
+        \, \Rightarrow \,
         \left( 1 + \dfrac{r}{m_1} \right)^{m_1t}v_0
         <
         \left( 1 + \dfrac{r}{m_2} \right)^{m_2t}v_0$.
@@ -194,7 +194,7 @@
     \begin{align}
         \left[\left( 1 + \frac{r}{m} \right)^\frac{m}{r}\right]^{rt}v_0 \rightarrow
         (e)^{rt}v_0, \quad \text{as } m \rightarrow \infty.
-    \end{align} 
+    \end{align}
     This leads to the definition of continuously compounded interest.
 \end{frame}
 
@@ -225,7 +225,7 @@
     \begin{align*}
         (x+y)^n = \sum_{k=0}^n \begin{pmatrix} n \\ k \end{pmatrix} x^k y^{n-k}
     \end{align*}
-    we have 
+    we have
     \begin{align*}
         \left( 1 + \frac{r}{m} \right)^m &= \sum_{k=0}^m \begin{pmatrix} m \\ k \end{pmatrix} 1^{m-k}\begin{pmatrix} \frac{r}{m} \end{pmatrix}^k\\
         &= \sum_{k=0}^m \begin{pmatrix} m \\ k \end{pmatrix} \begin{pmatrix} \frac{r}{m} \end{pmatrix}^k
@@ -267,7 +267,7 @@
     The next question i will answer is how much i will be willing to pay for such a financial assest.
     This depends on the way the time value of money is measured.
     \vspace{1em}
-    
+
     Consider for example the following setup; let $B_0 \geq 0$ be the value of the zero-coupon bond with face value $F>0$ and maturity time $T>0$.
     Suppose that only annual compound interest at rate $r>0$ is available.
 \end{frame}
@@ -279,7 +279,7 @@
     \end{align}
     would i buy the bond?
     \pause
-    
+
     Suppose now that we flip the inequality and look from a sellers perspective, that is if
     \begin{align}\label{eq:zero_coupon_bond_example_seller}
         B_0 < \frac{F}{(1 + r)^T},
@@ -293,7 +293,7 @@
     Thus we have from the previous argumentation that
     \begin{align}
         B_t = \frac{F}{(1 + r)^{T - t}}, \quad 0 \leq t \leq T.
-    \end{align} 
+    \end{align}
 \end{frame}
 
 \begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
@@ -329,7 +329,7 @@
     in the bank.
     \pause
 
-    In order to be able to get $C > 0$ after two years i have to put 
+    In order to be able to get $C > 0$ after two years i have to put
     \begin{align}
         \frac{C}{(1+r)^2}
     \end{align}
@@ -358,7 +358,7 @@
     \end{align}\pause
     The agreeable price of a coupon bond is thus given by
     \begin{align}
-        B_0 = 
+        B_0 =
         \sum_{i = 1}^T \frac{C}{(1 + r)^i} + \frac{F}{(1+r)^T} =
         \frac{\xi_T}{(1 + r)^T}.
     \end{align}\pause
@@ -376,7 +376,7 @@
 \begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
     Let
         \begin{align}
-            \mathfrak{M} = \left\{ 
+            \mathfrak{M} = \left\{
                 \left(
                     \Omega, \mathscr{F}, \mathbb{P}
                 \right),
@@ -408,7 +408,7 @@
     For every strategy on market there is an associated wealth process.
     The wealth process for $\Theta$ is defined and denoted by
     \begin{align}
-        V_t^{\Theta} = \varphi_t B_t + \sum_{j = 1}^d \theta_t^{(j)} S_t^{(j)} = \Theta_t \cdot P_t, \quad 0 \leq t \leq T.    
+        V_t^{\Theta} = \varphi_t B_t + \sum_{j = 1}^d \theta_t^{(j)} S_t^{(j)} = \Theta_t \cdot P_t, \quad 0 \leq t \leq T.
     \end{align}
 \end{frame}
 
@@ -428,7 +428,7 @@
     \end{align}
     subject to:
     \begin{align}
-        \sum_{j = 0}^d w_j = 1, \ 
+        \sum_{j = 0}^d w_j = 1, \
         \mathbb{E}\left[ U(\textbf{w} \cdot \textbf{K}_P) \right] = \mu, \
         \mu \in \mathbb{R},
     \end{align}
@@ -466,7 +466,7 @@
     An illustrative example to demonstrate why one might consider a different risk measure than the standard deviation is the following.
     Consider two portfolios that generate the following wealth
     \begin{align}
-        V_1^{(1)} = 
+        V_1^{(1)} =
         \begin{cases}
             1 &\text{with probability $1/2$} \\
             -9 &\text{with probability $1/2$}
@@ -474,7 +474,7 @@
     \end{align}
     and
     \begin{align}
-        V_1^{(2)} = 
+        V_1^{(2)} =
         \begin{cases}
             5 &\text{with probability $1/2$} \\
             -5 &\text{with probability $1/2$}
@@ -561,7 +561,7 @@
     Then
     \begin{align}
         \sigma(X + Y)^2 &= \sigma(X)^2 + \sigma(Y)^2 + 2\rho_{X,Y}\sigma(X)\sigma(Y)\\
-        &\leq \sigma(X)^2 + \sigma(Y)^2 + 2\sigma(Y)\sigma(X) = \left[\sigma(X) + \sigma(Y)\right]^2, 
+        &\leq \sigma(X)^2 + \sigma(Y)^2 + 2\sigma(Y)\sigma(X) = \left[\sigma(X) + \sigma(Y)\right]^2,
     \end{align}
     which would imply that
     \begin{align}
@@ -678,7 +678,7 @@
         K_s(t)(\omega^{(1)}, \omega^{(2)}, \ldots, \omega^{(T)}) =
         \begin{cases}
             R_u & \text{if } \omega^{(t)} = u; \\
-            R_d & \text{if } \omega^{(t)} = d. 
+            R_d & \text{if } \omega^{(t)} = d.
         \end{cases}
     \end{align}
 \end{frame}
@@ -695,8 +695,8 @@
     \end{align}
     where
     \begin{align}
-        k = \text{number of $u$'s in } \left(\omega^{(1)}, \omega^{(2)}, \ldots, \omega^{{\color{black}(T)}}\right). 
-    \end{align} 
+        k = \text{number of $u$'s in } \left(\omega^{(1)}, \omega^{(2)}, \ldots, \omega^{{\color{black}(T)}}\right).
+    \end{align}
 \end{frame}
 
 \begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
@@ -774,7 +774,7 @@
             K_S(1) = R_d
         \right\} =
         \left\{
-            du, dd 
+            du, dd
         \right\} = B_d.
     \end{align}
     On the other hand if $K_S(1) = R_u$ it follows that
@@ -787,7 +787,7 @@
             K_S(1) = R_u
         \right\} =
         \left\{
-            uu, ud 
+            uu, ud
         \right\} = B_u.
     \end{align}
     Therefore
@@ -838,7 +838,7 @@
             (\Omega, \mathscr{F}, \left(\mathscr{F}_t\right)_{0 \leq t \leq T}, \mathbb{P}),
         \end{align}
         is termed a filtered probability space.
-        
+
         Furthermore, a stochastic process $(X_t)_{0 \leq t \leq T}$ is said to be adapted to a filtration $\mathbb{F}$ if
         \begin{align}
             \sigma(X_t) \subseteq \mathscr{F}_t, \quad \forall 0 \leq t \leq T.
@@ -854,8 +854,8 @@
             \mathfrak{M} =
             \left\{
                 \left(
-                    \Omega, 
-                    \mathscr{F}, 
+                    \Omega,
+                    \mathscr{F},
                     \left(
                         \mathscr{F}_t
                     \right)_{0 \leq t \leq T},
@@ -872,10 +872,10 @@
         \end{align}
         consisting of
         \begin{enumerate}
-            \item A filtered probability space 
+            \item A filtered probability space
             $\left(
-                \Omega, 
-                \mathscr{F}, 
+                \Omega,
+                \mathscr{F},
                 \left(
                     \mathscr{F}_t
                 \right)_{0 \leq t \leq T},
@@ -912,12 +912,12 @@
             \Theta_t^{(j)} = \text{ Number of shares of the $j$'th asset held between time $t - 1$ and $t$.}
         \end{align}
         The collection $\Theta = \left(\Theta_t\right)_{0 \leq t \leq T}$, with the convention that $\Theta_0 = \Theta_1$ is termed a strategy.
-        
+
         The wealth process associated to $\Theta = \left(\Theta_t\right)_{0\leq t \leq T}$ is defined and denoted by
         \begin{align}
             V_t^\Theta :&= \varphi_tB_t + \sum_{j = 1}^d\theta_t^{(j)}S_t^{(j)} = \Theta_t \cdot P_t, \quad 0 \leq t \leq T \\
-            \Rightarrow V_0^\Theta &= \varphi_0B_0 + \sum_{j = 1}^d\theta_0^{(j)}S_0^{(j)} = \varphi_1B_0 + \sum_{j = 1}^d\theta_1^{(j)}S_0^{(j)} 
-        \end{align} 
+            \Rightarrow V_0^\Theta &= \varphi_0B_0 + \sum_{j = 1}^d\theta_0^{(j)}S_0^{(j)} = \varphi_1B_0 + \sum_{j = 1}^d\theta_1^{(j)}S_0^{(j)}
+        \end{align}
         \endgroup
     \end{definition}
 \end{frame}
@@ -941,8 +941,8 @@
             \mathfrak{M} =
             \left\{
                 \left(
-                    \Omega, 
-                    \mathscr{F}, 
+                    \Omega,
+                    \mathscr{F},
                     \left(
                         \mathscr{F}_t
                     \right)_{0 \leq t \leq T},
@@ -967,7 +967,7 @@
         \item \textbf{It is self-financed}: It only requires initial capital.
         I will say that $\Theta$ is self financed if
         \begin{align}
-            V_t^{\Theta} = \varphi_{t+1}B_t + \sum_{j=1}^d \theta_{t+1}^{(j)}S_t^{(j)}, \quad 0 \leq t \leq T-1. 
+            V_t^{\Theta} = \varphi_{t+1}B_t + \sum_{j=1}^d \theta_{t+1}^{(j)}S_t^{(j)}, \quad 0 \leq t \leq T-1.
         \end{align}
         \item \textbf{Non-anticipative}: It is build up only on current information.
         I will say that $\Theta$ is non-anticipative or predictable if $\Theta_{t+1}$ depends only on the information at time $t$, that is $\Theta_{t+1}$ is $\mathscr{F}_t$-measurable.
@@ -985,8 +985,8 @@
             \mathfrak{M} =
             \left\{
                 \left(
-                    \Omega, 
-                    \mathscr{F}, 
+                    \Omega,
+                    \mathscr{F},
                     \left(
                         \mathscr{F}_t
                     \right)_{0 \leq t \leq T},
@@ -1035,8 +1035,8 @@
     Fix a filtered probability space
     \begin{align}
         \left(
-            \Omega, 
-            \mathscr{F}, 
+            \Omega,
+            \mathscr{F},
             \left(
                 \mathscr{F}_t
             \right)_{0 \leq t \leq T},
@@ -1045,11 +1045,11 @@
     \end{align}
     %Recall that this means that $(\Omega, \mathscr{F}, (\mathscr{F}_t)_{0 \leq t \leq T}, \mathbb{P})$ is a probability space and $(\mathscr{F}_t)_{0 \leq t \leq T}$ is a filtration, i.e. a nested collection of sub-$\sigma$-algebras of $\mathscr{F}$: In symbols
     %\begin{align}
-    %    \mathscr{F}_{t-1} \subseteq \mathscr{F}_t \subseteq \mathscr{F}, \quad \forall \, 1 \leq t \leq T. 
+    %    \mathscr{F}_{t-1} \subseteq \mathscr{F}_t \subseteq \mathscr{F}, \quad \forall \, 1 \leq t \leq T.
     %\end{align}
     I am given a discrete time stochastic process
     \begin{align}
-        X = (X_t)_{0 \leq t \leq T}. 
+        X = (X_t)_{0 \leq t \leq T}.
     \end{align}
     Under this framework i give the definition of a martingale.
 \end{frame}
@@ -1059,8 +1059,8 @@
         The collection $\{ (X_t, \mathscr{F}_t): t = 0,1, \ldots, T \}$ is said to be a martingale if
         \begin{enumerate}
             \item %$X$ is adapted, i.e. $\sigma(X_t) \subseteq \mathscr{F}_t, \quad \forall \, 0 \leq t \leq T$.
-            \item %$X_t$ has finite first moment, that is $\mathbb{E}(|X_t|) < \infty$. 
-            \item %For all $0 \leq t \leq T-1$ we have that almost surely $\mathbb{E}(X_{t + 1} | \mathscr{F}_t) = X_t$. 
+            \item %$X_t$ has finite first moment, that is $\mathbb{E}(|X_t|) < \infty$.
+            \item %For all $0 \leq t \leq T-1$ we have that almost surely $\mathbb{E}(X_{t + 1} | \mathscr{F}_t) = X_t$.
         \end{enumerate}
     \end{definition}
 \end{frame}
@@ -1068,11 +1068,11 @@
 \begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
     Consider the risk neutral multi-step binomial model: $B_0 = 1$, $S_0 > 0$ is a non-random constant and
     \begin{align}
-        B_t = (1 + r)^t; \quad S_t = S_{t-1}(1 + K_S(t)), \quad t = 1, \ldots, T. 
+        B_t = (1 + r)^t; \quad S_t = S_{t-1}(1 + K_S(t)), \quad t = 1, \ldots, T.
     \end{align}
-    $(K_S(t))_{t = 1, \ldots, T}$ are i.i.d. with 
+    $(K_S(t))_{t = 1, \ldots, T}$ are i.i.d. with
     \begin{align}
-        K_S(t) = 
+        K_S(t) =
         \begin{cases}
             R_u &\text{ with probability } q^* \\
             R_d &\text{ with probability } 1-q*
@@ -1089,12 +1089,12 @@
 \begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
     I will now show that the discounted price
     \begin{align}
-        X_t := \frac{S_t}{B_t}, \quad 0 \leq t \leq T, 
+        X_t := \frac{S_t}{B_t}, \quad 0 \leq t \leq T,
     \end{align}
     is a martingale under the filtration
     \begin{align}
         \mathscr{F}_0 &= \{ \emptyset, \Omega\} \label{eq:information_at_time_0} \\
-        \mathscr{F}_t &= \sigma(K_S(1), \ldots, K_S(t)), \quad 1 \leq t \leq T. \label{eq:information_at_time_1}  
+        \mathscr{F}_t &= \sigma(K_S(1), \ldots, K_S(t)), \quad 1 \leq t \leq T. \label{eq:information_at_time_1}
     \end{align}
     In order to show this, i need to verify that the discounted price satisfies all three conditions in definition \ref{def:martingale} (\nameref{def:martingale})
 \end{frame}
@@ -1153,8 +1153,8 @@
         \mathfrak{M} =
         \left\{
             \left(
-                \Omega, 
-                \mathscr{F}, 
+                \Omega,
+                \mathscr{F},
                 \left(
                     \mathscr{F}_t
                 \right)_{0 \leq t \leq T},
@@ -1172,7 +1172,7 @@
     \endgroup
 
     \begin{theorem}[FFTAP]\label{th:fftap}
-        The market given by \eqref{eq:market_with_information} is arbitrage free if and only if there is a martingale measure. 
+        The market given by \eqref{eq:market_with_information} is arbitrage free if and only if there is a martingale measure.
     \end{theorem}
 \end{frame}
 
@@ -1188,8 +1188,8 @@
             \mathfrak{M} =
             \left\{
                 \left(
-                    \Omega, 
-                    \mathscr{F}, 
+                    \Omega,
+                    \mathscr{F},
                     \left(
                         \mathscr{F}_t
                     \right)_{0 \leq t \leq T},
@@ -1214,7 +1214,7 @@
         \item \textbf{It is self-financed}: It only requires initial capital.
         I will say that $\Theta$ is self financed if
         \begin{align}
-            V_t^{\Theta} = \varphi_{t+1}B_t + \sum_{j=1}^d \theta_{t+1}^{(j)}S_t^{(j)}, \quad 0 \leq t \leq T-1. 
+            V_t^{\Theta} = \varphi_{t+1}B_t + \sum_{j=1}^d \theta_{t+1}^{(j)}S_t^{(j)}, \quad 0 \leq t \leq T-1.
         \end{align}
         \item \textbf{Non-anticipative}: It is build up only on current information.
         I will say that $\Theta$ is non-anticipative or predictable if $\Theta_{t+1}$ depends only on the information at time $t$, that is $\Theta_{t+1}$ is $\mathscr{F}_t$-measurable.
@@ -1235,8 +1235,8 @@
             \mathfrak{M} =
             \left\{
                 \left(
-                    \Omega, 
-                    \mathscr{F}, 
+                    \Omega,
+                    \mathscr{F},
                     \left(
                         \mathscr{F}
                     \right)_{0 \leq t \leq T},
@@ -1279,14 +1279,14 @@
 \begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
     Lastly i will define a martingale measure.
     \begin{definition}[Martingale Measure]
-        %Let 
+        %Let
         %\begin{align}
         %    \mathfrak{M} = \{ (\Omega, \mathscr{F}, (\mathscr{F}_t)_{0 \leq t \leq T}%, \mathbb{P}), P = (B_t, S_t^{(1)}, \ldots, S_t^{(d)})_{0 \leq t \leq T} \}
         %\end{align}
-        %be the market. 
-        Let $\mathbb{Q}$ be probability measure on $(\Omega, \mathscr{F})$, that is there are $0 < q^*_i < 1, i = 1, \ldots, N$ such that $\sum_{i=1}^N q^*_i = 1$ and 
+        %be the market.
+        Let $\mathbb{Q}$ be probability measure on $(\Omega, \mathscr{F})$, that is there are $0 < q^*_i < 1, i = 1, \ldots, N$ such that $\sum_{i=1}^N q^*_i = 1$ and
         \begin{align}
-            \mathbb{Q}(\{ \omega_i \}) = q^*_i \quad \text{for } i = 1, \ldots, N. 
+            \mathbb{Q}(\{ \omega_i \}) = q^*_i \quad \text{for } i = 1, \ldots, N.
         \end{align}
         We will say that $\mathbb{Q}$ is a martingale measure if under $\mathbb{Q}$ the discounted price $(\Tilde{P}_j^{(j)})_{0 \leq t \leq T}$ is a martingale w.r.t $(\mathscr{F}_t)_{0 \leq t \leq T}$, for every $j = 1,2, \ldots, d+1$.
     \end{definition}
@@ -1302,7 +1302,7 @@
             K_S(t) =
             \begin{cases}
                 R_u & \text{with probability } p; \\
-                R_d & \text{with probability } 1 - p,            
+                R_d & \text{with probability } 1 - p,
             \end{cases}
         \end{align}
         into a risk-neutral world in which the ``new'' distribution for the returns
@@ -1310,7 +1310,7 @@
             K_S(t) =
             \begin{cases}
                 R_u & \text{with probability } q^*; \\
-                R_d & \text{with probability } 1 - q^*,            
+                R_d & \text{with probability } 1 - q^*,
             \end{cases}
         \end{align}
         is such that
@@ -1344,9 +1344,9 @@
     This is exactly the definition of risk-neutral probabilities.
 \end{frame}
 
-\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
-    \task{Add application to the pricing of financial derivaties.}
-\end{frame}
+% \begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+%     \task{Add application to the pricing of financial derivaties.}
+% \end{frame}
 
 \section{Pricing in the Binomial Model}
 \subsection{Methodology for Pricing}
@@ -1358,7 +1358,7 @@
     \begin{enumerate}
         \item \textbf{Define a model for the prices}: Specify the dynamics for
         \begin{align}
-            P = 
+            P =
             \left(
                 B_t, S_t^{(1)}, \ldots, S_t^{(d)}
             \right)_{0 \leq t \leq T},
@@ -1384,8 +1384,8 @@
 \subsection{Pricing a Call Option}
 
 \begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
-    Let us now find the inital price of a call option. 
-    Recall that such a contract gives the owner the right but not the obligation to buy an asset at a given value, say $C > 0$ at a predetermined point in time, say $T > 0$. 
+    Let us now find the inital price of a call option.
+    Recall that such a contract gives the owner the right but not the obligation to buy an asset at a given value, say $C > 0$ at a predetermined point in time, say $T > 0$.
 \end{frame}
 
 \begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
@@ -1393,13 +1393,13 @@
     \begin{align}
         \xi = \max\{ S_T - C, 0\} = (S_T - C)^+.
     \end{align}
-    Independently of the model, we know by theorem \ref{th:fftap} (FFTAP) that the arbitrage free initial price of such an option is 
+    Independently of the model, we know by theorem \ref{th:fftap} (FFTAP) that the arbitrage free initial price of such an option is
     \begin{align}
-        \xi_0 = \mathbb{E}_*\left( \frac{B_0}{B_T}(S_T - C)^+\right). 
+        \xi_0 = \mathbb{E}_*\left( \frac{B_0}{B_T}(S_T - C)^+\right).
     \end{align}
     In the multi-step binomial model we have
     \begin{align}
-        \xi_0 = \mathbb{E}_* \left( \frac{B_0}{B_T}(S_T - C)^+ \right) = \frac{1}{(1+r)^T} \mathbb{E}_* \left( (S_T-C)^+\right). 
+        \xi_0 = \mathbb{E}_* \left( \frac{B_0}{B_T}(S_T - C)^+ \right) = \frac{1}{(1+r)^T} \mathbb{E}_* \left( (S_T-C)^+\right).
     \end{align}
 \end{frame}
 
@@ -1416,13 +1416,13 @@
         \mathbb{E}_* \left( (S_T - C)^+ \right) = \sum_{x=0}^T \left( S_0(1+R_u)^x(1+R_d)^{T-x} - C \right)^+ p_T(x; q^*).
     \end{align}
     \endgroup
-    Observe that 
+    Observe that
     \begin{align}
         \left( S_0(1+R_u)^x(1+R_d)^{T-x} - C \right)^+ \neq 0
     \end{align}
-    if and only if 
+    if and only if
     \begin{align}
-        S_0(1+R_u)^x(1+R_d)^{T-x} > C. 
+        S_0(1+R_u)^x(1+R_d)^{T-x} > C.
     \end{align}
 \end{frame}
 
@@ -1436,13 +1436,13 @@
     \endgroup
     Then
     \begingroup
-    \footnotesize 
+    \footnotesize
     \begin{align}
         \mathbb{E}_*\left( (S_T - C)^+\right) &= \sum_{x=0}^T \left( S_0(1+R_u)^x(1 + R_d)^{T-x}  - C \right)^+ p_T(x; q^*)\\
         &= \sum_{x=x_0}^T \left( S_0(1+R_u)^x(1 + R_d)^{T-x}  - C \right)^+ p_T(x; q^*)\\
-        &= S_0 \sum_{x=x_0}^T \left((1+R_u)^x(1 + R_d)^{T-x}  - C \right)^+ p_T(x; q^*)
-        \\ &\qquad 
-        - C \sum_{x=x_0}^T p_T (x; q^*). 
+        &= S_0 \sum_{x=x_0}^T (1+R_u)^x(1 + R_d)^{T-x}p_T(x; q^*)
+        \\ &\qquad
+        - C \sum_{x=x_0}^T p_T (x; q^*).
     \end{align}
     \endgroup
 \end{frame}
@@ -1450,7 +1450,7 @@
 \begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
     Since
     \begingroup
-    \footnotesize 
+    \footnotesize
     \begin{align}
         p_T(x; q^*) = \mathbb{Q} \left[ S_T = S_0(1 + R_u)^x(1+R_d)^{t-x} \right] = \binom{T}{x}(q^*)^x(1-q^*)^{T-x}
     \end{align}
@@ -1490,50 +1490,50 @@
     \begingroup
     \small
     \begin{theorem}[Price Function]\label{th:price_function}
-        Within the framework of the multi-step binomial model, let $\xi$ be a simple derivative, that is $\xi = \varphi(S_T)$. 
+        Within the framework of the multi-step binomial model, let $\xi$ be a simple derivative, that is $\xi = \varphi(S_T)$.
         Put
         \begin{align}
-            F(t,y) := \frac{1}{(1+r)^{T-t}} \mathbb{E}_* \{ \varphi (S_{T-t}^y) \}, \quad y \geq 0, \ 0 \leq t \leq T, 
+            F(t,y) := \frac{1}{(1+r)^{T-t}} \mathbb{E}_* \{ \varphi (S_{T-t}^y) \}, \quad y \geq 0, \ 0 \leq t \leq T,
         \end{align}
-        where $(S_t^y)_{0 \leq t \leq T}$ is a process satisfying that $S_0^y = y$ and 
+        where $(S_t^y)_{0 \leq t \leq T}$ is a process satisfying that $S_0^y = y$ and
         \begin{align}
-            S_t^y = S_{t-1}^y(1 + K_S(t)), t = 1, \ldots, T. 
+            S_t^y = S_{t-1}^y(1 + K_S(t)), t = 1, \ldots, T.
         \end{align}
         Then, almost surely
         \begin{align}
-            F(t, S_t) = \frac{1}{(1+r)^{T-t}} \mathbb{E}_* (\varphi(S_T) | \mathscr{F}_t), 0 \leq t \leq T. 
+            F(t, S_t) = \frac{1}{(1+r)^{T-t}} \mathbb{E}_* (\varphi(S_T) | \mathscr{F}_t), 0 \leq t \leq T.
         \end{align}
-        In other words the arbitrage free price of the simple derivative $\xi = \varphi(S_T)$ at time $0 \leq t \leq T$ is given by $F(t, S_t)$. 
+        In other words the arbitrage free price of the simple derivative $\xi = \varphi(S_T)$ at time $0 \leq t \leq T$ is given by $F(t, S_t)$.
     \end{theorem}
     \endgroup
 \end{frame}
 
 \begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
-    \textbf{Remark:} The function $F$ is known as the price function associated to the pay-off function $\varphi$. 
+    \textbf{Remark:} The function $F$ is known as the price function associated to the pay-off function $\varphi$.
     \vspace{1cm}
 
-    \textbf{Interpretation:} The function $F(t,y)$ can be thought as the initial price of a simple derivative with maturity time $T-t$ and pay-off function $\varphi$ under the circumstances that the initial price of the risky asset is $y \geq 0$. 
+    \textbf{Interpretation:} The function $F(t,y)$ can be thought as the initial price of a simple derivative with maturity time $T-t$ and pay-off function $\varphi$ under the circumstances that the initial price of the risky asset is $y \geq 0$.
 \end{frame}
 
 \subsection{General Price of a Call option in the Binomial Model}
 
 \begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
-    According to the previous theorem the price of a call option in the multi step binomial model at time $t = 0,1, \ldots, T$ is given by 
+    According to the previous theorem the price of a call option in the multi step binomial model at time $t = 0,1, \ldots, T$ is given by
     \begin{align}
         \xi_t = F(t, S_t) = \frac{1}{(1+r)^{T-t}} \mathbb{E}_* \left( (S_T - C)^+ | \mathscr{F}_t \right)
     \end{align}
-    where 
+    where
     \begin{align}
         F(t,y) = \mathbb{E}_* \left[ \frac{(S_{T-t}^y - C)^+}{(1+r)^{T-t}} \right], y \geq 0, 0 \leq t \leq T
     \end{align}
-    in which $(S_t^y)_{0 \leq t \leq T}$ is a process satisfying that $S_0^y = y$ and 
+    in which $(S_t^y)_{0 \leq t \leq T}$ is a process satisfying that $S_0^y = y$ and
     \begin{align}
-        S_t^y = S_{t-1}^y(1 + K_S(t)), t = 1, \ldots, T. 
+        S_t^y = S_{t-1}^y(1 + K_S(t)), t = 1, \ldots, T.
     \end{align}
 \end{frame}
 
 \begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
-    The Cox-Ross-Rubunstein formula dictates that 
+    The Cox-Ross-Rubunstein formula dictates that
     \begin{align}
         F(t, S_0) &= \mathbb{E}_* \left(  \frac{(S_{T-t} - C)^+}{(1+r)^{T-t}} \right)\\
         &= S_0 \Psi_1 (T-t, S_0, C, q^*) - \frac{C}{(1+r)^{T_0}} \Psi_2(T-t, S_0, C, q^*).
@@ -1541,11 +1541,11 @@
 \end{frame}
 
 \begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
-    Replacing $S_0$ by $y$ the Cox-Ross-Rubenstein formula we get that 
+    Replacing $S_0$ by $y$ the Cox-Ross-Rubenstein formula we get that
     \begin{align}
-        F(t, y) = y \Psi_1 (T-t, y, C, q^*) - \frac{C}{(1+r)^{T-t}}\Psi_2(T-t, y, C, q^*). 
+        F(t, y) = y \Psi_1 (T-t, y, C, q^*) - \frac{C}{(1+r)^{T-t}}\Psi_2(T-t, y, C, q^*).
     \end{align}
-    Hence the price call option in the multi-step binomial model is 
+    Hence the price call option in the multi-step binomial model is
     \begingroup
     \small
     \begin{align}
@@ -1556,44 +1556,44 @@
 
 \section{The Second Fundamental Theorem of Asset Pricing}
 
-\subsection{Market}
+% \subsection{Market}
 
-\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
-    The market with information is given
-    \begin{align*}
-        \mathfrak{M} = \{ (\Omega, \mathscr{F}, (\mathscr{F}_t)_{0 \leq t \leq T}, \mathbb{P}), P = (B_t, S_t^{(1)}, \ldots, S_t^{(d)})_{0 \leq t \leq T} \}. 
-    \end{align*} 
-    The filtered probability space $(\Omega, \mathscr{F}, (\mathscr{F}_t)_{0 \leq t \leq T}, \mathbb{P})$ satisfies that 
-\end{frame}
+% \begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+%     The market with information is given
+%     \begin{align*}
+%         \mathfrak{M} = \{ (\Omega, \mathscr{F}, (\mathscr{F}_t)_{0 \leq t \leq T}, \mathbb{P}), P = (B_t, S_t^{(1)}, \ldots, S_t^{(d)})_{0 \leq t \leq T} \}.
+%     \end{align*}
+%     The filtered probability space $(\Omega, \mathscr{F}, (\mathscr{F}_t)_{0 \leq t \leq T}, \mathbb{P})$ satisfies that
+% \end{frame}
 
-\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
-    \begin{enumerate}
-        \item The sample space is finite and our $\sigma$-algebra is the power set: 
-        \begin{align*}
-           \Omega = \{ \omega_1, \ldots, \omega_N\}, \ N \in \mathbb{N}, \ \mathscr{F} = 2^{\Omega}.
-        \end{align*}
-        \item There are $0 < p_i < 1$ for $i = 1, \ldots, N$ such that 
-        \begin{align*}
-            \sum_{i=1}^N p_i &= 1\\
-            \mathbb{P}(\{ \omega_i \}) &= p_i, \quad i = 1, \ldots, N
-        \end{align*}
-        \item The set of information satisfies that $\mathscr{F}_0 = \{ \emptyset, \Omega\}, \mathscr{F}_T = \mathscr{F}$, and 
-        \begin{align*}
-            \mathscr{F}_{t-1} \subseteq \mathscr{F}_t, \quad 1 \leq t \leq T-1. 
-        \end{align*}
-    \end{enumerate}
-    We will assume that $B$ is deterministic, $B_0 = 1$ and $B_t > 0$, $\forall \ 1 \leq t \leq T$.
-\end{frame}
+% \begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+%     \begin{enumerate}
+%         \item The sample space is finite and our $\sigma$-algebra is the power set:
+%         \begin{align*}
+%            \Omega = \{ \omega_1, \ldots, \omega_N\}, \ N \in \mathbb{N}, \ \mathscr{F} = 2^{\Omega}.
+%         \end{align*}
+%         \item There are $0 < p_i < 1$ for $i = 1, \ldots, N$ such that
+%         \begin{align*}
+%             \sum_{i=1}^N p_i &= 1\\
+%             \mathbb{P}(\{ \omega_i \}) &= p_i, \quad i = 1, \ldots, N
+%         \end{align*}
+%         \item The set of information satisfies that $\mathscr{F}_0 = \{ \emptyset, \Omega\}, \mathscr{F}_T = \mathscr{F}$, and
+%         \begin{align*}
+%             \mathscr{F}_{t-1} \subseteq \mathscr{F}_t, \quad 1 \leq t \leq T-1.
+%         \end{align*}
+%     \end{enumerate}
+%     We will assume that $B$ is deterministic, $B_0 = 1$ and $B_t > 0$, $\forall \ 1 \leq t \leq T$.
+% \end{frame}
 
 \subsection{The Theorem}
 
 \begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
     \begin{theorem}[Second Fundamental Theorem of Asset Pricing]
-        Let the market 
+        Let the market
         \begin{align*}
-            \mathfrak{M} = \left\{ (\Omega, \mathscr{F}, (\mathscr{F}_t)_{0 \leq t \leq T}, \mathbb{P}), P = \left(B_t, S_t^{(1)}, \ldots, S_t^{(d)}\right)_{0 \leq t \leq T} \right\}. 
-        \end{align*} 
-        be as described. 
+            \mathfrak{M} = \left\{ (\Omega, \mathscr{F}, (\mathscr{F}_t)_{0 \leq t \leq T}, \mathbb{P}), P = \left(B_t, S_t^{(1)}, \ldots, S_t^{(d)}\right)_{0 \leq t \leq T} \right\}.
+        \end{align*}
+        be as described.
         Then $\mathfrak{M}$ is complete and arbitrage free if and only if there is a unique martingale measure.
     \end{theorem}
 \end{frame}
@@ -1604,23 +1604,23 @@
     \begin{definition}[Martingale]
         The collection $\{ (X_t, \mathscr{F}_t): t = 0,1, \ldots, T \}$ is said to be a martingale if
         \begin{enumerate}
-            \item $X$ is adapted, i.e. $\sigma(X_t) \subseteq \mathscr{F}_t, \quad \forall \, 0 \leq t \leq T$.
-            \item $X_t$ has finite first moment, that is $\mathbb{E}(|X_t|) < \infty$. 
-            \item For all $0 \leq t \leq T-1$ we have that almost surely $\mathbb{E}(X_{t + 1} | \mathscr{F}_t) = X_t$. 
+            \item %$X$ is adapted, i.e. $\sigma(X_t) \subseteq \mathscr{F}_t, \quad \forall \, 0 \leq t \leq T$.
+            \item %$X_t$ has finite first moment, that is $\mathbb{E}(|X_t|) < \infty$.
+            \item %For all $0 \leq t \leq T-1$ we have that almost surely $\mathbb{E}(X_{t + 1} | \mathscr{F}_t) = X_t$.
         \end{enumerate}
     \end{definition}
 \end{frame}
 
 \begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
     \begin{definition}[Martingale Measure]
-        %Let 
+        %Let
         %\begin{align}
         %    \mathfrak{M} = \{ (\Omega, \mathscr{F}, (\mathscr{F}_t)_{0 \leq t \leq T}%, \mathbb{P}), P = (B_t, S_t^{(1)}, \ldots, S_t^{(d)})_{0 \leq t \leq T} \}
         %\end{align}
-        %be the market. 
-        Let $\mathbb{Q}$ be probability measure on $(\Omega, \mathscr{F})$, that is there are $0 < q^*_i < 1, i = 1, \ldots, N$ such that $\sum_{i=1}^N q^*_i = 1$ and 
+        %be the market.
+        Let $\mathbb{Q}$ be probability measure on $(\Omega, \mathscr{F})$, that is there are $0 < q^*_i < 1, i = 1, \ldots, N$ such that $\sum_{i=1}^N q^*_i = 1$ and
         \begin{align}
-            \mathbb{Q}(\{ \omega_i \}) = q^*_i \quad \text{for } i = 1, \ldots, N. 
+            \mathbb{Q}(\{ \omega_i \}) = q^*_i \quad \text{for } i = 1, \ldots, N.
         \end{align}
         We will say that $\mathbb{Q}$ is a martingale measure if under $\mathbb{Q}$ the discounted price $(\Tilde{P}_j^{(j)})_{0 \leq t \leq T}$ is a martingale w.r.t $(\mathscr{F}_t)_{0 \leq t \leq T}$, for every $j = 1,2, \ldots, d+1$.
     \end{definition}
@@ -1633,8 +1633,8 @@
             \mathfrak{M} =
             \left\{
                 \left(
-                    \Omega, 
-                    \mathscr{F}, 
+                    \Omega,
+                    \mathscr{F},
                     \left(
                         \mathscr{F}
                     \right)_{0 \leq t \leq T},
@@ -1658,7 +1658,7 @@
         \item \textbf{It is self-financed}: It only requires initial capital.
         I will say that $\Theta$ is self financed if
         \begin{align}
-            V_t^{\Theta} = \varphi_{t+1}B_t + \sum_{j=1}^d \theta_{t+1}^{(j)}S_t^{(j)}, \quad 0 \leq t \leq T-1. 
+            V_t^{\Theta} = \varphi_{t+1}B_t + \sum_{j=1}^d \theta_{t+1}^{(j)}S_t^{(j)}, \quad 0 \leq t \leq T-1.
         \end{align}
         \item \textbf{Non-anticipative}: It is build up only on current information.
         I will say that $\Theta$ is non-anticipative or predictable if $\Theta_{t+1}$ depends only on the information at time $t$, that is $\Theta_{t+1}$ is $\mathscr{F}_t$-measurable.
@@ -1676,8 +1676,8 @@
             \mathfrak{M} =
             \left\{
                 \left(
-                    \Omega, 
-                    \mathscr{F}, 
+                    \Omega,
+                    \mathscr{F},
                     \left(
                         \mathscr{F}_t
                     \right)_{0 \leq t \leq T},
@@ -1739,34 +1739,34 @@
     \endgroup
 \end{frame}
 
-\subsection{Remarks}
-\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
-    If the market is arbitrage free and complete, then we have a unique arbitrage-free price for any derivative with pay-off $\xi$ which is given by
-    \begin{align}
-        \mathbb{E}_*\left(\frac{B_t}{B_T}\xi\,\bigg|\,\mathscr{F}_t\right).
-    \end{align}
-\end{frame}
+% \subsection{Remarks}
+% \begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+%     If the market is arbitrage free and complete, then we have a unique arbitrage-free price for any derivative with pay-off $\xi$ which is given by
+%     \begin{align}
+%         \mathbb{E}_*\left(\frac{B_t}{B_T}\xi\,\bigg|\,\mathscr{F}_t\right).
+%     \end{align}
+% \end{frame}
 
 \subsection{Completeness}
 \begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
-    Let $\phi$ be the pay-off function of a simple derivative. We want to find an admissible strategy $\Theta = (\varphi_t, \theta_t)_{0 \leq t \leq T}$ such that 
+    Let $\phi$ be the pay-off function of a simple derivative. We want to find an admissible strategy $\Theta = (\varphi_t, \theta_t)_{0 \leq t \leq T}$ such that
     \begin{align*}
-        \xi = \phi(S_T) = V_T^{\Theta} = \varphi_TB_T + \theta_TS_T. 
+        \xi = \phi(S_T) = V_T^{\Theta} = \varphi_TB_T + \theta_TS_T.
     \end{align*}
-    Recall that a strategy $\Theta = (\varphi_t, \theta_t)_{0 \leq t \leq T}$ is admissible if: 
-    \begin{enumerate}
-        \item It is self financed: $(\theta_{t+1} = \# \textit{ of shares held between } t \textit{ and } t+1)$
-        \begin{align*}
-            \varphi_tB_t + \theta_t S_t = V_t^{\Theta} = \varphi_{t+1}B_t + \theta_{t+1}S_t
-        \end{align*}
-        \item Non-anticipative: $\Theta_t$ depends on the market information up to time $t$. 
-        \item Is has a limited credit line: There is a non-random constant $C > 0$ such that $V_t^{\Theta} \geq - C, \ \forall \, 0 \leq t \leq T$
-    \end{enumerate}
+    % Recall that a strategy $\Theta = (\varphi_t, \theta_t)_{0 \leq t \leq T}$ is admissible if:
+    % \begin{enumerate}
+    %     \item It is self financed: $(\theta_{t+1} = \# \textit{ of shares held between } t \textit{ and } t+1)$
+    %     \begin{align*}
+    %         \varphi_tB_t + \theta_t S_t = V_t^{\Theta} = \varphi_{t+1}B_t + \theta_{t+1}S_t
+    %     \end{align*}
+    %     \item Non-anticipative: $\Theta_t$ depends on the market information up to time $t$.
+    %     \item Is has a limited credit line: There is a non-random constant $C > 0$ such that $V_t^{\Theta} \geq - C, \ \forall \, 0 \leq t \leq T$
+    % \end{enumerate}
 \end{frame}
 
 \begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
     \begin{itemize}
-        \item When we have $T=1$ we have seen that $\phi(S_1) = V_1^{\Theta} = \varphi B_1 + \theta S_1$ holds if and only if 
+        \item When we have $T=1$ we have seen that $\phi(S_1) = V_1^{\Theta} = \varphi B_1 + \theta S_1$ holds if and only if
         \begin{align*}
             \zeta^u &:= \phi [S_0(1+R_u)] = \varphi B_1 + \theta S_0(1+R_u)\\
             \zeta^d &:= \phi [S_0(1+R_d)] = \varphi B_1 + \theta S_0(1+R_d) \\
@@ -1774,38 +1774,38 @@
         \end{align*}
             \item This system has a unique solution given by
         \begin{align*}
-            \theta = \frac{\zeta^u - \zeta^d}{S_0 (R_u - R_d)}, \varphi = \frac{1}{B_1} \Bigg\{ \frac{\zeta^d(1+R_u) - \zeta^u(1+R_d)}{R_u - R_d} \Bigg\}. 
+            \theta = \frac{\zeta^u - \zeta^d}{S_0 (R_u - R_d)}, \varphi = \frac{1}{B_1} \Bigg\{ \frac{\zeta^d(1+R_u) - \zeta^u(1+R_d)}{R_u - R_d} \Bigg\}.
         \end{align*}
-        \item <2-> Moreover for $q^* = \frac{r - R_d}{R_u - R_d}$:
-        \begin{align*}
-            \theta S_0 + \varphi B_0 = \frac{1}{1+r} \Bigg\{ \zeta^u q^* + \zeta^d(1-q^*) \Bigg\}. 
-        \end{align*}
+        % \item <2-> Moreover for $q^* = \frac{r - R_d}{R_u - R_d}$:
+        % \begin{align*}
+        %     \theta S_0 + \varphi B_0 = \frac{1}{1+r} \Bigg\{ \zeta^u q^* + \zeta^d(1-q^*) \Bigg\}.
+        % \end{align*}
     \end{itemize}
 \end{frame}
 
 \begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
     \begin{itemize}
-        \item <1-> Suppose that we have found the replicating strategy up to time $t = T-1$, i.e. $(\varphi_t, \theta_t)_{0 \leq t \leq T-1}$ is given . Thus it is left to find $(\varphi_T, \theta_T)$ such that 
+        \item <1-> Suppose that we have found the replicating strategy up to time $t = T-1$, i.e. $(\varphi_t, \theta_t)_{0 \leq t \leq T-1}$ is given . Thus it is left to find $(\varphi_T, \theta_T)$ such that
         \begin{align}\label{eq:completeness_of_BM}
             \phi(S_T) = V_T^{\Theta} = \varphi_TB_T + \theta_TS_T
         \end{align}
-                \item <1-> Using that $S_T = S_{T-1}(1+K_S(T))$, we have that \eqref{eq:completeness_of_BM} holds if and only if 
+                \item <1-> Using that $S_T = S_{T-1}(1+K_S(T))$, we have that \eqref{eq:completeness_of_BM} holds if and only if
                 \begin{align*}
             \zeta^u_1(S_{T-1}) &= \varphi_T B_T  + \theta_T S_{T-1}(1+R_u)\\
             \zeta^d_1(S_{T-1}) &= \varphi_T B_T  + \theta_T S_{T-1}(1+R_d)\\
         \end{align*}
         where
         \begin{align*}
-            \zeta_1^u(y) := \phi[y(1 + R_u)], \zeta_1^d(y):= \phi[y(1 + R_d)]. 
+            \zeta_1^u(y) := \phi[y(1 + R_u)], \zeta_1^d(y):= \phi[y(1 + R_d)].
         \end{align*}
     \end{itemize}
 \end{frame}
 
 \begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
     \begin{itemize}
-        \item <1-> In matrix notation: 
+        \item <1-> In matrix notation:
         \begin{align*}
-            \begin{bmatrix} B_T & S_{T-1}(1 + R_u)\\ B_T & S_{T-1}(1 + R_d)\end{bmatrix} \begin{bmatrix} \varphi_T \\ \theta_T \end{bmatrix} = \begin{bmatrix} \zeta^u_1 (S_{T-1})\\ \zeta^d_1(S_{T-1})\end{bmatrix}. 
+            \begin{bmatrix} B_T & S_{T-1}(1 + R_u)\\ B_T & S_{T-1}(1 + R_d)\end{bmatrix} \begin{bmatrix} \varphi_T \\ \theta_T \end{bmatrix} = \begin{bmatrix} \zeta^u_1 (S_{T-1})\\ \zeta^d_1(S_{T-1})\end{bmatrix}.
         \end{align*}
     \end{itemize}
 \end{frame}
@@ -1815,12 +1815,12 @@
     $\theta = \frac{\zeta^u - \zeta^d}{S_0 (R_u - R_d)}, \quad \varphi = \frac{1}{B_1} \bigg\{ \frac{\zeta^d(1+R_u) - \zeta^u(1+R_d)}{R_u - R_d} \bigg\}$
     \end{center}
     \begin{itemize}
-        \item Replacing $S_0, \zeta^u, \zeta^d$ and $B_1$ by $S_{T-1}, \zeta_1^u(S_{T-1}), \zeta_1^d(S_{T-1})$ and $B_T$ respectively in the one step case we get that 
+        \item Replacing $S_0, \zeta^u, \zeta^d$ and $B_1$ by $S_{T-1}, \zeta_1^u(S_{T-1}), \zeta_1^d(S_{T-1})$ and $B_T$ respectively in the one step case we get that
         \begin{align*}
             \theta_T&= \frac{\zeta^u_1 (S_{T-1}) - \zeta_1^d (S_{T-1})}{S_{T-1}(R_u - R_d)}\\
-            \varphi_T &= \frac{1}{B_T} \Bigg\{  \frac{\zeta_1^d (S_{T-1})  (1+R_u) - \zeta_1^u (S_{T-1}) (1+R_d)}{R_u - R_d} \Bigg\}. 
+            \varphi_T &= \frac{1}{B_T} \Bigg\{  \frac{\zeta_1^d (S_{T-1})  (1+R_u) - \zeta_1^u (S_{T-1}) (1+R_d)}{R_u - R_d} \Bigg\}.
         \end{align*}
-                \item In a similar way we obtain 
+                \item In a similar way we obtain
         \begin{align*}
             \varphi_T B_{T-1} + \theta_T S_{T-1} = \frac{1}{1+r} \left[ \zeta_1^u(S_{T-1})q^* + \zeta_1^d(S_{T-1})(1 - q^*) \right]
         \end{align*}
