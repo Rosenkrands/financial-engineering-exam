@@ -86,10 +86,10 @@
     \begin{definition}[Bond]\label{def:bond}
         A bond is a financial security that pays the owner a chain of predetermined payments.
     \end{definition}
-    \pause
-    \begin{itemize}
-        \item Financial asset with no risk
-    \end{itemize}
+    % \pause
+    % \begin{itemize}
+    %     \item Financial asset with no risk
+    % \end{itemize}
 \end{frame}
 
 %\subsection{Value of Money Through Time}
@@ -107,19 +107,6 @@
 \subsection{Interest Rate}
 
 \begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
-    \begin{itemize}
-        \item Predetermined payments are also known as interest
-        \item Fraction of an investment paid either ones for several periods
-        \item Different types of interest
-        \begin{enumerate}
-            \item Simple
-            \item Compounded
-            \item Continuously compounded
-        \end{enumerate}
-    \end{itemize}
-\end{frame}
-
-\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
     \begin{definition}[Wealth Process]
         The evolution of an investment over time is called the wealth process of that investment and is denoted by
         \begin{align}
@@ -130,11 +117,24 @@
 \end{frame}
 
 \begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    \begin{itemize}
+        \item Predetermined payments are also known as interest
+        \item Fraction of an investment paid either ones or in several periods
+        \item Different types of interest
+        \begin{enumerate}
+            \item Simple
+            \item Compounded
+            \item Continuously compounded
+        \end{enumerate}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
     \begin{definition}[Simple Interest]
         Let $v_0 \in \mathbb{R}$ be our initial capital.
         An interest on $v_0$ is said to be simple if it follows the wealth process
         \begin{align}\label{eq:simple_interest_wealth_process}
-            V_t = (1 + rt)v_0, \quad 0 \leq t \leq T.
+            %V_t = (1 + rt)v_0, \quad 0 \leq t \leq T.
         \end{align}
     \end{definition}
 \end{frame}
@@ -143,17 +143,17 @@
     I will now show that the wealth process in \eqref{eq:simple_interest_wealth_process} is indeed a stochastic process in any probability space.
     Any stochastic process $X$ on the probability space $(\Omega, \mathscr{F}, \mathbb{P})$ satisfies
     \begin{align}
-        \{\omega \in \Omega \, : \, X(\omega) \leq x\} \in \mathscr{F}, \quad \forall x \in \mathbb{R}.
+        %\{\omega \in \Omega \, : \, X(\omega) \leq x\} \in \mathscr{F}, \quad \forall x \in \mathbb{R}.
     \end{align}
     Suppose $v_0 > 0$ and $x \geq (1 + rt)v_0$ then
     \begin{align}
-        \{\omega \in \Omega \, : \, (1 + rt)v_0 \leq x\} = \{\Omega\} \in \mathscr{F},
+        %\{\omega \in \Omega \, : \, (1 + rt)v_0 \leq x\} = \{\Omega\} \in \mathscr{F},
     \end{align}
     on the other hand if $x < (1 + rt)v_0$
     \begin{align}
-        \{\omega \in \Omega \, : \, (1 + rt)v_0 \leq x\} = \{\emptyset\} \in \mathscr{F}.
+        %\{\omega \in \Omega \, : \, (1 + rt)v_0 \leq x\} = \{\emptyset\} \in \mathscr{F}.
     \end{align}
-    As both $\Omega$ and $\emptyset$ is contained in any $\sigma$-algebra we have shown that the wealth process in \eqref{eq:simple_interest_wealth_process} is a stochastic process in any probability space.
+    %As both $\Omega$ and $\emptyset$ is contained in any $\sigma$-algebra we have shown that the wealth process in \eqref{eq:simple_interest_wealth_process} is a stochastic process in any probability space.
 \end{frame}
 
 \begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
@@ -161,7 +161,7 @@
         Let $v_0 \in \mathbb{R}$ be our initial capital.
         An interest on $v_0$ is said to be compunded over $m\in\mathbb{N}$ periods if it follows the wealth process
         \begin{align}\label{eq:compund_interest_wealth_process}
-            V_t = \left( 1 + \frac{r}{m} \right)^{mt} v_0, \quad 0 \leq t \leq T.
+            %V_t = \left( 1 + \frac{r}{m} \right)^{mt} v_0, \quad 0 \leq t \leq T.
         \end{align}
     \end{definition}
 \end{frame}
@@ -181,7 +181,7 @@
         <
         \left( 1 + \dfrac{r}{m_2} \right)^{m_2t}v_0$.
     \end{enumerate}
-    From this is follows that for an \textit{investor} compund interest is more attractive as it pays more, however as a \textit{debtor} it is less attractive as he or she will have to pay more on his or hers debt.
+    %From this is follows that for an \textit{investor} compund interest is more attractive as it pays more, however as a \textit{debtor} it is less attractive as he or she will have to pay more on his or hers debt.
 \end{frame}
 
 \begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
@@ -198,15 +198,15 @@
     This leads to the definition of continuously compounded interest.
 \end{frame}
 
-\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
-    \begin{definition}[Continuously Compounded Interest]
-        Let $v_0$ be our initial capital.
-        An interest on $v_0$ is said to be continuously compounded at rate $r>0$ if the wealth process
-        \begin{align}
-            V_t = e^{rt}v_0, \quad 0 \leq t \leq T.
-        \end{align}
-    \end{definition}
-\end{frame}
+% \begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+%     \begin{definition}[Continuously Compounded Interest]
+%         Let $v_0$ be our initial capital.
+%         An interest on $v_0$ is said to be continuously compounded at rate $r>0$ if the wealth process
+%         \begin{align}
+%             V_t = e^{rt}v_0, \quad 0 \leq t \leq T.
+%         \end{align}
+%     \end{definition}
+% \end{frame}
 
 \begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
     There exists the following relation between the different types of interest
@@ -228,7 +228,7 @@
     we have 
     \begin{align*}
         \left( 1 + \frac{r}{m} \right)^m &= \sum_{k=0}^m \begin{pmatrix} m \\ k \end{pmatrix} 1^{m-k}\begin{pmatrix} \frac{r}{m} \end{pmatrix}^k\\
-        &= \sum_{k=0}^m \begin{pmatrix} m \\ k \end{pmatrix} \begin{pmatrix} \frac{r}{m} \end{pmatrix}^k := \clubsuit
+        &= \sum_{k=0}^m \begin{pmatrix} m \\ k \end{pmatrix} \begin{pmatrix} \frac{r}{m} \end{pmatrix}^k
     \end{align*}
 \end{frame}
 
@@ -244,9 +244,9 @@
     \begin{align*}
         \frac{m-l}{k-l} \frac{r}{m} &= \frac{rm - lr}{m(k-l)}\\
         &= \frac{m(r - lr/m)}{m(k - l)}\\
-        &= \frac{r - lr/m}{k-l} := \bigstar
+        &= \frac{r - lr/m}{k-l}
     \end{align*}
-    The term $\bigstar$ increases with $m$ and thus the product increases with $m$ and thus the sum $\clubsuit$ increases with $m$ and therefore it is an increasing sequence.
+    %The term $\bigstar$ increases with $m$ and thus the product increases with $m$ and thus the sum $\clubsuit$ increases with $m$ and therefore it is an increasing sequence.
 \end{frame}
 
 \subsection{Types of Bonds}
@@ -262,8 +262,12 @@
 \begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
     A \textbf{zero-coupon bond} is a bond with a single payment $F > 0$ at time $T > 0$.
     The pay-off F is called the face value and $T$ the maturity time.
+    \vspace{1em}
+
     The next question i will answer is how much i will be willing to pay for such a financial assest.
     This depends on the way the time value of money is measured.
+    \vspace{1em}
+    
     Consider for example the following setup; let $B_0 \geq 0$ be the value of the zero-coupon bond with face value $F>0$ and maturity time $T>0$.
     Suppose that only annual compound interest at rate $r>0$ is available.
 \end{frame}
@@ -284,7 +288,7 @@
 \end{frame}
 
 \begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
-    Now i will consider the situatuion where at time $1 \leq t \leq T$ i want to get rid of a bond, but i what to determine what price i should sell it to.
+    Now i will consider the situation where at time $1 \leq t \leq T$ i want to get rid of a bond, but i what to determine what price i should sell it to.
     At this time the bond can be considered a new zero-coupon bond with face value $F > 0$ and maturity time $T - t$.
     Thus we have from the previous argumentation that
     \begin{align}
@@ -304,7 +308,9 @@
 \end{frame}
 
 \begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
-    how much money will i have to deposit in my bank account today if i want to
+    A \textbf{coupon bond} guarantees the owner a payment $F > 0$ at time $T > 0$, as well as a fixed amount $C > 0$ at $t = 1,2,\ldots,T$.
+    To find a fair price for such a bond i will follow the same argumentation as above, namely i will compare the price of the bond with the cost of recieving the same benefits with a bank account.
+    In other words how much money will i have to deposit in my bank account today if i want to
     \begin{align}
         \text{1.} \quad &\text{withdraw $C > 0$ after 1 year} \\
         \text{2.} \quad &\text{withdraw $C > 0$ after 2 years} \\
@@ -616,23 +622,23 @@
     Consider a model where only two assets are traded: A bond and a risky asset.
     The bond satisfies that
     \begin{align}
-        B_t = (1+r), \quad t = 0,1, \ldots, T.
+        %B_t = (1+r)^t, \quad t = 0,1, \ldots, T.
     \end{align}
     The price process $(S_t)_{t = 0,1, \ldots, T}$ satisfies that $S_0 > 0$ (non-random) and
     \begin{align}
-        S_t = S_{t - 1} (1 + K_s(t)), \quad t = 1, \ldots, T.
+        %S_t = S_{t - 1} (1 + K_s(t)), \quad t = 1, \ldots, T.
     \end{align}
     The returns are independent and identically distributed with
     \begin{align}
-        K_s(t) =
-        \begin{cases}
-            R_u &\text{with probability } p; \\
-            R_d &\text{with probability } 1-p,
-        \end{cases}
+        %K_s(t) =
+        %\begin{cases}
+        %    R_u &\text{with probability } p; \\
+        %    R_d &\text{with probability } 1-p,
+        %\end{cases}
     \end{align}
     with the relation
     \begin{align}
-        R_d < R_u.
+        %R_d < R_u.
     \end{align}
 \end{frame}
 
@@ -682,14 +688,14 @@
     \begin{align}
         \mathbb{P}\left(
             \left\{
-                \omega^{(1)}, \omega^{(2)}, \ldots, \omega^{{\color{red}(d)}}
+                \omega^{(1)}, \omega^{(2)}, \ldots, \omega^{{\color{black}(T)}}
             \right\}
         \right) =
         p^k(1 - p)^{T-k},
     \end{align}
     where
     \begin{align}
-        k = \text{number of $u$'s in } \left(\omega^{(1)}, \omega^{(2)}, \ldots, \omega^{{\color{red}(d)}}\right). 
+        k = \text{number of $u$'s in } \left(\omega^{(1)}, \omega^{(2)}, \ldots, \omega^{{\color{black}(T)}}\right). 
     \end{align} 
 \end{frame}
 
@@ -938,7 +944,7 @@
                     \Omega, 
                     \mathscr{F}, 
                     \left(
-                        \mathscr{F}
+                        \mathscr{F}_t
                     \right)_{0 \leq t \leq T},
                     \mathbb{P}
                 \right),
@@ -982,7 +988,7 @@
                     \Omega, 
                     \mathscr{F}, 
                     \left(
-                        \mathscr{F}
+                        \mathscr{F}_t
                     \right)_{0 \leq t \leq T},
                     \mathbb{P}
                 \right),
@@ -1000,6 +1006,8 @@
 \end{frame}
 
 \begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    \begingroup
+    \small
     \begin{enumerate}
         \item It has zero initial capital:
         \begin{align}
@@ -1017,6 +1025,7 @@
             \right) > 0.
         \end{align}
     \end{enumerate}
+    \endgroup
 \end{frame}
 
 \subsection{Risk-Neutral Measure}
@@ -1049,9 +1058,9 @@
     \begin{definition}[Martingale]\label{def:martingale}
         The collection $\{ (X_t, \mathscr{F}_t): t = 0,1, \ldots, T \}$ is said to be a martingale if
         \begin{enumerate}
-            \item $X$ is adapted, i.e. $\sigma(X_t) \subseteq \mathscr{F}_t, \quad \forall \, 0 \leq t \leq T$.
-            \item $X_t$ has finite first moment, that is $\mathbb{E}(|X_t|) < \infty$. 
-            \item For all $0 \leq t \leq T-1$ we have that almost surely $\mathbb{E}(X_{t + 1} | \mathscr{F}_t) = X_t$. 
+            \item %$X$ is adapted, i.e. $\sigma(X_t) \subseteq \mathscr{F}_t, \quad \forall \, 0 \leq t \leq T$.
+            \item %$X_t$ has finite first moment, that is $\mathbb{E}(|X_t|) < \infty$. 
+            \item %For all $0 \leq t \leq T-1$ we have that almost surely $\mathbb{E}(X_{t + 1} | \mathscr{F}_t) = X_t$. 
         \end{enumerate}
     \end{definition}
 \end{frame}
@@ -1109,7 +1118,7 @@
 \begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
     I am now left to show that
     \begin{align}
-        \mathbb{E}\left((1 + K_S(t + 1) \, \bigg| \, \mathscr{F}_t\right) = 1,
+        \mathbb{E}\left(1 + K_S(t + 1) \, \bigg| \, \mathscr{F}_t\right) = 1 + r,
     \end{align}
     to do this i will use the independence of the returns but let me start by considering $t = 0$.
 \end{frame}
@@ -1732,13 +1741,105 @@
 
 \subsection{Remarks}
 \begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
-    If the market is arbitrage free and complete, the we have a unique arbitrage-free price for any derivative with pay-off $\xi$ which is given by
+    If the market is arbitrage free and complete, then we have a unique arbitrage-free price for any derivative with pay-off $\xi$ which is given by
     \begin{align}
         \mathbb{E}_*\left(\frac{B_t}{B_T}\xi\,\bigg|\,\mathscr{F}_t\right).
     \end{align}
 \end{frame}
 
+\subsection{Completeness}
 \begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    Let $\phi$ be the pay-off function of a simple derivative. We want to find an admissible strategy $\Theta = (\varphi_t, \theta_t)_{0 \leq t \leq T}$ such that 
+    \begin{align*}
+        \xi = \phi(S_T) = V_T^{\Theta} = \varphi_TB_T + \theta_TS_T. 
+    \end{align*}
+    Recall that a strategy $\Theta = (\varphi_t, \theta_t)_{0 \leq t \leq T}$ is admissible if: 
+    \begin{enumerate}
+        \item It is self financed: $(\theta_{t+1} = \# \textit{ of shares held between } t \textit{ and } t+1)$
+        \begin{align*}
+            \varphi_tB_t + \theta_t S_t = V_t^{\Theta} = \varphi_{t+1}B_t + \theta_{t+1}S_t
+        \end{align*}
+        \item Non-anticipative: $\Theta_t$ depends on the market information up to time $t$. 
+        \item Is has a limited credit line: There is a non-random constant $C > 0$ such that $V_t^{\Theta} \geq - C, \ \forall \, 0 \leq t \leq T$
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    \begin{itemize}
+        \item When we have $T=1$ we have seen that $\phi(S_1) = V_1^{\Theta} = \varphi B_1 + \theta S_1$ holds if and only if 
+        \begin{align*}
+            \zeta^u &:= \phi [S_0(1+R_u)] = \varphi B_1 + \theta S_0(1+R_u)\\
+            \zeta^d &:= \phi [S_0(1+R_d)] = \varphi B_1 + \theta S_0(1+R_d) \\
+            & \Leftrightarrow \begin{bmatrix} B_1 & S_0(1 + R_u)\\ B_1 & S_0(1 + R_d)\end{bmatrix} \begin{bmatrix} \varphi \\ \theta \end{bmatrix} = \begin{bmatrix} \zeta^u\\ \zeta^d\end{bmatrix}
+        \end{align*}
+            \item This system has a unique solution given by
+        \begin{align*}
+            \theta = \frac{\zeta^u - \zeta^d}{S_0 (R_u - R_d)}, \varphi = \frac{1}{B_1} \Bigg\{ \frac{\zeta^d(1+R_u) - \zeta^u(1+R_d)}{R_u - R_d} \Bigg\}. 
+        \end{align*}
+        \item <2-> Moreover for $q^* = \frac{r - R_d}{R_u - R_d}$:
+        \begin{align*}
+            \theta S_0 + \varphi B_0 = \frac{1}{1+r} \Bigg\{ \zeta^u q^* + \zeta^d(1-q^*) \Bigg\}. 
+        \end{align*}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    \begin{itemize}
+        \item <1-> Suppose that we have found the replicating strategy up to time $t = T-1$, i.e. $(\varphi_t, \theta_t)_{0 \leq t \leq T-1}$ is given . Thus it is left to find $(\varphi_T, \theta_T)$ such that 
+        \begin{align}\label{eq:completeness_of_BM}
+            \phi(S_T) = V_T^{\Theta} = \varphi_TB_T + \theta_TS_T
+        \end{align}
+                \item <1-> Using that $S_T = S_{T-1}(1+K_S(T))$, we have that \eqref{eq:completeness_of_BM} holds if and only if 
+                \begin{align*}
+            \zeta^u_1(S_{T-1}) &= \varphi_T B_T  + \theta_T S_{T-1}(1+R_u)\\
+            \zeta^d_1(S_{T-1}) &= \varphi_T B_T  + \theta_T S_{T-1}(1+R_d)\\
+        \end{align*}
+        where
+        \begin{align*}
+            \zeta_1^u(y) := \phi[y(1 + R_u)], \zeta_1^d(y):= \phi[y(1 + R_d)]. 
+        \end{align*}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    \begin{itemize}
+        \item <1-> In matrix notation: 
+        \begin{align*}
+            \begin{bmatrix} B_T & S_{T-1}(1 + R_u)\\ B_T & S_{T-1}(1 + R_d)\end{bmatrix} \begin{bmatrix} \varphi_T \\ \theta_T \end{bmatrix} = \begin{bmatrix} \zeta^u_1 (S_{T-1})\\ \zeta^d_1(S_{T-1})\end{bmatrix}. 
+        \end{align*}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    \begin{center}
+    $\theta = \frac{\zeta^u - \zeta^d}{S_0 (R_u - R_d)}, \quad \varphi = \frac{1}{B_1} \bigg\{ \frac{\zeta^d(1+R_u) - \zeta^u(1+R_d)}{R_u - R_d} \bigg\}$
+    \end{center}
+    \begin{itemize}
+        \item Replacing $S_0, \zeta^u, \zeta^d$ and $B_1$ by $S_{T-1}, \zeta_1^u(S_{T-1}), \zeta_1^d(S_{T-1})$ and $B_T$ respectively in the one step case we get that 
+        \begin{align*}
+            \theta_T&= \frac{\zeta^u_1 (S_{T-1}) - \zeta_1^d (S_{T-1})}{S_{T-1}(R_u - R_d)}\\
+            \varphi_T &= \frac{1}{B_T} \Bigg\{  \frac{\zeta_1^d (S_{T-1})  (1+R_u) - \zeta_1^u (S_{T-1}) (1+R_d)}{R_u - R_d} \Bigg\}. 
+        \end{align*}
+                \item In a similar way we obtain 
+        \begin{align*}
+            \varphi_T B_{T-1} + \theta_T S_{T-1} = \frac{1}{1+r} \left[ \zeta_1^u(S_{T-1})q^* + \zeta_1^d(S_{T-1})(1 - q^*) \right]
+        \end{align*}
+        \item $(\varphi_T, \theta_T)$ are functions exclusively of $S_{T-1}$ and do not rely on $(\varphi_t, \theta_t)_{0 \leq t \leq T-1}$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    \begin{itemize}
+        \item I have now found one portfolio, but to show completeness we need the whole strategy
+        \item Using similar arguments as well as the self-financed property, one can find the remaining portfolios to form the complete strategy
+    \end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{{\normalsize \secname} \\ {\large \subsecname}}
+    \begin{itemize}
+        \item Binomial model is complete, however this is not true for the Trinomial model
+        \vspace{6cm}
+    \end{itemize}
 \end{frame}
 
 \end{document}
